@@ -1,3 +1,5 @@
+import bgImage from "../assets/background_1.jpg";
+
 export default function Home() {
   return (
     <main
@@ -17,7 +19,7 @@ export default function Home() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `url(/src/assets/background_1.jpg)`,
+          backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "brightness(0.65)",
