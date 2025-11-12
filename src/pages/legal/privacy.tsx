@@ -1,4 +1,5 @@
-import { Layout, pStyle } from "./layout";
+import { Layout } from "./layout";
+import { pStyle } from "./styles";
 
 export function PrivacyPage() {
   return (
