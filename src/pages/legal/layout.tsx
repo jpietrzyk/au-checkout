@@ -1,4 +1,5 @@
 import React from "react";
+import "../home.css";
 
 const baseStyle: React.CSSProperties = {
   minHeight: "calc(100vh - 56px)",
@@ -14,13 +15,6 @@ const titleStyle: React.CSSProperties = {
   margin: 0,
 };
 
-const pStyle: React.CSSProperties = {
-  marginTop: 12,
-  lineHeight: 1.75,
-  color: "#374151",
-  fontSize: "clamp(0.95rem, 2vw, 1.05rem)",
-};
-
 const backLinkStyle: React.CSSProperties = {
   display: "inline-flex",
   alignItems: "center",
@@ -34,8 +28,6 @@ const backLinkStyle: React.CSSProperties = {
   border: "1px solid #e5e7eb",
   fontWeight: 600,
 };
-
-export { pStyle };
 
 export function Layout({
   title,
@@ -55,6 +47,23 @@ export function Layout({
           </a>
         </div>
       </section>
+      <footer className="home-footer" aria-label="Legal and consent links">
+        <div className="home-footer-content">
+          <div className="home-footer-links">
+            <a href="/privacy">Polityka prywatności</a>
+            <a href="/terms">Regulamin</a>
+            <a href="/cookies">Polityka plików cookie</a>
+            <a href="/consents">Zarządzanie zgodami</a>
+            <a href="/returns">Zwroty i reklamacje</a>
+            <a href="/shipping">Dostawa i płatności</a>
+            <a href="/security">Bezpieczeństwo i weryfikacja</a>
+            <a href="/contact">Kontakt</a>
+          </div>
+          <div className="home-footer-copyright">
+            © {new Date().getFullYear()} Tuus Imago. Wszelkie prawa zastrzeżone.
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
