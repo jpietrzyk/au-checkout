@@ -1,5 +1,6 @@
 import bgImage from "../assets/background_1.jpg";
 import "./home.css";
+import { Footer } from "../components/Footer";
 
 export default function Home() {
   return (
@@ -35,63 +36,9 @@ export default function Home() {
         </div>
       </section>
       {/* Compliance/Legal footer bar */}
-      <footer className="home-footer" aria-label="Legal and consent links">
-        <div className="home-footer-content">
-          <div className="home-footer-links">
-            <a
-              href="/privacy"
-              style={{ color: "#374151", textDecoration: "none" }}
-            >
-              Polityka prywatności
-            </a>
-            <a
-              href="/terms"
-              style={{ color: "#374151", textDecoration: "none" }}
-            >
-              Regulamin
-            </a>
-            <a
-              href="/cookies"
-              style={{ color: "#374151", textDecoration: "none" }}
-            >
-              Polityka plików cookie
-            </a>
-            <a
-              href="/consents"
-              style={{ color: "#374151", textDecoration: "none" }}
-            >
-              Zarządzanie zgodami
-            </a>
-            <a
-              href="/returns"
-              style={{ color: "#374151", textDecoration: "none" }}
-            >
-              Zwroty i reklamacje
-            </a>
-            <a
-              href="/shipping"
-              style={{ color: "#374151", textDecoration: "none" }}
-            >
-              Dostawa i płatności
-            </a>
-            <a
-              href="/security"
-              style={{ color: "#374151", textDecoration: "none" }}
-            >
-              Bezpieczeństwo i weryfikacja
-            </a>
-            <a
-              href="/contact"
-              style={{ color: "#374151", textDecoration: "none" }}
-            >
-              Kontakt
-            </a>
-          </div>
-          <div className="home-footer-copyright">
-            © {new Date().getFullYear()} Tuus Imago. Wszelkie prawa zastrzeżone.
-          </div>
-        </div>
-      </footer>
+      <Footer
+        copyright={`© ${new Date().getFullYear()} Tuus Imago. Wszelkie prawa zastrzeżone. NIP: 6811882876`}
+      />
     </main>
   );
 }
