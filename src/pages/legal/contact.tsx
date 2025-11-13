@@ -1,17 +1,12 @@
-import { Layout } from "./layout";
-import { pStyle } from "./styles";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function ContactPage() {
-  return (
-    <Layout title="Kontakt">
-      <p style={pStyle}>
-        Masz pytania dotyczące zamówień, dostawy lub personalizacji? Skontaktuj
-        się z nami. Odpowiemy najszybciej jak to możliwe.
-      </p>
-      <p style={pStyle}>
-        E-mail: kontakt@tuusimago.pl (przykładowy) | Godziny pracy: pn–pt
-        9:00–17:00
-      </p>
-    </Layout>
-  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/#contact", { replace: true });
+  }, [navigate]);
+
+  return null;
 }

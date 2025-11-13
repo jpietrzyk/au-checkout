@@ -1,0 +1,17 @@
+import { pStyle } from "../../pages/legal/styles";
+
+export function ReturnsContent() {
+  return (
+    <>
+      <p style={pStyle}>
+        Przyjmujemy zwroty i rozpatrujemy reklamacje zgodnie z obowiązującymi
+        przepisami i zasadami opisanymi w niniejszej sekcji. Szczegóły dotyczące
+        terminów oraz procedury znajdziesz poniżej.
+      </p>
+      <p style={pStyle}>
+        Aby zgłosić zwrot lub reklamację, przygotuj numer zamówienia oraz opis
+        problemu. Dołożymy starań, aby jak najszybciej rozwiązać sprawę.
+      </p>
+    </>
+  );
+}

@@ -1,18 +1,12 @@
-import { Layout } from "./layout";
-import { pStyle } from "./styles";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function SecurityPage() {
-  return (
-    <Layout title="Bezpieczeństwo i weryfikacja">
-      <p style={pStyle}>
-        Dbamy o bezpieczeństwo płatności oraz ochronę danych. Współpracujemy z
-        zaufanymi dostawcami usług płatniczych i stosujemy odpowiednie środki
-        techniczne oraz organizacyjne.
-      </p>
-      <p style={pStyle}>
-        W niektórych przypadkach możemy przeprowadzać weryfikację zamówień w
-        celu ochrony przed nadużyciami.
-      </p>
-    </Layout>
-  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/#security", { replace: true });
+  }, [navigate]);
+
+  return null;
 }
