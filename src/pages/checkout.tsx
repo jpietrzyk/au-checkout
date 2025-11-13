@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { FormStep } from "@/types";
 import StepImage from "./checkout/stepImage";
 import StepContact from "./checkout/stepContact";
@@ -11,6 +12,8 @@ import {
 import MultiStepForm from "@/components/stepped-form/stepped-form";
 import StepPayment from "./checkout/stepPaymet";
 import { CameraIcon, HomeIcon, UserIcon, CreditCardIcon } from "lucide-react";
+import { Footer } from "@/components/Footer";
+import { LegalModal } from "@/components/LegalModal";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const checkoutSteps: FormStep[] = [
@@ -49,9 +52,55 @@ export const checkoutSteps: FormStep[] = [
 ];
 
 export default function Checkout() {
+  const [modalSlug, setModalSlug] = useState<string | null>(null);
+
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (
+        hash &&
+        [
+          "privacy",
+          "terms",
+          "cookies",
+          "consents",
+          "returns",
+          "shipping",
+          "security",
+          "contact",
+        ].includes(hash)
+      ) {
+        setModalSlug(hash);
+      } else {
+        setModalSlug(null);
+      }
+    };
+
+    checkHash();
+    window.addEventListener("hashchange", checkHash);
+
+    return () => {
+      window.removeEventListener("hashchange", checkHash);
+    };
+  }, []);
+
+  const handleLinkClick = (slug: string) => {
+    setModalSlug(slug);
+    window.location.hash = slug;
+  };
+
+  const handleCloseModal = () => {
+    setModalSlug(null);
+    window.location.hash = "";
+  };
+
   return (
     <div>
       <MultiStepForm steps={checkoutSteps} localStorageKey="checkout-form" />
+      <Footer onLinkClick={handleLinkClick} />
+      {modalSlug && (
+        <LegalModal isOpen={true} onClose={handleCloseModal} slug={modalSlug} />
+      )}
     </div>
   );
 }
