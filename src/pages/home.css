@@ -159,7 +159,7 @@
 .home-steps-grid::before {
   content: '';
   position: absolute;
-  top: 25px;
+  top: 30px;
   left: 0;
   right: 0;
   height: 2px;
@@ -179,9 +179,10 @@
 }
 
 .home-step-number {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  border: 2px solid #374151;
   background: #ffffff;
   color: #6d28d9;
   display: flex;

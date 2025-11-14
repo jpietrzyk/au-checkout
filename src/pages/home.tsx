@@ -3,6 +3,7 @@ import bgImage from "../assets/background_1.jpg";
 import "./home.css";
 import { Footer } from "../components/Footer";
 import { LegalModal } from "../components/LegalModal";
+import { Upload, Settings, ShoppingCart, Truck } from "lucide-react";
 
 export default function Home() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
@@ -83,28 +84,36 @@ export default function Home() {
             <h2 className="home-steps-title">Jak to działa</h2>
             <div className="home-steps-grid">
               <div className="home-step">
-                <div className="home-step-number">1</div>
+                <div className="home-step-number">
+                  <Upload size={24} />
+                </div>
                 <h3 className="home-step-title">Prześlij zdjęcie</h3>
                 <p className="home-step-description">
                   Wybierz swoje ulubione zdjęcie z galerii lub zrób nowe.
                 </p>
               </div>
               <div className="home-step">
-                <div className="home-step-number">2</div>
+                <div className="home-step-number">
+                  <Settings size={24} />
+                </div>
                 <h3 className="home-step-title">Dostosuj obraz</h3>
                 <p className="home-step-description">
                   Wybierz rozmiar, styl ramki i inne opcje personalizacji.
                 </p>
               </div>
               <div className="home-step">
-                <div className="home-step-number">3</div>
+                <div className="home-step-number">
+                  <ShoppingCart size={24} />
+                </div>
                 <h3 className="home-step-title">Złóż zamówienie</h3>
                 <p className="home-step-description">
                   Potwierdź szczegóły i dokonaj bezpiecznej płatności.
                 </p>
               </div>
               <div className="home-step">
-                <div className="home-step-number">4</div>
+                <div className="home-step-number">
+                  <Truck size={24} />
+                </div>
                 <h3 className="home-step-title">Otrzymaj obraz</h3>
                 <p className="home-step-description">
                   Twój obraz na płótnie zostanie dostarczony prosto do domu.
