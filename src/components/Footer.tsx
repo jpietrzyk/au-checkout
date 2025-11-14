@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-
 interface FooterProps {
   copyright?: string;
   onLinkClick?: (slug: string) => void;
@@ -15,89 +13,37 @@ export function Footer({
         <div className="home-footer-links">
           {onLinkClick ? (
             <>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onLinkClick("privacy")}
-              >
+              <button onClick={() => onLinkClick("privacy")}>
                 Polityka prywatności
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onLinkClick("terms")}
-              >
-                Regulamin
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onLinkClick("cookies")}
-              >
+              </button>
+              <button onClick={() => onLinkClick("terms")}>Regulamin</button>
+              <button onClick={() => onLinkClick("cookies")}>
                 Polityka plików cookie
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onLinkClick("consents")}
-              >
+              </button>
+              <button onClick={() => onLinkClick("consents")}>
                 Zarządzanie zgodami
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onLinkClick("returns")}
-              >
+              </button>
+              <button onClick={() => onLinkClick("returns")}>
                 Zwroty i reklamacje
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onLinkClick("shipping")}
-              >
+              </button>
+              <button onClick={() => onLinkClick("shipping")}>
                 Dostawa i płatności
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onLinkClick("security")}
-              >
+              </button>
+              <button onClick={() => onLinkClick("security")}>
                 Bezpieczeństwo i weryfikacja
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onLinkClick("contact")}
-              >
-                Kontakt
-              </Button>
+              </button>
+              <button onClick={() => onLinkClick("contact")}>Kontakt</button>
             </>
           ) : (
             <>
-              <Button asChild variant="ghost" size="sm">
-                <a href="/privacy">Polityka prywatności</a>
-              </Button>
-              <Button asChild variant="ghost" size="sm">
-                <a href="/terms">Regulamin</a>
-              </Button>
-              <Button asChild variant="ghost" size="sm">
-                <a href="/cookies">Polityka plików cookie</a>
-              </Button>
-              <Button asChild variant="ghost" size="sm">
-                <a href="/consents">Zarządzanie zgodami</a>
-              </Button>
-              <Button asChild variant="ghost" size="sm">
-                <a href="/returns">Zwroty i reklamacje</a>
-              </Button>
-              <Button asChild variant="ghost" size="sm">
-                <a href="/shipping">Dostawa i płatności</a>
-              </Button>
-              <Button asChild variant="ghost" size="sm">
-                <a href="/security">Bezpieczeństwo i weryfikacja</a>
-              </Button>
-              <Button asChild variant="ghost" size="sm">
-                <a href="/contact">Kontakt</a>
-              </Button>
+              <a href="/privacy">Polityka prywatności</a>
+              <a href="/terms">Regulamin</a>
+              <a href="/cookies">Polityka plików cookie</a>
+              <a href="/consents">Zarządzanie zgodami</a>
+              <a href="/returns">Zwroty i reklamacje</a>
+              <a href="/shipping">Dostawa i płatności</a>
+              <a href="/security">Bezpieczeństwo i weryfikacja</a>
+              <a href="/contact">Kontakt</a>
             </>
           )}
         </div>

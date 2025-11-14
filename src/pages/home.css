@@ -92,10 +92,9 @@
 
 .home-footer-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  gap: 12px;
+  gap: 8px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0.5rem 1rem;
@@ -122,14 +121,12 @@
   transition: background-color 0.2s;
 }
 
-.home-footer-links button {
-  background: #374151;
-  color: #ffffff;
+.home-footer-links a:focus,
+.home-footer-links button:focus {
+  outline: none;
+  color: #6b7280;
 }
 
-.home-footer-links button:hover {
-  background: #4b5563;
-}
 
 .home-footer-link {
   color: #374151;
