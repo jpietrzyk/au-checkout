@@ -134,6 +134,77 @@
   text-decoration: none;
 }
 
+.home-steps {
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+.home-steps-title {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.home-steps-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.home-steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ffffff;
+  z-index: 0;
+}
+
+.home-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  flex: 1;
+  max-width: 200px;
+  z-index: 1;
+}
+
+.home-step-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #6d28d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.home-step-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #ffffff;
+}
+
+.home-step-description {
+  color: #f3f4f6;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
 .home-footer-copyright {
   opacity: 0.8;
 }
