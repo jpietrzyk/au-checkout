@@ -61,13 +61,14 @@ export default function Home() {
       {/* Centered hero section (full viewport) */}
       <section aria-label="Hero" className="home-hero">
         <div>
-          <h1 className="home-title">
-            Zamień swoje zdjęcie w obraz o jakości galerii
-          </h1>
+          <div className="home-brand">
+            tuus<span className="home-brand-imago">imago</span>
+          </div>
+          <h1 className="home-title">Zamień zdjęcie w obraz na płótnie</h1>
           <p className="home-subtitle">
-            Zamień każde ujęcie w obraz na płótnie w jakości muzealnej — z
-            głęboką fakturą, ręcznym wykończeniem i wiernym odwzorowaniem
-            kolorów. Profesjonalnie przygotowane w kilka minut.
+            Zamień zdjęcie w obraz na płótnie w jakości muzealnej. Wybierz
+            rozmiar, ramkę i styl. Przygotowane w kilka minut i dostarczone do
+            domu.
           </p>
 
           <div className="home-buttons">
