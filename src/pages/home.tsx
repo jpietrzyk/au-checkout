@@ -3,7 +3,15 @@ import bgImage from "../assets/background_1.jpg";
 import "./home.css";
 import { Footer } from "../components/Footer";
 import { LegalModal } from "../components/LegalModal";
-import { Upload, Settings, ShoppingCart, Truck } from "lucide-react";
+import {
+  Upload,
+  Settings,
+  ShoppingCart,
+  Truck,
+  ArrowRight,
+  Info,
+  Play,
+} from "lucide-react";
 
 export default function Home() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
@@ -73,10 +81,7 @@ export default function Home() {
 
           <div className="home-buttons">
             <a href="/checkout/stepImage" className="home-btn-primary">
-              Rozpocznij za darmo
-            </a>
-            <a href="#learn-more" className="home-btn-secondary">
-              Dowiedz się więcej
+              Rozpocznij <ArrowRight size={16} style={{ marginLeft: "8px" }} />
             </a>
           </div>
 
