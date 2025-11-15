@@ -3,15 +3,7 @@ import bgImage from "../assets/background_1.jpg";
 import "./home.css";
 import { Footer } from "../components/Footer";
 import { LegalModal } from "../components/LegalModal";
-import {
-  Upload,
-  Settings,
-  ShoppingCart,
-  Truck,
-  ArrowRight,
-  Image,
-  Camera,
-} from "lucide-react";
+import { Upload, Settings, ShoppingCart, Truck, Camera } from "lucide-react";
 
 export default function Home() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
