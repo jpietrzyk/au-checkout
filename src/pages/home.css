@@ -34,7 +34,7 @@
 .home-brand {
   position: absolute;
   top: 2rem;
-  left: 2rem;
+  left: 0;
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 300;
   color: #f3f4f6;
