@@ -24,6 +24,7 @@ export const checkoutSteps: FormStep[] = [
     icon: CameraIcon,
     position: 1,
     fields: ["fileUrl"],
+    label: "Prześlij zdjęcie",
   },
   {
     title: "Krok 2: Twoje dane",
@@ -32,6 +33,7 @@ export const checkoutSteps: FormStep[] = [
     position: 2,
     validationSchema: stepContactSchema,
     fields: ["email", "firstName", "lastName"],
+    label: "Twoje dane",
   },
   {
     title: "Krok 3: Adres dostawy",
@@ -40,6 +42,7 @@ export const checkoutSteps: FormStep[] = [
     position: 3,
     validationSchema: stepAddressSchema,
     fields: ["country", "city", "shippingAddress"],
+    label: "Adres dostawy",
   },
   {
     title: "Krok 4: Płatność",
@@ -48,6 +51,7 @@ export const checkoutSteps: FormStep[] = [
     position: 4,
     validationSchema: stepPaymentSchema,
     fields: ["cardNumber", "cardholderName", "cvv"],
+    label: "Płatność",
   },
 ];
 
