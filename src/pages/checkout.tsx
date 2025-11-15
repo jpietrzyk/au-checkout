@@ -95,7 +95,10 @@ export default function Checkout() {
   };
 
   return (
-    <div>
+    <div className="relative">
+      <div className="home-brand">
+        tuus<span className="home-brand-imago">imago</span>
+      </div>
       <MultiStepForm steps={checkoutSteps} localStorageKey="checkout-form" />
       <Footer onLinkClick={handleLinkClick} />
       {modalSlug && (

@@ -42,7 +42,12 @@ const TransloaditUploader = () => {
 
   return (
     <section>
-      <Dashboard uppy={uppy} plugins={["ImageEditor", "Webcam"]} />
+      <Dashboard
+        uppy={uppy}
+        plugins={["ImageEditor", "Webcam"]}
+        height={500}
+        width="100%"
+      />
       <div className="img-gallery">
         <p>Uploaded files</p>
       </div>
