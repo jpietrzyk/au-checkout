@@ -76,7 +76,7 @@
 
 .home-btn-primary {
   text-decoration: none;
-  padding: 32px 70px;
+  padding: 20px 110px;
   border-radius: 10px;
   color: #ffffff;
   background: #6d28d9;
@@ -84,7 +84,7 @@
   align-items: center;
   font-weight: 700;
   font-size: 1.5rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.05em;
 }
 
 .home-btn-secondary {

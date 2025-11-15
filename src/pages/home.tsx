@@ -9,8 +9,8 @@ import {
   ShoppingCart,
   Truck,
   ArrowRight,
-  Info,
-  Play,
+  Image,
+  Camera,
 } from "lucide-react";
 
 export default function Home() {
@@ -81,7 +81,7 @@ export default function Home() {
 
           <div className="home-buttons">
             <a href="/checkout/stepImage" className="home-btn-primary">
-              Rozpocznij <ArrowRight size={16} style={{ marginLeft: "8px" }} />
+              Rozpocznij <Camera size={24} style={{ marginLeft: "16px" }} />
             </a>
           </div>
 
