@@ -28,7 +28,7 @@ const legalComponents: Record<string, React.ComponentType> = {
 
 const titles: Record<string, string> = {
   privacy: "Polityka prywatności",
-  terms: "Regulamin sklepu",
+  terms: "Regulamin sklepu internetowego Tuus Imago",
   cookies: "Polityka plików cookie",
   consents: "Zarządzanie zgodami",
   returns: "Zwroty i reklamacje",
