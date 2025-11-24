@@ -23,6 +23,7 @@ export type FormStep = {
   validationSchema: ZodType<unknown>
   fields: FieldKeys[]
   label: string
+  description?: string
 }
 
 export type SavedFormState = {

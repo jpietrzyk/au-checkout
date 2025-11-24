@@ -7,29 +7,32 @@ export default function ProgressIndicator() {
   const { currentStep, goToStep, currentStepIndex } = useMultiStepForm();
 
   return (
-    <div className="flex items-center w-fulljustify-centerp-4 mb-10">
-      <div className="w-full space-y-8">
-        <div className="flex justify-between">
-          {/* Progress Line */}
-          <div className="absolute left-0 top-12 h-0.5 w-full bg-gray-200">
-            <motion.div
-              className="h-full bg-black"
-              initial={{ width: "0%" }}
-              animate={{
-                width: `${
-                  (currentStepIndex / (checkoutSteps.length - 1)) * 100
-                }%`,
-              }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            />
-          </div>
+    <div className="flex items-center w-full justify-center mb-10">
+      <div className="w-full space-y-8 relative">
+        {/* Progress Line */}
+        <div className="absolute left-0 top-12 h-0.5 w-full bg-gray-200">
+          <motion.div
+            className="h-full bg-black rounded-full"
+            initial={{ width: "0%" }}
+            animate={{
+              width: `${
+                (currentStepIndex / (checkoutSteps.length - 1)) * 100
+              }%`,
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          />
+        </div>
+        <div className="flex justify-between w-full px-8">
           {/* Steps */}
           {checkoutSteps.map((step) => {
             const isCompleted = currentStepIndex > step.position - 1;
             const isCurrent = currentStepIndex === step.position - 1;
 
             return (
-              <div key={step.position} className="relative z-10">
+              <div
+                key={step.position}
+                className="relative z-10 flex flex-col items-center"
+              >
                 <motion.button
                   onClick={() => goToStep(step.position)}
                   className={`flex w-[70px] h-[70px] items-center justify-center rounded-[10px] border-[3px] border-gray-700 bg-white ${
@@ -50,11 +53,16 @@ export default function ProgressIndicator() {
                   )}
                 </motion.button>
                 <div
-                  className={`absolute left-1/2 mt-2 -translate-x-1/2 text-sm font-medium ${
+                  className={`mt-2 text-sm font-medium text-center ${
                     isCompleted || isCurrent ? "text-primary" : "text-gray-500"
                   }`}
                 >
-                  {step.label}
+                  <div className="font-semibold">{step.label}</div>
+                  {step.description && (
+                    <div className="text-xs mt-1 text-gray-600 max-w-[150px]">
+                      {step.description}
+                    </div>
+                  )}
                 </div>
               </div>
             );
