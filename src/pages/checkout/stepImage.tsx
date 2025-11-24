@@ -56,7 +56,7 @@ const StepImage = () => {
         />
         <ErrorMessage message={errors.fileUrl?.message} />
       </div>
-      <div className="uc-light">
+      <div className="uc-light w-full">
         <TransloaditUploader />
         {/* <UploadcareUploader onDoneClick={handleFileApply} /> */}
       </div>
