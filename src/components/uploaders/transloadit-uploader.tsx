@@ -48,7 +48,7 @@ const TransloaditUploader = () => {
         height={400}
         width="100%"
       />
-      <div className="img-gallery">
+      <div className="img-gallery hidden">
         <p>Uploaded files</p>
       </div>
     </section>
