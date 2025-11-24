@@ -99,15 +99,26 @@ export default function Checkout() {
   };
 
   return (
-    <div className="relative">
-      <div className="home-brand">
-        tuus<span className="home-brand-imago">imago</span>
-      </div>
-      <MultiStepForm steps={checkoutSteps} localStorageKey="checkout-form" />
-      <Footer onLinkClick={handleLinkClick} />
-      {modalSlug && (
-        <LegalModal isOpen={true} onClose={handleCloseModal} slug={modalSlug} />
-      )}
+    <div className="checkout-main">
+      <section>
+        <div aria-label="Hero" className="home-hero">
+          <div className="home-brand">
+            tuus<span className="home-brand-imago">imago</span>
+          </div>
+          <MultiStepForm
+            steps={checkoutSteps}
+            localStorageKey="checkout-form"
+          />
+          <Footer onLinkClick={handleLinkClick} />
+          {modalSlug && (
+            <LegalModal
+              isOpen={true}
+              onClose={handleCloseModal}
+              slug={modalSlug}
+            />
+          )}
+        </div>
+      </section>
     </div>
   );
 }

@@ -176,7 +176,7 @@ const MultiStepForm = ({
   return (
     <MultiStepFormContext.Provider value={value}>
       <FormProvider {...methods}>
-        <div className="w-full min-w-[70%] px-4">
+        <div className="w-full min-w-[70%]">
           <ProgressIndicator />
           <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
             {currentStep.component}

@@ -9,7 +9,7 @@ export default function ProgressIndicator() {
   return (
     <div className="flex items-center w-fulljustify-centerp-4 mb-10">
       <div className="w-full space-y-8">
-        <div className="relative flex justify-between">
+        <div className="flex justify-between">
           {/* Progress Line */}
           <div className="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 bg-gray-200">
             <motion.div
