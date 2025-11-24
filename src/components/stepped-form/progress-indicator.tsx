@@ -11,7 +11,7 @@ export default function ProgressIndicator() {
       <div className="w-full space-y-8">
         <div className="flex justify-between">
           {/* Progress Line */}
-          <div className="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 bg-gray-200">
+          <div className="absolute left-0 top-12 h-0.5 w-full bg-gray-200">
             <motion.div
               className="h-full bg-black"
               initial={{ width: "0%" }}
