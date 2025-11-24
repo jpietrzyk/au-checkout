@@ -99,26 +99,27 @@ export default function Checkout() {
   };
 
   return (
-    <div className="checkout-main">
-      <section>
-        <div aria-label="Hero" className="home-hero">
-          <div className="home-brand">
-            tuus<span className="home-brand-imago">imago</span>
-          </div>
-          <MultiStepForm
-            steps={checkoutSteps}
-            localStorageKey="checkout-form"
-          />
-          <Footer onLinkClick={handleLinkClick} />
-          {modalSlug && (
-            <LegalModal
-              isOpen={true}
-              onClose={handleCloseModal}
-              slug={modalSlug}
-            />
-          )}
+    <main className="home-main">
+      <div
+        className="home-bg"
+        style={{
+          backgroundImage: `url('/src/assets/background_1.jpg')`,
+        }}
+      />
+      <section aria-label="Hero" className="home-hero">
+        <div className="home-brand">
+          tuus<span className="home-brand-imago">imago</span>
         </div>
+        <MultiStepForm steps={checkoutSteps} localStorageKey="checkout-form" />
+        <Footer onLinkClick={handleLinkClick} />
+        {modalSlug && (
+          <LegalModal
+            isOpen={true}
+            onClose={handleCloseModal}
+            slug={modalSlug}
+          />
+        )}
       </section>
-    </div>
+    </main>
   );
 }
