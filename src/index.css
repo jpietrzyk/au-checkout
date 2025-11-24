@@ -191,4 +191,22 @@ button:focus-visible {
     margin-bottom: 12px;
     padding-left: 20px;
   }
+
+  .legal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .legal-content th,
+  .legal-content td {
+    border: 1px solid #e5e7eb;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .legal-content th {
+    background-color: #f9fafb;
+  }
 }
