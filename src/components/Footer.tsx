@@ -13,23 +13,14 @@ export function Footer({
         <div className="home-footer-links">
           {onLinkClick ? (
             <>
-              <button onClick={() => onLinkClick("privacy")}>
-                Polityka prywatności
-              </button>
               <button onClick={() => onLinkClick("terms")}>
                 Regulamin sklepu
               </button>
               <button onClick={() => onLinkClick("cookies")}>
-                Polityka plików cookie
+                Polityka prywatności
               </button>
               <button onClick={() => onLinkClick("consents")}>
                 Zarządzanie zgodami
-              </button>
-              <button onClick={() => onLinkClick("returns")}>
-                Zwroty i reklamacje
-              </button>
-              <button onClick={() => onLinkClick("shipping")}>
-                Dostawa i płatności
               </button>
               <button onClick={() => onLinkClick("security")}>
                 Bezpieczeństwo i weryfikacja
@@ -38,12 +29,9 @@ export function Footer({
             </>
           ) : (
             <>
-              <a href="/privacy">Polityka prywatności</a>
               <a href="/terms">Regulamin sklepu</a>
-              <a href="/cookies">Polityka plików cookie</a>
+              <a href="/cookies">Polityka prywatności</a>
               <a href="/consents">Zarządzanie zgodami</a>
-              <a href="/returns">Zwroty i reklamacje</a>
-              <a href="/shipping">Dostawa i płatności</a>
               <a href="/security">Bezpieczeństwo i weryfikacja</a>
               <a href="/contact">Kontakt</a>
             </>
