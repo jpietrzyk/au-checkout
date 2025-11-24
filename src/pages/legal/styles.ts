@@ -14,3 +14,9 @@ export const h1Style: React.CSSProperties = {
   marginBottom: 8,
   color: "#111827",
 };
+
+export const ulStyle: React.CSSProperties = {
+  marginTop: 8,
+  marginBottom: 12,
+  paddingLeft: 20,
+};

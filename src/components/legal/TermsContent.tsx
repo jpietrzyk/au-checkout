@@ -1,10 +1,8 @@
-import { pStyle } from "../../pages/legal/styles";
-
 export function TermsContent() {
   return (
     <>
       <h2>§ 1 Postanowienia ogólne</h2>
-      <p style={pStyle}>
+      <p>
         Niniejszy Regulamin określa zasady korzystania z serwisu internetowego
         dostępnego pod adresem https://tuusimago.com (zwanego dalej „Serwisem”)
         oraz składania zamówień na druk zdjęć na płótnie malarskim. Właścicielem
@@ -16,7 +14,7 @@ export function TermsContent() {
       </p>
 
       <h2>§ 2 Definicje</h2>
-      <p style={pStyle}>
+      <p>
         Klient – osoba fizyczna posiadająca pełną zdolność do czynności
         prawnych, osoba prawna lub jednostka organizacyjna nieposiadająca
         osobowości prawnej, składająca zamówienie w Serwisie. Konsument – Klient
@@ -28,14 +26,14 @@ export function TermsContent() {
       </p>
 
       <h2>§ 3 Wymagania techniczne</h2>
-      <p style={pStyle}>
+      <p>
         Do prawidłowego korzystania z Serwisu niezbędne jest: połączenie z
         Internetem, przeglądarka internetowa z włączoną obsługą JavaScript i
         cookies, aktywny adres e-mail, możliwość otwierania plików PDF.
       </p>
 
       <h2>§ 4 Składanie zamówień</h2>
-      <p style={pStyle}>
+      <p>
         Zamówienia można składać 24 godziny na dobę przez cały rok. Klient
         wybiera format płótna, rodzaj krosna, ewentualne opcje edycji zdjęcia i
         przesyła swój plik graficzny. Po zatwierdzeniu podglądu wydruku i
@@ -45,7 +43,7 @@ export function TermsContent() {
       </p>
 
       <h2>§ 5 Ceny i płatności</h2>
-      <p style={pStyle}>
+      <p>
         Wszystkie ceny podane na tuusimago.com są cenami brutto (zawierają VAT).
         Płatność odbywa się za pośrednictwem bezpiecznych operatorów płatności
         elektronicznych lub przelewem tradycyjnym. Na życzenie Klienta
@@ -53,7 +51,7 @@ export function TermsContent() {
       </p>
 
       <h2>§ 6 Prawa autorskie i odpowiedzialność za materiały</h2>
-      <p style={pStyle}>
+      <p>
         Przesyłając zdjęcie, Klient oświadcza, że posiada pełne prawa autorskie
         lub niezbędne zgody do jego wykorzystania komercyjnego i publicznego
         udostępnienia. Klient ponosi wyłączną odpowiedzialność za naruszenie
@@ -65,7 +63,7 @@ export function TermsContent() {
       </p>
 
       <h2>§ 7 Reklamacje i gwarancja jakości</h2>
-      <p style={pStyle}>
+      <p>
         Klient ma prawo zgłosić reklamację w terminie 14 dni od otrzymania
         przesyłki. Reklamacje rozpatrywane są w terminie do 14 dni. W przypadku
         uznania reklamacji Sprzedawca wykona nowy wydruk bezpłatnie lub zwróci
@@ -75,7 +73,7 @@ export function TermsContent() {
       </p>
 
       <h2>§ 8 Odstąpienie od umowy</h2>
-      <p style={pStyle}>
+      <p>
         Zgodnie z art. 38 ust. 3 ustawy o prawach konsumenta prawo odstąpienia
         od umowy zawartej na odległość nie przysługuje Konsumentowi w
         odniesieniu do umów o dostarczenie towarów wytworzonych według
@@ -86,7 +84,7 @@ export function TermsContent() {
       </p>
 
       <h2>§ 9 Ochrona danych osobowych</h2>
-      <p style={pStyle}>
+      <p>
         Administratorem danych osobowych jest Tuus Imago. Dane przetwarzane są
         wyłącznie w celu realizacji zamówienia i wysyłki. Szczegółowe informacje
         zawiera Polityka prywatności dostępna na
@@ -94,7 +92,7 @@ export function TermsContent() {
       </p>
 
       <h2>§ 10 Postanowienia końcowe</h2>
-      <p style={pStyle}>
+      <p>
         W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego.
         Sprzedawca zastrzega sobie prawo zmiany Regulaminu – zmiany wchodzą w
         życie po 14 dniach od publikacji. Regulamin dostępny jest pod adresem:
@@ -102,23 +100,23 @@ export function TermsContent() {
       </p>
 
       <h2>§ 11 Zwroty i reklamacje</h2>
-      <p style={pStyle}>
+      <p>
         Przyjmujemy zwroty i rozpatrujemy reklamacje zgodnie z obowiązującymi
         przepisami i zasadami opisanymi w niniejszej sekcji. Szczegóły dotyczące
         terminów oraz procedury znajdziesz poniżej.
       </p>
-      <p style={pStyle}>
+      <p>
         Aby zgłosić zwrot lub reklamację, przygotuj numer zamówienia oraz opis
         problemu. Dołożymy starań, aby jak najszybciej rozwiązać sprawę.
       </p>
 
       <h2>§ 12 Dostawa i płatności</h2>
-      <p style={pStyle}>
+      <p>
         Oferujemy różne metody dostawy i płatności, aby ułatwić Ci złożenie
         zamówienia. Koszty i czas dostawy mogą się różnić w zależności od
         wybranej metody oraz adresu doręczenia.
       </p>
-      <p style={pStyle}>
+      <p>
         Szczegółowe informacje o dostępnych formach płatności oraz dostawy
         znajdują się w tej sekcji.
       </p>
