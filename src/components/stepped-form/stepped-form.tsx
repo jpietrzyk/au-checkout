@@ -3,7 +3,6 @@ import { createContext, useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { FormStep, MultiStepFormContextProps, SavedFormState } from "@/types";
-import PrevButton from "@/components/stepped-form/prev-button";
 import { FormProvider, useForm } from "react-hook-form";
 import {
   CombinedCheckoutSchema,
@@ -177,12 +176,10 @@ const MultiStepForm = ({
   return (
     <MultiStepFormContext.Provider value={value}>
       <FormProvider {...methods}>
-        <div className="w-[550px] mx-auto">
+        <div className="w-full min-w-[70%]">
           <ProgressIndicator />
           <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
-            <h1 className="py-5 text-3xl font-bold">{currentStep.title}</h1>
             {currentStep.component}
-            <PrevButton />
           </form>
         </div>
       </FormProvider>

@@ -22,6 +22,7 @@ export type FormStep = {
   position: number
   validationSchema: ZodType<unknown>
   fields: FieldKeys[]
+  label: string
 }
 
 export type SavedFormState = {

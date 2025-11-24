@@ -47,7 +47,7 @@ const StepImage = () => {
 
   return (
     <div className="flex flex-col gap-3">
-      <div>
+      <div className="hidden">
         <Input
           {...register("fileUrl")}
           placeholder="Pliki URL"
@@ -56,7 +56,7 @@ const StepImage = () => {
         />
         <ErrorMessage message={errors.fileUrl?.message} />
       </div>
-      <div className="uc-light">
+      <div className="uc-light w-full">
         <TransloaditUploader />
         {/* <UploadcareUploader onDoneClick={handleFileApply} /> */}
       </div>

@@ -9,7 +9,7 @@ export default function ProgressIndicator() {
   return (
     <div className="flex items-center w-fulljustify-centerp-4 mb-10">
       <div className="w-full space-y-8">
-        <div className="relative flex justify-between">
+        <div className="flex justify-between">
           {/* Progress Line */}
           <div className="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 bg-gray-200">
             <motion.div
@@ -32,10 +32,10 @@ export default function ProgressIndicator() {
               <div key={step.position} className="relative z-10">
                 <motion.button
                   onClick={() => goToStep(step.position)}
-                  className={`flex size-16 items-center justify-center rounded-full border-2 ${
+                  className={`flex w-[70px] h-[70px] items-center justify-center rounded-[10px] border-[3px] border-gray-700 bg-white ${
                     isCompleted || isCurrent
-                      ? "border-primary bg-black text-white"
-                      : "border-gray-200 bg-white text-gray-400"
+                      ? "text-purple-700"
+                      : "text-gray-400"
                   }`}
                   initial={false}
                   animate={{
@@ -54,7 +54,7 @@ export default function ProgressIndicator() {
                     isCompleted || isCurrent ? "text-primary" : "text-gray-500"
                   }`}
                 >
-                  {step.position}
+                  {step.label}
                 </div>
               </div>
             );
