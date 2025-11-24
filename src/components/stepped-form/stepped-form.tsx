@@ -177,10 +177,10 @@ const MultiStepForm = ({
     <MultiStepFormContext.Provider value={value}>
       <FormProvider {...methods}>
         <div className="w-full">
-          <ProgressIndicator />
           <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
             {currentStep.component}
           </form>
+          <ProgressIndicator />
         </div>
       </FormProvider>
     </MultiStepFormContext.Provider>

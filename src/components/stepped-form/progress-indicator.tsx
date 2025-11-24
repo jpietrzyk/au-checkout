@@ -35,7 +35,7 @@ export default function ProgressIndicator() {
               >
                 <motion.button
                   onClick={() => goToStep(step.position)}
-                  className={`flex w-[70px] h-[70px] items-center justify-center rounded-[10px] border-[3px] border-gray-700 bg-white ${
+                  className={`flex w-[70px] h-[70px] items-center justify-center rounded-[10px] border-[3px] border-gray-700 bg-white mb-3 ${
                     isCompleted || isCurrent
                       ? "text-purple-700"
                       : "text-gray-400"
@@ -53,16 +53,13 @@ export default function ProgressIndicator() {
                   )}
                 </motion.button>
                 <div
-                  className={`mt-2 text-sm font-medium text-center ${
+                  className={`mt-2 text-base font-medium text-center ${
                     isCompleted || isCurrent ? "text-primary" : "text-gray-500"
                   }`}
                 >
-                  <div className="font-semibold">{step.label}</div>
-                  {step.description && (
-                    <div className="text-xs mt-1 text-gray-600 max-w-[150px]">
-                      {step.description}
-                    </div>
-                  )}
+                  <div className="font-semibold text-white text-[1rem]">
+                    {step.label}
+                  </div>
                 </div>
               </div>
             );

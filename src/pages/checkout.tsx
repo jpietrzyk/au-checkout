@@ -25,7 +25,7 @@ export const checkoutSteps: FormStep[] = [
     position: 1,
     fields: ["fileUrl"],
     label: "Prześlij zdjęcie",
-    description: "Wybierz swoje ulubione zdjęcie z galerii lub zrób nowe.",
+    description: "Wybierz zdjęcie z galerii lub zrób nowe.",
   },
   {
     title: "Krok 2: Twoje dane",
@@ -35,7 +35,7 @@ export const checkoutSteps: FormStep[] = [
     validationSchema: stepContactSchema,
     fields: ["email", "firstName", "lastName"],
     label: "Twoje dane",
-    description: "Podaj swoje dane kontaktowe do zamówienia.",
+    description: "Podaj dane kontaktowe.",
   },
   {
     title: "Krok 3: Adres dostawy",
@@ -45,7 +45,7 @@ export const checkoutSteps: FormStep[] = [
     validationSchema: stepAddressSchema,
     fields: ["country", "city", "shippingAddress"],
     label: "Adres dostawy",
-    description: "Wprowadź adres, na który dostarczymy obraz.",
+    description: "Wprowadź adres dostawy.",
   },
   {
     title: "Krok 4: Płatność",
@@ -55,7 +55,7 @@ export const checkoutSteps: FormStep[] = [
     validationSchema: stepPaymentSchema,
     fields: ["cardNumber", "cardholderName", "cvv"],
     label: "Płatność",
-    description: "Dokonaj bezpiecznej płatności za zamówienie.",
+    description: "Dokonaj płatności.",
   },
 ];
 
