@@ -100,6 +100,28 @@ export function TermsContent() {
         życie po 14 dniach od publikacji. Regulamin dostępny jest pod adresem:
         https://tuusimago.com/regulamin
       </p>
+
+      <h2>§ 11 Zwroty i reklamacje</h2>
+      <p style={pStyle}>
+        Przyjmujemy zwroty i rozpatrujemy reklamacje zgodnie z obowiązującymi
+        przepisami i zasadami opisanymi w niniejszej sekcji. Szczegóły dotyczące
+        terminów oraz procedury znajdziesz poniżej.
+      </p>
+      <p style={pStyle}>
+        Aby zgłosić zwrot lub reklamację, przygotuj numer zamówienia oraz opis
+        problemu. Dołożymy starań, aby jak najszybciej rozwiązać sprawę.
+      </p>
+
+      <h2>§ 12 Dostawa i płatności</h2>
+      <p style={pStyle}>
+        Oferujemy różne metody dostawy i płatności, aby ułatwić Ci złożenie
+        zamówienia. Koszty i czas dostawy mogą się różnić w zależności od
+        wybranej metody oraz adresu doręczenia.
+      </p>
+      <p style={pStyle}>
+        Szczegółowe informacje o dostępnych formach płatności oraz dostawy
+        znajdują się w tej sekcji.
+      </p>
     </>
   );
 }

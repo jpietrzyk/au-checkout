@@ -2,10 +2,7 @@ import React from "react";
 import { Modal } from "./ui/modal";
 import { PrivacyContent } from "./legal/PrivacyContent";
 import { TermsContent } from "./legal/TermsContent";
-import { CookiesContent } from "./legal/CookiesContent";
 import { ConsentsContent } from "./legal/ConsentsContent";
-import { ReturnsContent } from "./legal/ReturnsContent";
-import { ShippingContent } from "./legal/ShippingContent";
 import { SecurityContent } from "./legal/SecurityContent";
 import { ContactContent } from "./legal/ContactContent";
 
@@ -16,23 +13,17 @@ interface LegalModalProps {
 }
 
 const legalComponents: Record<string, React.ComponentType> = {
-  privacy: PrivacyContent,
   terms: TermsContent,
-  cookies: CookiesContent,
+  cookies: PrivacyContent,
   consents: ConsentsContent,
-  returns: ReturnsContent,
-  shipping: ShippingContent,
   security: SecurityContent,
   contact: ContactContent,
 };
 
 const titles: Record<string, string> = {
-  privacy: "Polityka prywatności",
   terms: "Regulamin sklepu internetowego Tuus Imago",
-  cookies: "Polityka plików cookie",
-  consents: "Zarządzanie zgodami",
-  returns: "Zwroty i reklamacje",
-  shipping: "Dostawa i płatności",
+  cookies: "Polityka prywatności",
+  consents: "Zarządzaj swoimi zgodami",
   security: "Bezpieczeństwo i weryfikacja",
   contact: "Kontakt",
 };
