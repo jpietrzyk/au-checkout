@@ -1,6 +1,5 @@
-import ReactMarkdown from "react-markdown";
-import consentsMd from "../../assets/legal/consents.md?raw";
+import consentsHtml from "../../assets/legal/consents.html?raw";
 
 export function ConsentsContent() {
-  return <ReactMarkdown>{consentsMd}</ReactMarkdown>;
+  return <div dangerouslySetInnerHTML={{ __html: consentsHtml }} />;
 }

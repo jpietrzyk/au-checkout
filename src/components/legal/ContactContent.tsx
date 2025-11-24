@@ -1,6 +1,5 @@
-import ReactMarkdown from "react-markdown";
-import contactMd from "../../assets/legal/contact.md?raw";
+import contactHtml from "../../assets/legal/contact.html?raw";
 
 export function ContactContent() {
-  return <ReactMarkdown>{contactMd}</ReactMarkdown>;
+  return <div dangerouslySetInnerHTML={{ __html: contactHtml }} />;
 }

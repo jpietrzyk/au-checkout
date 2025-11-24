@@ -41,7 +41,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
         {/* Header */}
         {title && (
           <div className="flex items-center justify-between p-6 border-b">
-            <h2 className="text-xl font-semibold">{title}</h2>
+            <h2 className="text-2xl font-semibold">{title}</h2>
             <button
               onClick={onClose}
               className="text-gray-400 hover:text-gray-600 text-2xl leading-none"

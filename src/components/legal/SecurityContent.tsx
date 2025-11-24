@@ -1,6 +1,5 @@
-import ReactMarkdown from "react-markdown";
-import securityMd from "../../assets/legal/security.md?raw";
+import securityHtml from "../../assets/legal/security.html?raw";
 
 export function SecurityContent() {
-  return <ReactMarkdown>{securityMd}</ReactMarkdown>;
+  return <div dangerouslySetInnerHTML={{ __html: securityHtml }} />;
 }

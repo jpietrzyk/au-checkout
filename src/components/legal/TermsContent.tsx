@@ -1,6 +1,5 @@
-import ReactMarkdown from "react-markdown";
-import termsMd from "../../assets/legal/terms.md?raw";
+import termsHtml from "../../assets/legal/terms.html?raw";
 
 export function TermsContent() {
-  return <ReactMarkdown>{termsMd}</ReactMarkdown>;
+  return <div dangerouslySetInnerHTML={{ __html: termsHtml }} />;
 }

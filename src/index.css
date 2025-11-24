@@ -178,12 +178,20 @@ button:focus-visible {
     color: #6d28d9;
   }
 
+  .legal-content h2 {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #1f2937;
+  }
+
   .legal-content p {
     margin-top: 12px;
     margin-bottom: 12px;
     line-height: 1.75;
     color: #374151;
-    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    font-size: clamp(0.9rem, 2vw, 1rem);
   }
 
   .legal-content ul {
