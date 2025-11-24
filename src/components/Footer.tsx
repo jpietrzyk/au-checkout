@@ -16,7 +16,9 @@ export function Footer({
               <button onClick={() => onLinkClick("privacy")}>
                 Polityka prywatności
               </button>
-              <button onClick={() => onLinkClick("terms")}>Regulamin</button>
+              <button onClick={() => onLinkClick("terms")}>
+                Regulamin sklepu
+              </button>
               <button onClick={() => onLinkClick("cookies")}>
                 Polityka plików cookie
               </button>
@@ -37,7 +39,7 @@ export function Footer({
           ) : (
             <>
               <a href="/privacy">Polityka prywatności</a>
-              <a href="/terms">Regulamin</a>
+              <a href="/terms">Regulamin sklepu</a>
               <a href="/cookies">Polityka plików cookie</a>
               <a href="/consents">Zarządzanie zgodami</a>
               <a href="/returns">Zwroty i reklamacje</a>

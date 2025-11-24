@@ -28,7 +28,7 @@ const legalComponents: Record<string, React.ComponentType> = {
 
 const titles: Record<string, string> = {
   privacy: "Polityka prywatności",
-  terms: "Regulamin",
+  terms: "Regulamin sklepu",
   cookies: "Polityka plików cookie",
   consents: "Zarządzanie zgodami",
   returns: "Zwroty i reklamacje",
