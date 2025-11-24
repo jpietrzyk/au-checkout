@@ -1,30 +1,6 @@
+import ReactMarkdown from "react-markdown";
+import consentsMd from "../../assets/legal/consents.md?raw";
+
 export function ConsentsContent() {
-  return (
-    <>
-      <h2>Adres e-mail</h2>
-      <p>[pole do wpisania e-maila]</p>
-
-      <h2>Aktualny status Twoich zgód</h2>
-      <ul>
-        <li>
-          Realizacja zamówień i kontakt w tej sprawie → zawsze aktywna (wymagana
-          do wykonania usługi)
-        </li>
-        <li>Newsletter i promocje → [Włączona / Wyłączona] → [Zmień]</li>
-        <li>
-          Analityczne i reklamowe cookies → [Włączone / Wyłączone] → [Zmień]
-        </li>
-      </ul>
-
-      <p>
-        <strong>[Zapisz zmiany]</strong>
-        <br />
-        <strong>[Usuń wszystkie moje dane (prawo do bycia zapomnianym)]</strong>
-        <br />
-        <strong>[Wycofaj wszystkie zgody i usuń konto]</strong>
-      </p>
-
-      <p>Po kliknięciu „Zapisz” dostajesz e-mail z potwierdzeniem.</p>
-    </>
-  );
+  return <ReactMarkdown>{consentsMd}</ReactMarkdown>;
 }
