@@ -8,6 +8,8 @@ import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 // import { OutputFileEntry } from "@uploadcare/react-uploader";
 import TransloaditUploader from "@/components/uploaders/transloadit-uploader";
+import StepItem from "@/components/StepItem";
+import { checkoutSteps } from "../checkout";
 
 const StepImage = () => {
   const {
@@ -47,6 +49,19 @@ const StepImage = () => {
 
   return (
     <div className="flex flex-col gap-3">
+      <div className="home-steps">
+        <h2 className="home-steps-title">Proces zamówienia</h2>
+        <div className="home-steps-grid">
+          {checkoutSteps.map((step) => (
+            <StepItem
+              key={step.position}
+              icon={step.icon}
+              title={step.label}
+              description={step.description}
+            />
+          ))}
+        </div>
+      </div>
       <div className="hidden">
         <Input
           {...register("fileUrl")}

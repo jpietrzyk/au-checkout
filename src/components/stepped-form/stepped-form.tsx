@@ -8,7 +8,6 @@ import {
   CombinedCheckoutSchema,
   CombinedCheckoutType,
 } from "@/validators/checkout-flow.validator";
-import ProgressIndicator from "./progress-indicator";
 import { useLocalStorage } from "@mantine/hooks";
 import { useToast } from "@/hooks/use-toast";
 
@@ -180,7 +179,6 @@ const MultiStepForm = ({
           <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
             {currentStep.component}
           </form>
-          <ProgressIndicator />
         </div>
       </FormProvider>
     </MultiStepFormContext.Provider>
