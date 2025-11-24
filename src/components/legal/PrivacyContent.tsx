@@ -1,28 +1,26 @@
-import { pStyle } from "../../pages/legal/styles";
+import { pStyle, ulStyle } from "../../pages/legal/styles";
 
 export function PrivacyContent() {
   return (
     <>
-      <p style={pStyle}>
+      <p>
         Niniejsza polityka prywatności opisuje zasady przetwarzania danych
         osobowych w serwisie. Dbamy o bezpieczeństwo oraz przejrzystość
         przetwarzania danych zgodnie z obowiązującymi przepisami.
       </p>
 
       <h2>§ 1 Administrator danych osobowych</h2>
-      <p style={pStyle}>Administratorem Twoich danych osobowych jest:</p>
-      <ul style={{ marginTop: 8, marginBottom: 12, paddingLeft: 20 }}>
+      <p>Administratorem Twoich danych osobowych jest:</p>
+      <ul style={ulStyle}>
         <li>Tuus Imago Michał Kowalski (lub wpisz dokładną nazwę firmy/jdg)</li>
         <li>[adres siedziby]</li>
         <li>NIP: [Twój NIP]</li>
         <li>e-mail: kontakt@tuusimago.com</li>
       </ul>
-      <p style={pStyle}>(zwany dalej „Administratorem” lub „my”).</p>
+      <p>(zwany dalej „Administratorem” lub „my”).</p>
 
       <h2>§ 2 W jakich celach przetwarzamy Twoje dane?</h2>
-      <p style={pStyle}>
-        Przetwarzamy dane osobowe wyłącznie w następujących celach:
-      </p>
+      <p>Przetwarzamy dane osobowe wyłącznie w następujących celach:</p>
       <table
         style={{
           width: "100%",
@@ -126,7 +124,7 @@ export function PrivacyContent() {
       </table>
 
       <h2>§ 3 Jakie dane zbieramy?</h2>
-      <ul style={{ marginTop: 8, marginBottom: 12, paddingLeft: 20 }}>
+      <ul style={ulStyle}>
         <li>Imię i nazwisko</li>
         <li>Adres e-mail</li>
         <li>Numer telefonu</li>
@@ -146,7 +144,7 @@ export function PrivacyContent() {
       <p style={pStyle}>
         Tak, ale tylko zaufanym podmiotom i wyłącznie w niezbędnym zakresie:
       </p>
-      <ul style={{ marginTop: 8, marginBottom: 12, paddingLeft: 20 }}>
+      <ul style={ulStyle}>
         <li>
           firmy kurierskie (InPost, DPD, Poczta Polska – imię, nazwisko, adres,
           telefon, e-mail)
@@ -168,7 +166,7 @@ export function PrivacyContent() {
 
       <h2>§ 5 Twoje prawa związane z danymi osobowymi</h2>
       <p style={pStyle}>Masz prawo w dowolnym momencie:</p>
-      <ul style={{ marginTop: 8, marginBottom: 12, paddingLeft: 20 }}>
+      <ul style={ulStyle}>
         <li>dostępu do swoich danych</li>
         <li>sprostowania danych</li>
         <li>usunięcia danych („prawo do bycia zapomnianym”)</li>
@@ -185,7 +183,7 @@ export function PrivacyContent() {
       <p style={pStyle}>Wystarczy napisać na: kontakt@tuusimago.com</p>
 
       <h2>§ 6 Cookies i technologie śledzące</h2>
-      <ul style={{ marginTop: 8, marginBottom: 12, paddingLeft: 20 }}>
+      <ul style={ulStyle}>
         <li>
           Serwis używa plików cookies do prawidłowego działania (koszyk,
           logowanie, edytor zdjęć).
@@ -200,7 +198,7 @@ export function PrivacyContent() {
       </ul>
 
       <h2>§ 7 Bezpieczeństwo</h2>
-      <ul style={{ marginTop: 8, marginBottom: 12, paddingLeft: 20 }}>
+      <ul style={ulStyle}>
         <li>Wszystkie połączenia są szyfrowane (certyfikat SSL).</li>
         <li>Zdjęcia i dane przechowywane są na serwerach w Polsce/UE.</li>
         <li>
@@ -359,7 +357,7 @@ export function PrivacyContent() {
 
       <h2>§ 11 Czy mogę wyłączyć cookies?</h2>
       <p style={pStyle}>Tak – w każdej chwili:</p>
-      <ul style={{ marginTop: 8, marginBottom: 12, paddingLeft: 20 }}>
+      <ul style={ulStyle}>
         <li>
           Niezbędne cookies – nie da się ich wyłączyć (bez nich edytor i koszyk
           nie będą działać).
@@ -371,7 +369,7 @@ export function PrivacyContent() {
       </ul>
 
       <h2>§ 12 Jak zarządzać cookies w przeglądarce?</h2>
-      <ul style={{ marginTop: 8, marginBottom: 12, paddingLeft: 20 }}>
+      <ul style={ulStyle}>
         <li>
           Chrome → Ustawienia → Prywatność i bezpieczeństwo → Pliki cookie
         </li>

@@ -1,13 +1,11 @@
-import { pStyle } from "../../pages/legal/styles";
-
 export function ConsentsContent() {
   return (
     <>
       <h2>Adres e-mail</h2>
-      <p style={pStyle}>[pole do wpisania e-maila]</p>
+      <p>[pole do wpisania e-maila]</p>
 
       <h2>Aktualny status Twoich zgód</h2>
-      <ul style={{ marginTop: 8, marginBottom: 12, paddingLeft: 20 }}>
+      <ul>
         <li>
           Realizacja zamówień i kontakt w tej sprawie → zawsze aktywna (wymagana
           do wykonania usługi)
@@ -18,7 +16,7 @@ export function ConsentsContent() {
         </li>
       </ul>
 
-      <p style={pStyle}>
+      <p>
         <strong>[Zapisz zmiany]</strong>
         <br />
         <strong>[Usuń wszystkie moje dane (prawo do bycia zapomnianym)]</strong>
@@ -26,9 +24,7 @@ export function ConsentsContent() {
         <strong>[Wycofaj wszystkie zgody i usuń konto]</strong>
       </p>
 
-      <p style={pStyle}>
-        Po kliknięciu „Zapisz” dostajesz e-mail z potwierdzeniem.
-      </p>
+      <p>Po kliknięciu „Zapisz” dostajesz e-mail z potwierdzeniem.</p>
     </>
   );
 }

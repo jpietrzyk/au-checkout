@@ -38,7 +38,9 @@ export function LegalModal({ isOpen, onClose, slug }: LegalModalProps) {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title}>
-      <Component />
+      <div className="legal-content">
+        <Component />
+      </div>
     </Modal>
   );
 }
