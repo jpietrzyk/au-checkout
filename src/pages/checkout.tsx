@@ -110,7 +110,12 @@ export default function Checkout() {
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
         </div>
-        <MultiStepForm steps={checkoutSteps} localStorageKey="checkout-form" />
+        <div className="min-w-[40vw]">
+          <MultiStepForm
+            steps={checkoutSteps}
+            localStorageKey="checkout-form"
+          />
+        </div>
         <Footer onLinkClick={handleLinkClick} />
         {modalSlug && (
           <LegalModal
