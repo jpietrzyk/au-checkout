@@ -94,7 +94,11 @@ const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
     <UppyContextProvider uppy={uppy}>
       <section className="space-y-6">
         <div>
-          <h2 className="text-2xl font-bold mb-4">Upload Image</h2>
+          <h2 className="text-2xl font-bold mb-4">Upload & Edit Image</h2>
+          <p className="text-gray-600 mb-4">
+            Upload an image and use the built-in editor to crop, rotate, and
+            adjust your photo before uploading.
+          </p>
           <Dashboard
             uppy={uppy}
             plugins={["ImageEditor", "Webcam"]}
