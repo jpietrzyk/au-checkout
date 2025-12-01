@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+/** biome-ignore-all lint/nursery/useUniqueElementIds: it's fine */
+import { useState } from "react";
 import Uppy from "@uppy/core";
-import Webcam from "@uppy/webcam";
+import { UppyContextProvider } from "@uppy/react";
 import Dashboard from "@uppy/react/dashboard";
+import Webcam from "@uppy/webcam";
 import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
 
@@ -48,34 +50,25 @@ function createUppy() {
 const TransloaditUploader = () => {
   const [uppy] = useState(() => createUppy());
 
-  useEffect(() => {
-    const handleComplete = (result: { successful?: { id: string }[] }) => {
-      console.log(
-        "Upload complete! We have uploaded these files:",
-        result.successful
-      );
-    };
-
-    uppy.on("complete", handleComplete);
-
-    return () => {
-      uppy.off("complete", handleComplete);
-    };
-  }, [uppy]);
-
   return (
-    <section>
-      <Dashboard
-        uppy={uppy}
-        plugins={["ImageEditor", "Webcam"]}
-        height={500}
-        width="100%"
-        proudlyDisplayPoweredByUppy={false}
-      />
-      <div className="img-gallery hidden">
-        <p>Uploaded files</p>
-      </div>
-    </section>
+    <UppyContextProvider uppy={uppy}>
+      <section className="space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold mb-4">Upload Image</h2>
+          <Dashboard
+            uppy={uppy}
+            plugins={["ImageEditor", "Webcam"]}
+            height={500}
+            width="100%"
+            proudlyDisplayPoweredByUppy={false}
+          />
+        </div>
+
+        <div className="img-gallery hidden">
+          <p>Uploaded files</p>
+        </div>
+      </section>
+    </UppyContextProvider>
   );
 };
 
