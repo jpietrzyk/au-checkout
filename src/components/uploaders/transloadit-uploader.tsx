@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/nursery/useUniqueElementIds: it's fine */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Uppy from "@uppy/core";
 import { UppyContextProvider } from "@uppy/react";
 import Dashboard from "@uppy/react/dashboard";
@@ -49,6 +49,35 @@ function createUppy() {
 
 const TransloaditUploader = () => {
   const [uppy] = useState(() => createUppy());
+  const [uploadedFile, setUploadedFile] = useState<{
+    id: string;
+    name: string;
+    uploadURL: string;
+  } | null>(null);
+
+  useEffect(() => {
+    const handleComplete = (result: {
+      successful?: { id: string; name: string; uploadURL?: string }[];
+    }) => {
+      if (result.successful && result.successful.length > 0) {
+        // Only store the latest uploaded file (single file upload)
+        const file = result.successful[0];
+        const fileData = {
+          id: file.id,
+          name: file.name,
+          uploadURL: file.uploadURL || "",
+        };
+        setUploadedFile(fileData);
+        console.log("Upload complete! File:", fileData);
+      }
+    };
+
+    uppy.on("complete", handleComplete);
+
+    return () => {
+      uppy.off("complete", handleComplete);
+    };
+  }, [uppy]);
 
   return (
     <UppyContextProvider uppy={uppy}>
@@ -64,9 +93,15 @@ const TransloaditUploader = () => {
           />
         </div>
 
-        <div className="img-gallery hidden">
-          <p>Uploaded files</p>
-        </div>
+        {/* Hidden file data for programmatic access - not displayed to user */}
+        {uploadedFile && (
+          <div
+            className="hidden"
+            data-uploaded-file={JSON.stringify(uploadedFile)}
+          >
+            {/* File data is stored for backend integration or further processing */}
+          </div>
+        )}
       </section>
     </UppyContextProvider>
   );
