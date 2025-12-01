@@ -47,7 +47,13 @@ function createUppy() {
     });
 }
 
-const TransloaditUploader = () => {
+interface TransloaditUploaderProps {
+  onFileUploaded?: (fileUrl: string) => void;
+}
+
+const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
+  onFileUploaded,
+}) => {
   const [uppy] = useState(() => createUppy());
   const [uploadedFile, setUploadedFile] = useState<{
     id: string;
@@ -69,6 +75,11 @@ const TransloaditUploader = () => {
         };
         setUploadedFile(fileData);
         console.log("Upload complete! File:", fileData);
+
+        // Call the callback with the file URL if provided
+        if (onFileUploaded && fileData.uploadURL) {
+          onFileUploaded(fileData.uploadURL);
+        }
       }
     };
 

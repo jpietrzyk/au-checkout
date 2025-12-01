@@ -16,16 +16,21 @@ const StepImage = () => {
     register,
     getValues,
     setError,
-    // setValue,
+    setValue,
     formState: { errors },
   } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
 
   const { nextStep } = useMultiStepForm();
 
+  const handleFileUploaded = (fileUrl: string) => {
+    setValue("fileUrl", fileUrl);
+    console.log("File uploaded and set in form:", fileUrl);
+  };
+
   const handleStepSubmit = async () => {
     const { fileUrl } = getValues();
 
-    if (fileUrl === "xxx") {
+    if (!fileUrl || fileUrl.trim() === "") {
       setError("fileUrl", {
         type: "manual",
         message: "Nie wybrałeś obrazu. Dodaj obraz, aby kontynuować.",
@@ -72,7 +77,7 @@ const StepImage = () => {
         <ErrorMessage message={errors.fileUrl?.message} />
       </div>
       <div className="uc-light w-full">
-        <TransloaditUploader />
+        <TransloaditUploader onFileUploaded={handleFileUploaded} />
         {/* <UploadcareUploader onDoneClick={handleFileApply} /> */}
       </div>
       <NextButton onClick={handleStepSubmit} />
