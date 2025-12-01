@@ -27,7 +27,22 @@ function createUppy() {
       showVideoSourceDropdown: true,
       showRecordingLength: true,
     })
-    .use(ImageEditor, {});
+    .use(ImageEditor, {
+      quality: 0.8,
+      // Image editor locale configuration
+      locale: {
+        strings: {
+          revert: "Revert",
+          rotate: "Rotate",
+          zoomIn: "Zoom in",
+          zoomOut: "Zoom out",
+          flipHorizontal: "Flip horizontally",
+          aspectRatioSquare: "Square",
+          aspectRatioLandscape: "Landscape",
+          aspectRatioPortrait: "Portrait",
+        },
+      },
+    });
 }
 
 const TransloaditUploader = () => {
@@ -53,8 +68,9 @@ const TransloaditUploader = () => {
       <Dashboard
         uppy={uppy}
         plugins={["ImageEditor", "Webcam"]}
-        height={400}
+        height={500}
         width="100%"
+        proudlyDisplayPoweredByUppy={false}
       />
       <div className="img-gallery hidden">
         <p>Uploaded files</p>
