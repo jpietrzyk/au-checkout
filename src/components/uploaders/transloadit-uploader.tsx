@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Uppy from "@uppy/core";
 import Webcam from "@uppy/webcam";
-import { Dashboard } from "@uppy/react";
+import Dashboard from "@uppy/react/dashboard";
 import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
 
@@ -33,12 +33,20 @@ function createUppy() {
 const TransloaditUploader = () => {
   const [uppy] = useState(() => createUppy());
 
-  uppy.on("complete", (result) => {
-    console.log(
-      "Upload complete! We’ve uploaded these files:",
-      result.successful
-    );
-  });
+  useEffect(() => {
+    const handleComplete = (result: { successful?: { id: string }[] }) => {
+      console.log(
+        "Upload complete! We have uploaded these files:",
+        result.successful
+      );
+    };
+
+    uppy.on("complete", handleComplete);
+
+    return () => {
+      uppy.off("complete", handleComplete);
+    };
+  }, [uppy]);
 
   return (
     <section>
