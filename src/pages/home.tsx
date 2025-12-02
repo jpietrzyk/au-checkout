@@ -82,26 +82,10 @@ export default function Home() {
           <div className="home-steps">
             <h2 className="home-steps-title">Jak to działa</h2>
             <div className="home-steps-grid">
-              <StepItem
-                icon={Upload}
-                title="Prześlij zdjęcie"
-                description="Wybierz swoje ulubione zdjęcie z galerii lub zrób nowe."
-              />
-              <StepItem
-                icon={Settings}
-                title="Dostosuj obraz"
-                description="Wybierz rozmiar, styl ramki i inne opcje personalizacji."
-              />
-              <StepItem
-                icon={ShoppingCart}
-                title="Złóż zamówienie"
-                description="Potwierdź szczegóły i dokonaj bezpiecznej płatności."
-              />
-              <StepItem
-                icon={Truck}
-                title="Otrzymaj obraz"
-                description="Twój obraz na płótnie zostanie dostarczony prosto do domu."
-              />
+              <StepItem icon={Upload} title="Prześlij zdjęcie" />
+              <StepItem icon={Settings} title="Dostosuj obraz" />
+              <StepItem icon={ShoppingCart} title="Złóż zamówienie" />
+              <StepItem icon={Truck} title="Otrzymaj obraz" />
             </div>
           </div>
         </div>

@@ -128,7 +128,7 @@ export default function Checkout() {
                     key={step.position}
                     icon={step.icon}
                     title={step.label}
-                    description={step.description}
+                    position={step.position}
                   />
                 ))}
               </div>

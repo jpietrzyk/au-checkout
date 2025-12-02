@@ -50,11 +50,19 @@ const MultiStepForm = ({
 
   // Restore form state from LS
   useEffect(() => {
-    if (savedFormState) {
+    if (
+      savedFormState &&
+      savedFormState.currentStepIndex >= 0 &&
+      savedFormState.currentStepIndex < steps.length
+    ) {
       setCurrentStepIndex(savedFormState.currentStepIndex);
       methods.reset(savedFormState.formValues);
+    } else {
+      // Invalid or missing saved state, start at step 0
+      setCurrentStepIndex(0);
+      methods.reset();
     }
-  }, [methods, savedFormState]);
+  }, [methods, savedFormState, steps.length]);
 
   const saveFormState = (stepIndex: number) => {
     const formValues = methods.getValues();
