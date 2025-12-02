@@ -1,6 +1,6 @@
 ## § 1 Postanowienia ogólne
 
-Niniejszy Regulamin określa zasady korzystania z serwisu internetowego dostępnego pod adresem https://tuusimago.com (zwanego dalej „Serwisem”) oraz składania zamówień na druk zdjęć na płótnie malarskim. Właścicielem Serwisu i sprzedawcą jest: Tuus Imago Michał Kowalski (lub wpisz swoją dokładną formę prawną) z siedzibą: [adres firmy] NIP: [Twój NIP] REGON: [Twój REGON – jeśli masz] e-mail: kontakt@tuusimago.com tel. [Twój numer telefonu] (zwana dalej „Sprzedawcą” lub „Usługodawcą”). Korzystanie z Serwisu jest równoznaczne z akceptacją niniejszego Regulaminu.
+Niniejszy Regulamin określa zasady korzystania z serwisu internetowego dostępnego pod adresem https://tuusimago.com (zwanego dalej „Serwisem”) oraz składania zamówień na folie samochodowe. Właścicielem Serwisu i sprzedawcą jest: Car-folie Adrian Uniszyn z siedzibą: 32-400 Myślenice Wybickiego 48 NIP: 6811882876 e-mail: au.hanmix@gmail.com tel. 570 603 695 (zwana dalej „Sprzedawcą” lub „Usługodawcą”). Korzystanie z Serwisu jest równoznaczne z akceptacją niniejszego Regulaminu.
 
 ## § 2 Definicje
 
@@ -32,7 +32,7 @@ Zgodnie z art. 38 ust. 3 ustawy o prawach konsumenta prawo odstąpienia od umowy
 
 ## § 9 Ochrona danych osobowych
 
-Administratorem danych osobowych jest Tuus Imago. Dane przetwarzane są wyłącznie w celu realizacji zamówienia i wysyłki. Szczegółowe informacje zawiera Polityka prywatności dostępna na https://tuusimago.com/polityka-prywatnosci.
+Administratorem danych osobowych jest Car-folie Adrian Uniszyn. Dane przetwarzane są wyłącznie w celu realizacji zamówienia i wysyłki. Szczegółowe informacje zawiera Polityka prywatności dostępna na https://tuusimago.com/polityka-prywatnosci.
 
 ## § 10 Postanowienia końcowe
 

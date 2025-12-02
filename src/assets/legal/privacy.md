@@ -4,10 +4,10 @@ Niniejsza polityka prywatności opisuje zasady przetwarzania danych osobowych w 
 
 Administratorem Twoich danych osobowych jest:
 
-- Tuus Imago Michał Kowalski (lub wpisz dokładną nazwę firmy/jdg)
-- [adres siedziby]
-- NIP: [Twój NIP]
-- e-mail: kontakt@tuusimago.com
+- Car-folie Adrian Uniszyn
+- 32-400 Myślenice Wybickiego 48
+- NIP: 6811882876
+- e-mail: au.hanmix@gmail.com
 
 (zwany dalej „Administratorem” lub „my”).
 
@@ -58,7 +58,7 @@ Masz prawo w dowolnym momencie:
 - cofnięcia zgody (jeśli przetwarzanie odbywa się na podstawie zgody)
 - wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (PUODO)
 
-Wystarczy napisać na: kontakt@tuusimago.com
+Wystarczy napisać na: au.hanmix@gmail.com
 
 ## § 6 Cookies i technologie śledzące
 
@@ -74,7 +74,7 @@ Wystarczy napisać na: kontakt@tuusimago.com
 
 ## § 8 Kontakt w sprawach ochrony danych
 
-We wszystkich sprawach związanych z ochroną danych osobowych pisz na: kontakt@tuusimago.com Odpowiadamy maksymalnie w ciągu 14 dni (zazwyczaj szybciej).
+We wszystkich sprawach związanych z ochroną danych osobowych pisz na: au.hanmix@gmail.com Odpowiadamy maksymalnie w ciągu 14 dni (zazwyczaj szybciej).
 
 ## § 9 Zmiany polityki prywatności
 
@@ -115,8 +115,8 @@ Serwery w Polsce i UE (Google Ireland Limited, Meta Platforms Ireland Limited). 
 
 ## § 15 Kontakt i zmiana ustawień
 
-Masz pytania lub chcesz całkowicie wyczyścić cookies? Napisz: kontakt@tuusimago.com lub kliknij „Ustawienia cookies” w belce na dole strony.
+Masz pytania lub chcesz całkowicie wyczyścić cookies? Napisz: au.hanmix@gmail.com lub kliknij „Ustawienia cookies” w belce na dole strony.
 
 ## § 16 Aktualizacje polityki
 
-W razie zmian poinformujemy Cię w belce cookies i na tej stronie. Dziękujemy, że jesteś z nami! Zespół Tuus Imago 🎨
+W razie zmian poinformujemy Cię w belce cookies i na tej stronie. Dziękujemy, że jesteś z nami! Zespół Car-folie Adrian Uniszyn 🎨
