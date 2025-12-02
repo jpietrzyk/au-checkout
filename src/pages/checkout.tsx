@@ -62,7 +62,6 @@ export const checkoutSteps: FormStep[] = [
 
 export default function Checkout() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   useEffect(() => {
     const checkHash = () => {
@@ -118,7 +117,7 @@ export default function Checkout() {
         </div>
 
         {/* Centered content container */}
-        <div className="w-full max-w-4xl mx-auto flex flex-col items-center space-y-8">
+        <div className="w-full max-w-[90%] mx-auto flex flex-col items-center space-y-4">
           {/* Progress Steps - centered above form */}
           <div className="w-full">
             <div className="home-steps">
@@ -130,7 +129,6 @@ export default function Checkout() {
                     icon={step.icon}
                     title={step.label}
                     position={step.position}
-                    isActive={currentStepIndex === step.position - 1}
                   />
                 ))}
               </div>
@@ -138,12 +136,11 @@ export default function Checkout() {
           </div>
 
           {/* Form Container - centered */}
-          <div className="w-full max-w-2xl">
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-8">
+          <div className="w-full max-w-[51%]">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-8">
               <MultiStepForm
                 steps={checkoutSteps}
                 localStorageKey="checkout-form"
-                onStepChange={setCurrentStepIndex}
               />
             </div>
           </div>

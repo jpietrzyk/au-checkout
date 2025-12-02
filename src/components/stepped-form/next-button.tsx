@@ -10,7 +10,7 @@ const NextButton = ({
 
   return (
     <Button
-      className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+      className="w-auto min-w-[200px] bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-8 rounded-lg transition-colors"
       type={type ?? "button"}
       onClick={onClick}
       {...rest}
