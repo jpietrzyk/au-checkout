@@ -7,8 +7,6 @@ import { useFormContext } from "react-hook-form";
 import { useCallback } from "react";
 import { z } from "zod";
 import TransloaditUploader from "@/components/uploaders/transloadit-uploader";
-import StepItem from "@/components/StepItem";
-import { checkoutSteps } from "../checkout";
 
 const StepImage = () => {
   const {
@@ -55,20 +53,14 @@ const StepImage = () => {
   // };
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="home-steps">
-        <h2 className="home-steps-title">Proces zamówienia</h2>
-        <div className="home-steps-grid">
-          {checkoutSteps.map((step) => (
-            <StepItem
-              key={step.position}
-              icon={step.icon}
-              title={step.label}
-              description={step.description}
-            />
-          ))}
-        </div>
+    <div className="space-y-6">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          Proces zamówienia
+        </h2>
+        <p className="text-gray-600">Prześlij zdjęcie, które chcesz zamówić</p>
       </div>
+
       <div className="hidden">
         <Input
           {...register("fileUrl")}
@@ -78,10 +70,14 @@ const StepImage = () => {
         />
         <ErrorMessage message={errors.fileUrl?.message} />
       </div>
-      <div className="uc-light w-full">
+
+      <div className="uc-light w-full bg-white/50 rounded-xl p-4">
         <TransloaditUploader onFileUploaded={handleFileUploaded} />
       </div>
-      <NextButton onClick={handleStepSubmit} />
+
+      <div className="pt-4">
+        <NextButton onClick={handleStepSubmit} />
+      </div>
     </div>
   );
 };

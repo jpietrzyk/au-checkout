@@ -10,12 +10,12 @@ const NextButton = ({
 
   return (
     <Button
-      className="text-white bg-[#6d28d9] hover:bg-[#5b21b6] transition-colors w-64 mx-auto py-6 font-bold text-xl rounded-lg mt-10"
+      className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
       type={type ?? "button"}
       onClick={onClick}
       {...rest}
     >
-      {isLastStep ? "Wyślij" : "Kontynuuj"}
+      {isLastStep ? "Wyślij zamówienie" : "Kontynuuj"}
     </Button>
   );
 };

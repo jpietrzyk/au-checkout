@@ -1,18 +1,17 @@
 import { useFormContext } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { z } from "zod";
-import { CombinedCheckoutSchema } from "@/validators/checkout-flow.validator";
 import { useMultiStepForm } from "@/hooks/use-stepped-form";
-import ErrorMessage from "@/components/ui/error-message";
 import NextButton from "@/components/stepped-form/next-button";
 
 const StepAddress = () => {
-  const {
-    register,
-    // trigger,
-    formState: { errors },
-  } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
-
   const { nextStep } = useMultiStepForm();
 
   const handleStepSubmit = async () => {
@@ -20,20 +19,69 @@ const StepAddress = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <div>
-        <Input {...register("country")} placeholder="Kraj" />
-        <ErrorMessage message={errors.country?.message} />
+    <div className="space-y-6">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Adres dostawy</h2>
+        <p className="text-gray-600">
+          Podaj adres, na który mamy wysłać Twoje zamówienie
+        </p>
       </div>
-      <div>
-        <Input {...register("city")} placeholder="Miasto" />
-        <ErrorMessage message={errors.city?.message} />
+
+      <Form {...useFormContext()}>
+        <div className="space-y-4">
+          <FormField
+            name="country"
+            render={({ field }) => (
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Kraj:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Polska" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="city"
+            render={({ field }) => (
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Miasto:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Warszawa" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="shippingAddress"
+            render={({ field }) => (
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Adres:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input
+                      placeholder="ul. Przykładowa 123, 00-001"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+        </div>
+      </Form>
+
+      <div className="pt-4">
+        <NextButton onClick={handleStepSubmit} />
       </div>
-      <div>
-        <Input {...register("shippingAddress")} placeholder="Adres wysyłki" />
-        <ErrorMessage message={errors.shippingAddress?.message} />
-      </div>
-      <NextButton onClick={handleStepSubmit} />
     </div>
   );
 };

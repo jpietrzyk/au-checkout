@@ -73,7 +73,7 @@ export default function Home() {
           </p>
 
           <div className="home-buttons">
-            <a href="/checkout/stepImage" className="home-btn-primary">
+            <a href="/checkout" className="home-btn-primary">
               Rozpocznij <Camera size={24} style={{ marginLeft: "16px" }} />
             </a>
           </div>

@@ -1,5 +1,12 @@
 import NextButton from "@/components/stepped-form/next-button";
-import ErrorMessage from "@/components/ui/error-message";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useMultiStepForm } from "@/hooks/use-stepped-form";
 import { CombinedCheckoutSchema } from "@/validators/checkout-flow.validator";
@@ -7,13 +14,8 @@ import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 
 const StepContact = () => {
-  const {
-    register,
-    getValues,
-    setError,
-    formState: { errors },
-  } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
-
+  const { getValues, setError } =
+    useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
   const { nextStep } = useMultiStepForm();
 
   const handleStepSubmit = async () => {
@@ -32,20 +34,68 @@ const StepContact = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <div>
-        <Input {...register("email")} placeholder="Email" />
-        <ErrorMessage message={errors.email?.message} />
+    <div className="space-y-6">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          Twoje dane kontaktowe
+        </h2>
+        <p className="text-gray-600">
+          Podaj swoje dane, abyśmy mogli się z Tobą skontaktować
+        </p>
       </div>
-      <div>
-        <Input {...register("firstName")} placeholder="Imię" />
-        <ErrorMessage message={errors.firstName?.message} />
+
+      <Form {...useFormContext()}>
+        <div className="space-y-4">
+          <FormField
+            name="email"
+            render={({ field }) => (
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Email:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="twoj@email.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="firstName"
+            render={({ field }) => (
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Imię:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Jan" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="lastName"
+            render={({ field }) => (
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Nazwisko:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Kowalski" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+        </div>
+      </Form>
+
+      <div className="pt-4">
+        <NextButton onClick={handleStepSubmit} />
       </div>
-      <div>
-        <Input {...register("lastName")} placeholder="Nazwisko" />
-        <ErrorMessage message={errors.lastName?.message} />
-      </div>
-      <NextButton onClick={handleStepSubmit} />
     </div>
   );
 };
