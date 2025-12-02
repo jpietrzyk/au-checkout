@@ -43,13 +43,6 @@ const StepImage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Proces zamówienia
-        </h2>
-        <p className="text-gray-600">Prześlij zdjęcie, które chcesz zamówić</p>
-      </div>
-
       <div className="hidden">
         <Input
           {...register("fileUrl")}
