@@ -32,12 +32,14 @@ const StepAddress = () => {
           <FormField
             name="country"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Kraj</FormLabel>
-                <FormControl>
-                  <Input placeholder="Polska" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Kraj:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Polska" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />
@@ -45,12 +47,14 @@ const StepAddress = () => {
           <FormField
             name="city"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Miasto</FormLabel>
-                <FormControl>
-                  <Input placeholder="Warszawa" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Miasto:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Warszawa" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />
@@ -58,12 +62,17 @@ const StepAddress = () => {
           <FormField
             name="shippingAddress"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Adres wysyłki</FormLabel>
-                <FormControl>
-                  <Input placeholder="ul. Przykładowa 123, 00-001" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Adres:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input
+                      placeholder="ul. Przykładowa 123, 00-001"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />

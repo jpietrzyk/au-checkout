@@ -49,12 +49,14 @@ const StepContact = () => {
           <FormField
             name="email"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="twoj@email.com" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Email:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="twoj@email.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />
@@ -62,12 +64,14 @@ const StepContact = () => {
           <FormField
             name="firstName"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Imię</FormLabel>
-                <FormControl>
-                  <Input placeholder="Jan" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Imię:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Jan" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />
@@ -75,12 +79,14 @@ const StepContact = () => {
           <FormField
             name="lastName"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nazwisko</FormLabel>
-                <FormControl>
-                  <Input placeholder="Kowalski" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-20 text-right">Nazwisko:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Kowalski" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />

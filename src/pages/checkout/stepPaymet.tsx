@@ -29,12 +29,14 @@ const StepPayment = () => {
           <FormField
             name="cardNumber"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Numer karty</FormLabel>
-                <FormControl>
-                  <Input placeholder="1234 5678 9012 3456" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-24 text-right">Numer karty:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="1234 5678 9012 3456" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />
@@ -42,12 +44,14 @@ const StepPayment = () => {
           <FormField
             name="cardholderName"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Właściciel karty</FormLabel>
-                <FormControl>
-                  <Input placeholder="Jan Kowalski" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-24 text-right">Właściciel:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="Jan Kowalski" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />
@@ -55,12 +59,14 @@ const StepPayment = () => {
           <FormField
             name="cvv"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>CVV</FormLabel>
-                <FormControl>
-                  <Input placeholder="123" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="flex items-center space-x-3">
+                <FormLabel className="w-24 text-right">CVV:</FormLabel>
+                <div className="flex-1">
+                  <FormControl>
+                    <Input placeholder="123" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />
