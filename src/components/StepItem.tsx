@@ -37,6 +37,15 @@ const StepItem: React.FC<StepItemProps> = ({
     stepIsActive = position - 1 === currentStepIndex;
   }
 
+  // Debug - let's log to see what's happening
+  if (position !== undefined) {
+    console.log(
+      `[StepItem] ${title}: position=${position}, currentStepIndex=${currentStepIndex}, stepIsActive=${stepIsActive}, className should be: ${
+        stepIsActive ? "active" : ""
+      }`
+    );
+  }
+
   return (
     <div className="home-step">
       <div className={`home-step-number ${stepIsActive ? "active" : ""}`}>

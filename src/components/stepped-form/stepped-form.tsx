@@ -180,6 +180,11 @@ const MultiStepForm = ({
     steps,
   };
 
+  // Debug logging
+  console.log(
+    `[MultiStepForm] Rendering with currentStepIndex: ${currentStepIndex}`
+  );
+
   return (
     <MultiStepFormContext.Provider value={value}>
       <FormProvider {...methods}>

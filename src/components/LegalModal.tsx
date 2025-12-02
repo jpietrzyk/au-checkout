@@ -1,10 +1,10 @@
 import React from "react";
-import { Modal } from "./ui/modal";
-import { PrivacyContent } from "./legal/PrivacyContent";
-import { TermsContent } from "./legal/TermsContent";
-import { ConsentsContent } from "./legal/ConsentsContent";
-import { SecurityContent } from "./legal/SecurityContent";
-import { ContactContent } from "./legal/ContactContent";
+import { Modal } from "@/components/ui/modal";
+import { PrivacyContent } from "@/components/legal/PrivacyContent";
+import { TermsContent } from "@/components/legal/TermsContent";
+import { ConsentsContent } from "@/components/legal/ConsentsContent";
+import { SecurityContent } from "@/components/legal/SecurityContent";
+import { ContactContent } from "@/components/legal/ContactContent";
 
 interface LegalModalProps {
   isOpen: boolean;
