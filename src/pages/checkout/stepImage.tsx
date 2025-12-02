@@ -2,11 +2,10 @@ import NextButton from "@/components/stepped-form/next-button";
 import ErrorMessage from "@/components/ui/error-message";
 import { Input } from "@/components/ui/input";
 import { useMultiStepForm } from "@/hooks/use-stepped-form";
-// import UploadcareUploader from "@/components/uploaders/uploadcare-uploader";
 import { CombinedCheckoutSchema } from "@/validators/checkout-flow.validator";
 import { useFormContext } from "react-hook-form";
+import { useCallback } from "react";
 import { z } from "zod";
-// import { OutputFileEntry } from "@uploadcare/react-uploader";
 import TransloaditUploader from "@/components/uploaders/transloadit-uploader";
 import StepItem from "@/components/StepItem";
 import { checkoutSteps } from "../checkout";
@@ -22,10 +21,13 @@ const StepImage = () => {
 
   const { nextStep } = useMultiStepForm();
 
-  const handleFileUploaded = (fileUrl: string) => {
-    setValue("fileUrl", fileUrl);
-    console.log("File uploaded and set in form:", fileUrl);
-  };
+  const handleFileUploaded = useCallback(
+    (fileUrl: string) => {
+      setValue("fileUrl", fileUrl);
+      console.log("File uploaded and set in form:", fileUrl);
+    },
+    [setValue]
+  );
 
   const handleStepSubmit = async () => {
     const { fileUrl } = getValues();
@@ -78,7 +80,6 @@ const StepImage = () => {
       </div>
       <div className="uc-light w-full">
         <TransloaditUploader onFileUploaded={handleFileUploaded} />
-        {/* <UploadcareUploader onDoneClick={handleFileApply} /> */}
       </div>
       <NextButton onClick={handleStepSubmit} />
     </div>

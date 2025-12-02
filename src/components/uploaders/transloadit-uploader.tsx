@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Uppy from "@uppy/core";
 import { UppyContextProvider } from "@uppy/react";
 import Dashboard from "@uppy/react/dashboard";
-import Webcam from "@uppy/webcam";
 import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
 
@@ -14,21 +13,8 @@ import "@uppy/image-editor/css/style.min.css";
 function createUppy() {
   return new Uppy({
     restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
-    autoProceed: true,
+    autoProceed: false, // Changed to false to prevent automatic upload
   })
-    .use(Transloadit, {
-      assemblyOptions: {
-        params: {
-          auth: { key: import.meta.env.VITE_TRANSLOADIT_PUBLIC_KEY },
-          template_id: import.meta.env.VITE_TRANSLOADIT_TEMPLATE_ID,
-        },
-      },
-      waitForEncoding: true,
-    })
-    .use(Webcam, {
-      showVideoSourceDropdown: true,
-      showRecordingLength: true,
-    })
     .use(ImageEditor, {
       quality: 0.8,
       // Image editor locale configuration
@@ -44,6 +30,15 @@ function createUppy() {
           aspectRatioPortrait: "Portrait",
         },
       },
+    })
+    .use(Transloadit, {
+      assemblyOptions: {
+        params: {
+          auth: { key: import.meta.env.VITE_TRANSLOADIT_PUBLIC_KEY },
+          template_id: import.meta.env.VITE_TRANSLOADIT_TEMPLATE_ID,
+        },
+      },
+      waitForEncoding: true,
     });
 }
 
@@ -88,7 +83,7 @@ const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
     return () => {
       uppy.off("complete", handleComplete);
     };
-  }, [uppy]);
+  }, [uppy, onFileUploaded]);
 
   return (
     <UppyContextProvider uppy={uppy}>
@@ -101,7 +96,7 @@ const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
           </p>
           <Dashboard
             uppy={uppy}
-            plugins={["ImageEditor", "Webcam"]}
+            plugins={["ImageEditor"]}
             height={500}
             width="100%"
             proudlyDisplayPoweredByUppy={false}
