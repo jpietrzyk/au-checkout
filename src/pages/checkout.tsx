@@ -117,7 +117,7 @@ export default function Checkout() {
         </div>
 
         {/* Centered content container */}
-        <div className="w-full max-w-[90%] mx-auto flex flex-col items-center space-y-8">
+        <div className="w-full max-w-[90%] mx-auto flex flex-col items-center space-y-4">
           {/* Progress Steps - centered above form */}
           <div className="w-full">
             <div className="home-steps">
