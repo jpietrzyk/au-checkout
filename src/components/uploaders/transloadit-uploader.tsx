@@ -92,7 +92,7 @@ const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
           <Dashboard
             uppy={uppy}
             plugins={["ImageEditor"]}
-            height={320}
+            height={500}
             width="100%"
             proudlyDisplayPoweredByUppy={false}
           />
