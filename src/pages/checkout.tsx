@@ -62,6 +62,7 @@ export const checkoutSteps: FormStep[] = [
 
 export default function Checkout() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   useEffect(() => {
     const checkHash = () => {
@@ -128,7 +129,8 @@ export default function Checkout() {
                     key={step.position}
                     icon={step.icon}
                     title={step.label}
-                    description={step.description}
+                    position={step.position}
+                    isActive={currentStepIndex === step.position - 1}
                   />
                 ))}
               </div>
@@ -141,6 +143,7 @@ export default function Checkout() {
               <MultiStepForm
                 steps={checkoutSteps}
                 localStorageKey="checkout-form"
+                onStepChange={setCurrentStepIndex}
               />
             </div>
           </div>

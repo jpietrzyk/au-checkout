@@ -18,9 +18,11 @@ export const MultiStepFormContext =
 const MultiStepForm = ({
   steps,
   localStorageKey = "multi-step-form",
+  onStepChange,
 }: {
   steps: FormStep[];
   localStorageKey: string;
+  onStepChange?: (stepIndex: number) => void;
 }) => {
   const methods = useForm<z.infer<typeof CombinedCheckoutSchema>>({
     resolver: zodResolver(CombinedCheckoutSchema),
@@ -50,11 +52,21 @@ const MultiStepForm = ({
 
   // Restore form state from LS
   useEffect(() => {
-    if (savedFormState) {
+    if (
+      savedFormState &&
+      savedFormState.currentStepIndex >= 0 &&
+      savedFormState.currentStepIndex < steps.length
+    ) {
       setCurrentStepIndex(savedFormState.currentStepIndex);
       methods.reset(savedFormState.formValues);
+      onStepChange?.(savedFormState.currentStepIndex);
+    } else {
+      // Invalid or missing saved state, start at step 0
+      setCurrentStepIndex(0);
+      methods.reset();
+      onStepChange?.(0);
     }
-  }, [methods, savedFormState]);
+  }, [methods, savedFormState, steps.length]);
 
   const saveFormState = (stepIndex: number) => {
     const formValues = methods.getValues();
@@ -106,6 +118,7 @@ const MultiStepForm = ({
     if (currentStepIndex < steps.length - 1) {
       saveFormState(currentStepIndex + 1);
       setCurrentStepIndex(currentStepIndex + 1);
+      onStepChange?.(currentStepIndex + 1);
     }
   };
 
@@ -113,6 +126,7 @@ const MultiStepForm = ({
     if (currentStepIndex > 0) {
       saveFormState(currentStepIndex - 1);
       setCurrentStepIndex(currentStepIndex - 1);
+      onStepChange?.(currentStepIndex - 1);
     }
   };
 
@@ -120,6 +134,7 @@ const MultiStepForm = ({
     if (position >= 0 && position - 1 < steps.length) {
       saveFormState(position - 1);
       setCurrentStepIndex(position - 1);
+      onStepChange?.(position - 1);
     }
   };
 
@@ -171,6 +186,11 @@ const MultiStepForm = ({
     previousStep,
     steps,
   };
+
+  // Debug logging
+  console.log(
+    `[MultiStepForm] Rendering with currentStepIndex: ${currentStepIndex}`
+  );
 
   return (
     <MultiStepFormContext.Provider value={value}>
