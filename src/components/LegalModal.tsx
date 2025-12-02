@@ -18,6 +18,7 @@ const legalComponents: Record<string, React.ComponentType> = {
   consents: ConsentsContent,
   security: SecurityContent,
   contact: ContactContent,
+  "dane-kontaktowe": ContactContent,
 };
 
 const titles: Record<string, string> = {
@@ -26,6 +27,7 @@ const titles: Record<string, string> = {
   consents: "Zarządzaj swoimi zgodami",
   security: "Bezpieczeństwo i weryfikacja",
   contact: "Kontakt",
+  "dane-kontaktowe": "Dane kontaktowe",
 };
 
 export function LegalModal({ isOpen, onClose, slug }: LegalModalProps) {

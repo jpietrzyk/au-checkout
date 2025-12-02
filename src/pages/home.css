@@ -106,7 +106,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.7);
   border-top: 1px solid #e5e7eb;
   backdrop-filter: saturate(120%) blur(6px);
   z-index: 10;
@@ -114,12 +114,13 @@
 
 .home-footer-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 8px;
-  max-width: 1200px;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
   color: #4b5563;
   font-size: 12px;
 }
