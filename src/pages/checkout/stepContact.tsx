@@ -1,5 +1,12 @@
 import NextButton from "@/components/stepped-form/next-button";
-import ErrorMessage from "@/components/ui/error-message";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useMultiStepForm } from "@/hooks/use-stepped-form";
 import { CombinedCheckoutSchema } from "@/validators/checkout-flow.validator";
@@ -7,13 +14,8 @@ import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 
 const StepContact = () => {
-  const {
-    register,
-    getValues,
-    setError,
-    formState: { errors },
-  } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
-
+  const { getValues, setError } =
+    useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
   const { nextStep } = useMultiStepForm();
 
   const handleStepSubmit = async () => {
@@ -32,20 +34,62 @@ const StepContact = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <div>
-        <Input {...register("email")} placeholder="Email" />
-        <ErrorMessage message={errors.email?.message} />
+    <div className="space-y-6">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          Twoje dane kontaktowe
+        </h2>
+        <p className="text-gray-600">
+          Podaj swoje dane, abyśmy mogli się z Tobą skontaktować
+        </p>
       </div>
-      <div>
-        <Input {...register("firstName")} placeholder="Imię" />
-        <ErrorMessage message={errors.firstName?.message} />
+
+      <Form {...useFormContext()}>
+        <div className="space-y-4">
+          <FormField
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="twoj@email.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="firstName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Imię</FormLabel>
+                <FormControl>
+                  <Input placeholder="Jan" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="lastName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nazwisko</FormLabel>
+                <FormControl>
+                  <Input placeholder="Kowalski" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+      </Form>
+
+      <div className="pt-4">
+        <NextButton onClick={handleStepSubmit} />
       </div>
-      <div>
-        <Input {...register("lastName")} placeholder="Nazwisko" />
-        <ErrorMessage message={errors.lastName?.message} />
-      </div>
-      <NextButton onClick={handleStepSubmit} />
     </div>
   );
 };

@@ -1,18 +1,17 @@
 import { useFormContext } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { z } from "zod";
-import { CombinedCheckoutSchema } from "@/validators/checkout-flow.validator";
 import { useMultiStepForm } from "@/hooks/use-stepped-form";
-import ErrorMessage from "@/components/ui/error-message";
 import NextButton from "@/components/stepped-form/next-button";
 
 const StepAddress = () => {
-  const {
-    register,
-    // trigger,
-    formState: { errors },
-  } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
-
   const { nextStep } = useMultiStepForm();
 
   const handleStepSubmit = async () => {
@@ -20,20 +19,60 @@ const StepAddress = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <div>
-        <Input {...register("country")} placeholder="Kraj" />
-        <ErrorMessage message={errors.country?.message} />
+    <div className="space-y-6">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Adres dostawy</h2>
+        <p className="text-gray-600">
+          Podaj adres, na który mamy wysłać Twoje zamówienie
+        </p>
       </div>
-      <div>
-        <Input {...register("city")} placeholder="Miasto" />
-        <ErrorMessage message={errors.city?.message} />
+
+      <Form {...useFormContext()}>
+        <div className="space-y-4">
+          <FormField
+            name="country"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Kraj</FormLabel>
+                <FormControl>
+                  <Input placeholder="Polska" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="city"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Miasto</FormLabel>
+                <FormControl>
+                  <Input placeholder="Warszawa" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="shippingAddress"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Adres wysyłki</FormLabel>
+                <FormControl>
+                  <Input placeholder="ul. Przykładowa 123, 00-001" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+      </Form>
+
+      <div className="pt-4">
+        <NextButton onClick={handleStepSubmit} />
       </div>
-      <div>
-        <Input {...register("shippingAddress")} placeholder="Adres wysyłki" />
-        <ErrorMessage message={errors.shippingAddress?.message} />
-      </div>
-      <NextButton onClick={handleStepSubmit} />
     </div>
   );
 };
