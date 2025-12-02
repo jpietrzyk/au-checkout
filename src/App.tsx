@@ -11,6 +11,7 @@ import { ReturnsPage } from "./pages/legal/returns";
 import { ShippingPage } from "./pages/legal/shipping";
 import { SecurityPage } from "./pages/legal/security";
 import { ContactPage } from "./pages/legal/contact";
+import { DaneKontaktowePage } from "./pages/legal/dane-kontaktowe";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/shipping" element={<ShippingPage />} />
             <Route path="/security" element={<SecurityPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/dane-kontaktowe" element={<DaneKontaktowePage />} />
           </Routes>
         </div>
       </BrowserRouter>

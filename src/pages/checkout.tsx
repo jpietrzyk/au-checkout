@@ -77,6 +77,7 @@ export default function Checkout() {
           "shipping",
           "security",
           "contact",
+          "dane-kontaktowe",
         ].includes(hash)
       ) {
         setModalSlug(hash);

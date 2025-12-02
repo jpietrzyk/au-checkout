@@ -25,7 +25,9 @@ export function Footer({
               <button onClick={() => onLinkClick("security")}>
                 Bezpieczeństwo i weryfikacja
               </button>
-              <button onClick={() => onLinkClick("contact")}>Kontakt</button>
+              <button onClick={() => onLinkClick("dane-kontaktowe")}>
+                Dane kontaktowe
+              </button>
             </>
           ) : (
             <>
@@ -33,7 +35,7 @@ export function Footer({
               <a href="/cookies">Polityka prywatności</a>
               <a href="/consents">Zarządzanie zgodami</a>
               <a href="/security">Bezpieczeństwo i weryfikacja</a>
-              <a href="/contact">Kontakt</a>
+              <a href="/dane-kontaktowe">Dane kontaktowe</a>
             </>
           )}
         </div>
