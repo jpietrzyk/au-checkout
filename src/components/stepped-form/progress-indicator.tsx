@@ -37,13 +37,13 @@ export default function ProgressIndicator() {
                   onClick={() => goToStep(step.position)}
                   className={`flex w-[50px] h-[50px] items-center justify-center rounded-full border-2 ${
                     isCurrent
-                      ? "border-purple-500 bg-purple-100"
+                      ? "border-green-500 bg-green-100"
                       : isCompleted
                       ? "border-green-500 bg-white"
                       : "border-gray-300 bg-white"
                   } mb-2 ${
                     isCompleted || isCurrent
-                      ? "text-purple-700"
+                      ? "text-green-700"
                       : "text-gray-400"
                   }`}
                   initial={false}
