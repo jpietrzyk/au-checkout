@@ -41,17 +41,6 @@ const StepImage = () => {
     nextStep();
   };
 
-  // const handleFileApply = (event: { successEntries?: OutputFileEntry[] }) => {
-  //   const filesToAdd = event?.successEntries ?? [];
-  //   if (filesToAdd.length > 0) {
-  //     const fileUrl = filesToAdd[0]?.cdnUrl;
-  //     if (fileUrl) {
-  //       console.log("Uploaded file URL:", fileUrl);
-  //       setValue("fileUrl", fileUrl);
-  //     }
-  //   }
-  // };
-
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
