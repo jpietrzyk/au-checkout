@@ -2,11 +2,10 @@ import NextButton from "@/components/stepped-form/next-button";
 import ErrorMessage from "@/components/ui/error-message";
 import { Input } from "@/components/ui/input";
 import { useMultiStepForm } from "@/hooks/use-stepped-form";
-// import UploadcareUploader from "@/components/uploaders/uploadcare-uploader";
 import { CombinedCheckoutSchema } from "@/validators/checkout-flow.validator";
 import { useFormContext } from "react-hook-form";
+import { useCallback } from "react";
 import { z } from "zod";
-// import { OutputFileEntry } from "@uploadcare/react-uploader";
 import TransloaditUploader from "@/components/uploaders/transloadit-uploader";
 import StepItem from "@/components/StepItem";
 import { checkoutSteps } from "../checkout";
@@ -16,16 +15,24 @@ const StepImage = () => {
     register,
     getValues,
     setError,
-    // setValue,
+    setValue,
     formState: { errors },
   } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
 
   const { nextStep } = useMultiStepForm();
 
+  const handleFileUploaded = useCallback(
+    (fileUrl: string) => {
+      setValue("fileUrl", fileUrl);
+      console.log("File uploaded and set in form:", fileUrl);
+    },
+    [setValue]
+  );
+
   const handleStepSubmit = async () => {
     const { fileUrl } = getValues();
 
-    if (fileUrl === "xxx") {
+    if (!fileUrl || fileUrl.trim() === "") {
       setError("fileUrl", {
         type: "manual",
         message: "Nie wybrałeś obrazu. Dodaj obraz, aby kontynuować.",
@@ -72,8 +79,7 @@ const StepImage = () => {
         <ErrorMessage message={errors.fileUrl?.message} />
       </div>
       <div className="uc-light w-full">
-        <TransloaditUploader />
-        {/* <UploadcareUploader onDoneClick={handleFileApply} /> */}
+        <TransloaditUploader onFileUploaded={handleFileUploaded} />
       </div>
       <NextButton onClick={handleStepSubmit} />
     </div>
