@@ -14,6 +14,7 @@ import StepPayment from "./checkout/stepPaymet";
 import { CameraIcon, HomeIcon, UserIcon, CreditCardIcon } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { LegalModal } from "@/components/LegalModal";
+import StepItem from "@/components/StepItem";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const checkoutSteps: FormStep[] = [
@@ -114,12 +115,34 @@ export default function Checkout() {
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
         </div>
-        <div className="w-full max-w-2xl mx-auto">
-          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-8">
-            <MultiStepForm
-              steps={checkoutSteps}
-              localStorageKey="checkout-form"
-            />
+
+        {/* Centered content container */}
+        <div className="w-full max-w-4xl mx-auto flex flex-col items-center space-y-8">
+          {/* Progress Steps - centered above form */}
+          <div className="w-full">
+            <div className="home-steps">
+              <h2 className="home-steps-title">Proces zamówienia</h2>
+              <div className="home-steps-grid">
+                {checkoutSteps.map((step) => (
+                  <StepItem
+                    key={step.position}
+                    icon={step.icon}
+                    title={step.label}
+                    description={step.description}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Form Container - centered */}
+          <div className="w-full max-w-2xl">
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-8">
+              <MultiStepForm
+                steps={checkoutSteps}
+                localStorageKey="checkout-form"
+              />
+            </div>
           </div>
         </div>
         <Footer onLinkClick={handleLinkClick} />

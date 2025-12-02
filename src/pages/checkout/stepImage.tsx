@@ -7,8 +7,6 @@ import { useFormContext } from "react-hook-form";
 import { useCallback } from "react";
 import { z } from "zod";
 import TransloaditUploader from "@/components/uploaders/transloadit-uploader";
-import StepItem from "@/components/StepItem";
-import { checkoutSteps } from "../checkout";
 
 const StepImage = () => {
   const {
@@ -61,20 +59,6 @@ const StepImage = () => {
           Proces zamówienia
         </h2>
         <p className="text-gray-600">Prześlij zdjęcie, które chcesz zamówić</p>
-      </div>
-
-      {/* Progress Steps */}
-      <div className="home-steps">
-        <div className="home-steps-grid">
-          {checkoutSteps.map((step) => (
-            <StepItem
-              key={step.position}
-              icon={step.icon}
-              title={step.label}
-              description={step.description}
-            />
-          ))}
-        </div>
       </div>
 
       <div className="hidden">
