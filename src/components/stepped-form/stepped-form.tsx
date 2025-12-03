@@ -198,15 +198,17 @@ const MultiStepForm = ({
   return (
     <MultiStepFormContext.Provider value={value}>
       <FormProvider {...methods}>
-        {showProgress && (
-          <div className="w-full bg-white bg-opacity-80 backdrop-blur-sm rounded-lg p-6 mb-8 shadow-lg">
-            <StepItem showProgress={true} steps={steps} />
+        <div className="relative">
+          {showProgress && (
+            <div className="mb-8">
+              <StepItem showProgress={true} steps={steps} />
+            </div>
+          )}
+          <div className="w-full bg-white bg-opacity-80 backdrop-blur-sm rounded-lg p-6 shadow-lg">
+            <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
+              {currentStep.component}
+            </form>
           </div>
-        )}
-        <div className="w-full">
-          <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
-            {currentStep.component}
-          </form>
         </div>
       </FormProvider>
     </MultiStepFormContext.Provider>
