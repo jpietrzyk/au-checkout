@@ -10,6 +10,7 @@ import {
 } from "@/validators/checkout-flow.validator";
 import { useLocalStorage } from "@mantine/hooks";
 import { useToast } from "@/hooks/use-toast";
+import StepItem from "@/components/StepItem";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const MultiStepFormContext =
@@ -19,10 +20,12 @@ const MultiStepForm = ({
   steps,
   localStorageKey = "multi-step-form",
   onStepChange,
+  showProgress = false,
 }: {
   steps: FormStep[];
   localStorageKey: string;
   onStepChange?: (stepIndex: number) => void;
+  showProgress?: boolean;
 }) => {
   const methods = useForm<z.infer<typeof CombinedCheckoutSchema>>({
     resolver: zodResolver(CombinedCheckoutSchema),
@@ -196,6 +199,7 @@ const MultiStepForm = ({
     <MultiStepFormContext.Provider value={value}>
       <FormProvider {...methods}>
         <div className="w-full">
+          {showProgress && <StepItem showProgress={true} steps={steps} />}
           <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
             {currentStep.component}
           </form>

@@ -14,7 +14,6 @@ import StepPayment from "./checkout/stepPaymet";
 import { CameraIcon, HomeIcon, UserIcon, CreditCardIcon } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { LegalModal } from "@/components/LegalModal";
-import StepItem from "@/components/StepItem";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const checkoutSteps: FormStep[] = [
@@ -123,16 +122,6 @@ export default function Checkout() {
           <div className="w-full">
             <div className="home-steps">
               <h2 className="home-steps-title">Proces zamówienia</h2>
-              <div className="home-steps-grid">
-                {checkoutSteps.map((step) => (
-                  <StepItem
-                    key={step.position}
-                    icon={step.icon}
-                    title={step.label}
-                    position={step.position}
-                  />
-                ))}
-              </div>
             </div>
           </div>
 
@@ -142,6 +131,7 @@ export default function Checkout() {
               <MultiStepForm
                 steps={checkoutSteps}
                 localStorageKey="checkout-form"
+                showProgress={true}
               />
             </div>
           </div>
