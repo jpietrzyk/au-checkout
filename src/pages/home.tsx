@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import bgImage from "../assets/background_1.jpg";
 import "./home.css";
 import { Footer } from "../components/Footer";
-import { LegalModal } from "../components/LegalModal";
+import { LegalModal } from "../components/legal-modal";
 import { Upload, Settings, ShoppingCart, Truck, Camera } from "lucide-react";
-import StepItem from "../components/StepItem";
+import StepItem from "../components/step-item";
 
 export default function Home() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);

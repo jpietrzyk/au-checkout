@@ -13,7 +13,7 @@ import MultiStepForm from "@/components/stepped-form/stepped-form";
 import StepPayment from "./checkout/stepPaymet";
 import { CameraIcon, HomeIcon, UserIcon, CreditCardIcon } from "lucide-react";
 import { Footer } from "@/components/Footer";
-import { LegalModal } from "@/components/LegalModal";
+import { LegalModal } from "@/components/legal-modal";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const checkoutSteps: FormStep[] = [

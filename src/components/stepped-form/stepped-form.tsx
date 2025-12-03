@@ -10,7 +10,7 @@ import {
 } from "@/validators/checkout-flow.validator";
 import { useLocalStorage } from "@mantine/hooks";
 import { useToast } from "@/hooks/use-toast";
-import StepItem from "@/components/StepItem";
+import StepItem from "@/components/step-item";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const MultiStepFormContext =
@@ -69,7 +69,7 @@ const MultiStepForm = ({
       methods.reset();
       onStepChange?.(0);
     }
-  }, [methods, savedFormState, steps.length]);
+  }, [methods, savedFormState, steps.length, onStepChange]);
 
   const saveFormState = (stepIndex: number) => {
     const formValues = methods.getValues();
@@ -134,10 +134,10 @@ const MultiStepForm = ({
   };
 
   const goToStep = (position: number) => {
-    if (position >= 0 && position - 1 < steps.length) {
-      saveFormState(position - 1);
-      setCurrentStepIndex(position - 1);
-      onStepChange?.(position - 1);
+    if (position >= 0 && position < steps.length) {
+      saveFormState(position);
+      setCurrentStepIndex(position);
+      onStepChange?.(position);
     }
   };
 
@@ -198,8 +198,8 @@ const MultiStepForm = ({
   return (
     <MultiStepFormContext.Provider value={value}>
       <FormProvider {...methods}>
+        {showProgress && <StepItem showProgress={true} steps={steps} />}
         <div className="w-full">
-          {showProgress && <StepItem showProgress={true} steps={steps} />}
           <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
             {currentStep.component}
           </form>
