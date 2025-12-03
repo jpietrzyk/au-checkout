@@ -85,7 +85,7 @@ const StepItem: React.FC<StepItemProps> = ({
       return null;
     }
     return (
-      <div className="flex flex-col items-center text-center relative w-full md:w-[80%] lg:w-[70%] xl:w-[60%] max-w-[1200px]">
+      <div className="flex flex-col items-center text-center relative w-[60%] min-w-[600px] max-w-[1200px]">
         <div
           className={`w-[70px] h-[70px] rounded-lg flex items-center justify-center mb-3 ${
             stepIsActive
@@ -115,7 +115,7 @@ const StepItem: React.FC<StepItemProps> = ({
 
   return (
     <div className="w-full flex justify-center mb-10">
-      <div className="relative w-full md:w-[80%] lg:w-[70%] xl:w-[60%] max-w-[1200px]">
+      <div className="relative w-[60%] min-w-[600px] max-w-[1200px]">
         {/* Container for flex layout */}
         <div className="flex justify-between w-full px-8 relative z-10">
           {/* Progress Line - always visible, extends from first to current step */}
