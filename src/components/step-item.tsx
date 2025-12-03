@@ -111,7 +111,7 @@ const StepItem: React.FC<StepItemProps> = ({
                 className="relative z-10 flex flex-col items-center"
               >
                 <motion.button
-                  onClick={() => goToStep(step.position)}
+                  onClick={() => goToStep(step.position - 1)}
                   className={`flex w-[50px] h-[50px] items-center justify-center rounded-full border-2 ${
                     isCurrent
                       ? "border-green-500 bg-green-100"
