@@ -87,11 +87,11 @@ const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
 
   return (
     <UppyContextProvider uppy={uppy}>
-      <section className="w-full h-full flex flex-col flex-1 min-h-[300px]">
+      <section className="w-full flex flex-col flex-1">
         <Dashboard
           uppy={uppy}
           plugins={["ImageEditor"]}
-          height="300"
+          height="100"
           width="100%"
           proudlyDisplayPoweredByUppy={true}
         />

@@ -207,7 +207,7 @@ const MultiStepForm = ({
           <div className="w-full flex justify-center">
             <form
               onSubmit={methods.handleSubmit(submitSteppedForm)}
-              className="w-[90%] max-w-[1200px] flex"
+              className="w-[90%] max-w-[1200px] bg-white/85 backdrop-blur-sm border border-gray-200 rounded-xl shadow-md p-4 sm:p-6 flex flex-col gap-4"
             >
               {currentStep.component}
             </form>
