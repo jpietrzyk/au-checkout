@@ -4,7 +4,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -49,14 +48,22 @@ const StepContact = () => {
           <FormField
             name="email"
             render={({ field }) => (
-              <FormItem className="flex items-center space-x-3">
-                <FormLabel className="w-20 text-right">Email:</FormLabel>
-                <div className="flex-1">
-                  <FormControl>
-                    <Input placeholder="twoj@email.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </div>
+              <FormItem>
+                <FormControl>
+                  <div className="relative">
+                    <svg
+                      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12H8m8 0l-8-6m8 6l-8 6" />
+                    </svg>
+                    <Input className="pl-10" placeholder="Email" {...field} />
+                  </div>
+                </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -64,14 +71,22 @@ const StepContact = () => {
           <FormField
             name="firstName"
             render={({ field }) => (
-              <FormItem className="flex items-center space-x-3">
-                <FormLabel className="w-20 text-right">Imię:</FormLabel>
-                <div className="flex-1">
-                  <FormControl>
-                    <Input placeholder="Jan" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </div>
+              <FormItem>
+                <FormControl>
+                  <div className="relative">
+                    <svg
+                      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A8 8 0 1118.88 6.196M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <Input className="pl-10" placeholder="Imię" {...field} />
+                  </div>
+                </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -79,14 +94,22 @@ const StepContact = () => {
           <FormField
             name="lastName"
             render={({ field }) => (
-              <FormItem className="flex items-center space-x-3">
-                <FormLabel className="w-20 text-right">Nazwisko:</FormLabel>
-                <div className="flex-1">
-                  <FormControl>
-                    <Input placeholder="Kowalski" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </div>
+              <FormItem>
+                <FormControl>
+                  <div className="relative">
+                    <svg
+                      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A8 8 0 1118.88 6.196M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <Input className="pl-10" placeholder="Nazwisko" {...field} />
+                  </div>
+                </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
