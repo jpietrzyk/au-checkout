@@ -47,7 +47,9 @@ const StepImage = () => {
         <h2 className="text-2xl font-bold text-gray-900 mb-1">
           Proces zamówienia
         </h2>
-        <p className="text-gray-600 text-sm">Prześlij zdjęcie, które chcesz zamówić</p>
+        <p className="text-gray-600 text-sm">
+          Prześlij zdjęcie, które chcesz zamówić
+        </p>
       </div>
       <div className="hidden">
         <Input {...register("fileUrl")} placeholder="Pliki URL" readOnly />

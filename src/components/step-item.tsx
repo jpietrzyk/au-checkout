@@ -115,25 +115,12 @@ const StepItem: React.FC<StepItemProps> = ({
 
   return (
     <div className="w-full flex justify-center mb-10">
-      <div className="relative w-[60%] min-w-[600px] max-w-[1200px]">
+      <div className="relative w-[70%] min-w-[600px] max-w-[1200px]">
+        {/* Line below steps */}
+        <div className="absolute top-[28px] left-0 right-0 h-0.5 bg-gray-300 z-0" />
+
         {/* Container for flex layout */}
         <div className="flex justify-between w-full px-8 relative z-10">
-          {/* Progress Line - always visible, extends from first to current step */}
-          <motion.div
-            className="absolute top-[28px] h-0.5 bg-black z-0 rounded-full"
-            initial={false}
-            style={
-              {
-                left: `calc(2rem + 25px)`,
-                width: `calc(${
-                  currentStepIndex === 0
-                    ? 0
-                    : (currentStepIndex / (steps.length - 1)) * 100
-                }% * (100% - 4rem - 50px) / 100)`,
-              } as React.CSSProperties
-            }
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          />
           {/* Steps */}
           {steps.map((step) => {
             const isCompleted = currentStepIndex > step.position - 1;
