@@ -32,7 +32,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url('/src/assets/background_1.jpg');
+  background-image: url("/src/assets/background_1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -216,5 +216,15 @@ button:focus-visible {
 
   .legal-content th {
     background-color: #f9fafb;
+  }
+
+  /* Force Uppy dashboard to take full width */
+  .uppy-Dashboard {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .uppy-Dashboard-inner {
+    width: 100% !important;
   }
 }

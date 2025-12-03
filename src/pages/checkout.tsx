@@ -13,8 +13,7 @@ import MultiStepForm from "@/components/stepped-form/stepped-form";
 import StepPayment from "./checkout/stepPaymet";
 import { CameraIcon, HomeIcon, UserIcon, CreditCardIcon } from "lucide-react";
 import { Footer } from "@/components/Footer";
-import { LegalModal } from "@/components/LegalModal";
-import StepItem from "@/components/StepItem";
+import { LegalModal } from "@/components/legal-modal";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const checkoutSteps: FormStep[] = [
@@ -118,33 +117,15 @@ export default function Checkout() {
         </div>
 
         {/* Centered content container */}
-        <div className="w-full max-w-[90%] mx-auto flex flex-col items-center space-y-4">
+        <div className="w-full flex flex-col items-center justify-center space-y-4 px-4 min-h-screen">
           {/* Progress Steps - centered above form */}
-          <div className="w-full">
-            <div className="home-steps">
-              <h2 className="home-steps-title">Proces zamówienia</h2>
-              <div className="home-steps-grid">
-                {checkoutSteps.map((step) => (
-                  <StepItem
-                    key={step.position}
-                    icon={step.icon}
-                    title={step.label}
-                    position={step.position}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
 
           {/* Form Container - centered */}
-          <div className="w-full max-w-[51%]">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-8">
-              <MultiStepForm
-                steps={checkoutSteps}
-                localStorageKey="checkout-form"
-              />
-            </div>
-          </div>
+          <MultiStepForm
+            steps={checkoutSteps}
+            localStorageKey="checkout-form"
+            showProgress={true}
+          />
         </div>
         <Footer onLinkClick={handleLinkClick} />
         {modalSlug && (

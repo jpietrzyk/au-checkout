@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import bgImage from "../assets/background_1.jpg";
 import "./home.css";
 import { Footer } from "../components/Footer";
-import { LegalModal } from "../components/LegalModal";
+import { LegalModal } from "../components/legal-modal";
 import { Upload, Settings, ShoppingCart, Truck, Camera } from "lucide-react";
-import StepItem from "../components/StepItem";
+import HomeStep from "../components/home-step";
 
 export default function Home() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
@@ -82,10 +82,10 @@ export default function Home() {
           <div className="home-steps">
             <h2 className="home-steps-title">Jak to działa</h2>
             <div className="home-steps-grid">
-              <StepItem icon={Upload} title="Prześlij zdjęcie" />
-              <StepItem icon={Settings} title="Dostosuj obraz" />
-              <StepItem icon={ShoppingCart} title="Złóż zamówienie" />
-              <StepItem icon={Truck} title="Otrzymaj obraz" />
+              <HomeStep icon={Upload} title="Prześlij zdjęcie" />
+              <HomeStep icon={Settings} title="Dostosuj obraz" />
+              <HomeStep icon={ShoppingCart} title="Złóż zamówienie" />
+              <HomeStep icon={Truck} title="Otrzymaj obraz" />
             </div>
           </div>
         </div>

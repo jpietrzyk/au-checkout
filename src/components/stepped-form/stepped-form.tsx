@@ -10,6 +10,7 @@ import {
 } from "@/validators/checkout-flow.validator";
 import { useLocalStorage } from "@mantine/hooks";
 import { useToast } from "@/hooks/use-toast";
+import ProgressIndicator from "./progress-indicator";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const MultiStepFormContext =
@@ -19,10 +20,12 @@ const MultiStepForm = ({
   steps,
   localStorageKey = "multi-step-form",
   onStepChange,
+  showProgress = false,
 }: {
   steps: FormStep[];
   localStorageKey: string;
   onStepChange?: (stepIndex: number) => void;
+  showProgress?: boolean;
 }) => {
   const methods = useForm<z.infer<typeof CombinedCheckoutSchema>>({
     resolver: zodResolver(CombinedCheckoutSchema),
@@ -66,7 +69,7 @@ const MultiStepForm = ({
       methods.reset();
       onStepChange?.(0);
     }
-  }, [methods, savedFormState, steps.length]);
+  }, [methods, savedFormState, steps.length, onStepChange]);
 
   const saveFormState = (stepIndex: number) => {
     const formValues = methods.getValues();
@@ -131,10 +134,10 @@ const MultiStepForm = ({
   };
 
   const goToStep = (position: number) => {
-    if (position >= 0 && position - 1 < steps.length) {
-      saveFormState(position - 1);
-      setCurrentStepIndex(position - 1);
-      onStepChange?.(position - 1);
+    if (position >= 0 && position < steps.length) {
+      saveFormState(position);
+      setCurrentStepIndex(position);
+      onStepChange?.(position);
     }
   };
 
@@ -195,10 +198,20 @@ const MultiStepForm = ({
   return (
     <MultiStepFormContext.Provider value={value}>
       <FormProvider {...methods}>
-        <div className="w-full">
-          <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
-            {currentStep.component}
-          </form>
+        <div>
+          {showProgress && (
+            <div className="w-full flex justify-center">
+              <ProgressIndicator steps={steps} />
+            </div>
+          )}
+          <div className="w-full flex justify-center">
+            <form
+              onSubmit={methods.handleSubmit(submitSteppedForm)}
+              className={`w-[90%] max-w-[1200px] backdrop-blur-sm rounded-xl p-4 sm:p-6 flex flex-col gap-4 ${currentStepIndex === 0 ? '' : 'bg-white/85 border border-gray-200 shadow-md'}`}
+            >
+              {currentStep.component}
+            </form>
+          </div>
         </div>
       </FormProvider>
     </MultiStepFormContext.Provider>

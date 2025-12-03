@@ -42,28 +42,22 @@ const StepImage = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Proces zamówienia
-        </h2>
-        <p className="text-gray-600">Prześlij zdjęcie, które chcesz zamówić</p>
-      </div>
-      <div className="hidden">
+    <div className="flex flex-col flex-1 min-h-0 gap-4">
+      <div>
         <Input
           {...register("fileUrl")}
           placeholder="Pliki URL"
-          value={getValues().fileUrl ? getValues().fileUrl : undefined}
           readOnly
+          type="hidden"
         />
         <ErrorMessage message={errors.fileUrl?.message} />
       </div>
 
-      <div className="uc-light w-full bg-white/50 rounded-xl p-4">
+      <div className="flex-1 min-h-0 w-full bg-white/50 overflow-hidden rounded-md">
         <TransloaditUploader onFileUploaded={handleFileUploaded} />
       </div>
 
-      <div className="pt-4">
+      <div className="pt-2">
         <NextButton onClick={handleStepSubmit} />
       </div>
     </div>
