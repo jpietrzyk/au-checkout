@@ -86,7 +86,7 @@ const StepItem: React.FC<StepItemProps> = ({
   }
 
   return (
-    <div className="flex items-center w-full justify-center mb-10">
+    <div className="w-full min-w-[80%] justify-center mb-10">
       <div className="w-full space-y-8 relative">
         {/* Progress Line */}
         <div className="absolute left-0 top-[28px] h-0.5 w-full bg-gray-200">
