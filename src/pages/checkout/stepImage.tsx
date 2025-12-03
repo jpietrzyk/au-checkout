@@ -42,7 +42,7 @@ const StepImage = () => {
   };
 
   return (
-    <div className="flex flex-col h-full gap-4">
+    <div className="flex flex-col flex-1 min-h-0 gap-4">
       <div>
         <Input
           {...register("fileUrl")}
@@ -53,11 +53,11 @@ const StepImage = () => {
         <ErrorMessage message={errors.fileUrl?.message} />
       </div>
 
-      <div className="flex-1 w-full bg-white/50 overflow-hidden">
+      <div className="flex-1 min-h-0 w-full bg-white/50 overflow-hidden rounded-md">
         <TransloaditUploader onFileUploaded={handleFileUploaded} />
       </div>
 
-      <div>
+      <div className="pt-2">
         <NextButton onClick={handleStepSubmit} />
       </div>
     </div>
