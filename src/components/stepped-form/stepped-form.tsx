@@ -204,10 +204,10 @@ const MultiStepForm = ({
               <ProgressIndicator steps={steps} />
             </div>
           )}
-          <div className="w-full flex justify-center min-h-screen">
+          <div className="w-full flex justify-center">
             <form
               onSubmit={methods.handleSubmit(submitSteppedForm)}
-              className="w-[90%] max-w-[1200px] backdrop-blur-sm flex flex-col"
+              className="w-[90%] max-w-[1200px] flex"
             >
               {currentStep.component}
             </form>

@@ -87,16 +87,14 @@ const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
 
   return (
     <UppyContextProvider uppy={uppy}>
-      <section className="w-full h-full flex flex-col flex-1 min-h-0">
-        <div className="w-full h-full flex-1 min-h-0">
-          <Dashboard
-            uppy={uppy}
-            plugins={["ImageEditor"]}
-            height="100%"
-            width="100%"
-            proudlyDisplayPoweredByUppy={false}
-          />
-        </div>
+      <section className="w-full h-full flex flex-col flex-1 min-h-[300px]">
+        <Dashboard
+          uppy={uppy}
+          plugins={["ImageEditor"]}
+          height="300"
+          width="100%"
+          proudlyDisplayPoweredByUppy={true}
+        />
 
         {/* Hidden file data for programmatic access - not displayed to user */}
         {uploadedFile && (
