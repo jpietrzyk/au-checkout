@@ -38,7 +38,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
   }, []);
 
   return (
-    <div className="w-full flex justify-center mt-6 mb-8">
+    <div className="w-full flex justify-center mt-8 mb-6">
       <div className="relative w-full max-w-[1200px] min-w-[900px] px-4">
         {/* Line below steps */}
         <div className="absolute top-[40px] left-0 right-0 h-0.5 bg-gray-300 z-0" />
