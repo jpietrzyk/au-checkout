@@ -119,22 +119,13 @@ export default function Checkout() {
         {/* Centered content container */}
         <div className="w-full max-w-[90%] mx-auto flex flex-col items-center space-y-4">
           {/* Progress Steps - centered above form */}
-          <div className="w-full">
-            <div className="home-steps">
-              <h2 className="home-steps-title">Proces zamówienia</h2>
-            </div>
-          </div>
 
           {/* Form Container - centered */}
-          <div className="w-full max-w-[51%]">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 p-8">
-              <MultiStepForm
-                steps={checkoutSteps}
-                localStorageKey="checkout-form"
-                showProgress={true}
-              />
-            </div>
-          </div>
+          <MultiStepForm
+            steps={checkoutSteps}
+            localStorageKey="checkout-form"
+            showProgress={true}
+          />
         </div>
         <Footer onLinkClick={handleLinkClick} />
         {modalSlug && (
