@@ -117,10 +117,10 @@ export default function Checkout() {
         </div>
 
         {/* Centered content container */}
-        <div className="w-full flex flex-col items-center justify-center space-y-4 px-4 min-h-screen">
-          {/* Progress Steps - centered above form */}
+        <div className="w-full flex flex-col items-center space-y-6 px-4 pt-6 pb-12 min-h-screen">
+          {/* Progress Steps - positioned near the top with consistent spacing */}
 
-          {/* Form Container - centered */}
+          {/* Form Container */}
           <MultiStepForm
             steps={checkoutSteps}
             localStorageKey="checkout-form"

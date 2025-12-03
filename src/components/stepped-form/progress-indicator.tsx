@@ -38,13 +38,13 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
   }, []);
 
   return (
-    <div className="w-full flex justify-center mb-10">
-      <div className="relative w-[70%] min-w-[900px] max-w-[1200px]">
+    <div className="w-full flex justify-center mt-6 mb-8">
+      <div className="relative w-full max-w-[1200px] min-w-[900px] px-4">
         {/* Line below steps */}
         <div className="absolute top-[40px] left-0 right-0 h-0.5 bg-gray-300 z-0" />
 
         {/* Container for flex layout */}
-        <div className="flex justify-between w-full px-8 relative z-10">
+        <div className="flex justify-between w-full px-4 sm:px-8 relative z-10">
           {/* Steps */}
           {steps.map((step) => {
             const isCompleted = currentStepIndex > step.position - 1;
@@ -101,7 +101,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
                       ? "Dokończ wcześniejsze kroki przed przejściem dalej"
                       : undefined
                   }
-                  className={`flex w-[80px] h-[80px] items-center justify-center rounded-full border-2 ${
+                  className={`flex w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] md:w-[80px] md:h-[80px] items-center justify-center rounded-full border-2 ${
                     isCurrent
                       ? "border-green-500 bg-green-100"
                       : isCompleted
