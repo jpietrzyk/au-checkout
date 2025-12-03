@@ -87,8 +87,8 @@ const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
 
   return (
     <UppyContextProvider uppy={uppy}>
-      <section className="space-y-6">
-        <div>
+      <section className="space-y-6 w-full">
+        <div className="w-full">
           <Dashboard
             uppy={uppy}
             plugins={["ImageEditor"]}
