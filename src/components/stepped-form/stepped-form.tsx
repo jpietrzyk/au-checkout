@@ -10,7 +10,7 @@ import {
 } from "@/validators/checkout-flow.validator";
 import { useLocalStorage } from "@mantine/hooks";
 import { useToast } from "@/hooks/use-toast";
-import StepItem from "@/components/step-item";
+import ProgressIndicator from "./progress-indicator";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const MultiStepFormContext =
@@ -201,7 +201,7 @@ const MultiStepForm = ({
         <div>
           {showProgress && (
             <div className="w-full flex justify-center">
-              <StepItem showProgress={true} steps={steps} />
+              <ProgressIndicator steps={steps} />
             </div>
           )}
           <div className="w-full flex justify-center px-4">
