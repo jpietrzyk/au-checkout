@@ -239,8 +239,6 @@ button:focus-visible {
   }
 
   .uppy-Dashboard-AddFiles {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display: block !important;
   }
 }

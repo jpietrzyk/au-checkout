@@ -53,8 +53,8 @@ export default function UploadImage() {
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
-        <div className="w-full flex flex-col items-center justify-center px-4 min-h-screen">
-          <div className="w-[80%] max-w-[1200px] backdrop-blur-sm rounded-xl p-4 sm:p-6 flex flex-col gap-4 min-h-[600px]">
+        <div className="w-full px-4 min-h-screen">
+          <div className="w-[80%] max-w-[1200px] backdrop-blur-sm rounded-xl p-4 sm:p-6 gap-4 min-h-[600px]">
             <div className="text-center mb-4">
               <h1 className="text-3xl font-bold text-white mb-2">
                 Prześlij swoje zdjęcie
@@ -64,11 +64,11 @@ export default function UploadImage() {
               </p>
             </div>
 
-            <div className="flex-1 min-h-0 w-full bg-white/50 overflow-hidden rounded-md">
+            <div className="min-h-0 w-full bg-white/50 overflow-hidden rounded-md">
               <TransloaditUploader onFileUploaded={handleFileUploaded} />
             </div>
 
-            <div className="pt-2 flex justify-end">
+            <div className="pt-2">
               <Button
                 onClick={handleContinueToCheckout}
                 size="lg"

@@ -198,9 +198,9 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
 
     // Preview component for right side
     Preview: () => (
-      <div className="w-full h-full flex items-center justify-center">
+      <div className="w-full h-full">
         {selectedFile && selectedFile.data instanceof Blob ? (
-          <div className="max-w-full max-h-full">
+          <div>
             <img
               src={URL.createObjectURL(selectedFile.data)}
               alt="Preview"
