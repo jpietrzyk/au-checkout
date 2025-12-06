@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "./components/ui/toaster";
 
 import Home from "./pages/home";
-import UploadImage from "./pages/upload-image";
+import PaintingDesign from "./pages/painting-design";
 import Checkout from "./pages/checkout";
 import { PrivacyPage } from "./pages/legal/privacy";
 import { TermsPage } from "./pages/legal/terms";
@@ -22,7 +22,7 @@ function App() {
         <div className="min-h-screen w-screen flex items-center justify-center">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/upload-image" element={<UploadImage />} />
+            <Route path="/painting-design" element={<PaintingDesign />} />
             <Route path="/checkout" element={<Checkout />} />
 
             {/* Legal / compliance routes (PL) */}

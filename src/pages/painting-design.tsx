@@ -55,28 +55,21 @@ export default function UploadImage() {
 
         <div className="w-full flex flex-col items-center justify-center px-4 min-h-screen">
           <div className="w-[80%] max-w-[1200px] backdrop-blur-sm rounded-xl p-4 sm:p-6 flex flex-col gap-4 min-h-[600px]">
-            <div className="text-center mb-4">
-              <h1 className="text-3xl font-bold text-white mb-2">
-                Prześlij swoje zdjęcie
-              </h1>
-              <p className="text-white/80">
-                Wybierz zdjęcie, które chcesz zamienić w obraz
-              </p>
-            </div>
-
             <div className="flex-1 min-h-0 w-full bg-white/50 overflow-hidden rounded-md">
               <TransloaditUploader onFileUploaded={handleFileUploaded} />
             </div>
 
-            <div className="pt-2 flex justify-end">
-              <Button
-                onClick={handleContinueToCheckout}
-                size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white"
-              >
-                Kontynuuj do kasy
-              </Button>
-            </div>
+            {fileUrl && (
+              <div className="pt-2 flex justify-end">
+                <Button
+                  onClick={handleContinueToCheckout}
+                  size="lg"
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  Kontynuuj do kasy
+                </Button>
+              </div>
+            )}
           </div>
         </div>
 
