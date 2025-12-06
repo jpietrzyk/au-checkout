@@ -37,6 +37,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       })
       .use(ImageEditor, {
         quality: 0.8,
+        target: "body",
       })
       .use(Transloadit, {
         assemblyOptions: {
@@ -53,6 +54,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     const handleFileAdded = (
       file: UppyFile<Record<string, unknown>, Record<string, unknown>>
     ) => {
+      console.log("File added:", file);
       setSelectedFile(file);
     };
 
@@ -100,14 +102,27 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
 
   const handleEditImage = () => {
     if (selectedFile) {
+      console.log("Edit button clicked, selectedFile:", selectedFile);
       setShowEditor(true);
       const editorPlugin = uppy.getPlugin("ImageEditor");
+      console.log("ImageEditor plugin:", editorPlugin);
       if (
         editorPlugin &&
         "selectFile" in editorPlugin &&
         typeof editorPlugin.selectFile === "function"
       ) {
-        editorPlugin.selectFile(selectedFile);
+        console.log("Calling selectFile...");
+        try {
+          editorPlugin.selectFile(selectedFile);
+          // Force the editor to open by dispatching an event
+          uppy.emit("file-editor:start", selectedFile);
+        } catch (error) {
+          console.error("Error opening editor:", error);
+        }
+      } else {
+        console.error(
+          "ImageEditor plugin not found or selectFile not available"
+        );
       }
     }
   };
