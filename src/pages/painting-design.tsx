@@ -41,21 +41,24 @@ export default function UploadImage() {
   };
 
   return (
-    <main className="home-main">
+    <main className="home-main h-screen overflow-hidden">
       <div
         className="home-bg"
         style={{
           backgroundImage: `url('/src/assets/background_1.jpg')`,
         }}
       />
-      <section aria-label="Upload Image" className="home-hero">
+      <section
+        aria-label="Upload Image"
+        className="home-hero h-screen flex flex-col"
+      >
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
-        <div className="w-full flex flex-col items-center justify-center px-4 min-h-screen">
-          <div className="w-[80%] max-w-[1200px] backdrop-blur-sm rounded-xl p-4 sm:p-6 flex flex-col gap-4 min-h-[600px]">
-            <div className="flex-1 min-h-0 w-full bg-white/50 overflow-hidden rounded-md">
+        <div className="w-full flex flex-col items-center justify-start pt-20 px-4 flex-1 overflow-y-auto">
+          <div className="w-[80%] max-w-[1200px] flex flex-col gap-4 min-h-[600px]">
+            <div className="flex-1 min-h-0 w-full overflow-hidden rounded-md">
               <TransloaditUploader onFileUploaded={handleFileUploaded} />
             </div>
 
