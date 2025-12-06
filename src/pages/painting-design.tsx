@@ -41,48 +41,42 @@ export default function UploadImage() {
   };
 
   return (
-    <main className="bg-gray-50">
-      <section>
+    <main className="home-main">
+      <div
+        className="home-bg"
+        style={{
+          backgroundImage: `url('/src/assets/background_1.jpg')`,
+        }}
+      />
+      <section aria-label="Upload Image" className="home-hero">
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
-        <div className="grid grid-cols-2 min-h-screen">
-          {/* Left column - Uppy Dashboard */}
-          <div className="relative p-16">
-            <div className="absolute inset-16">
-              <TransloaditUploader onFileUploaded={handleFileUploaded} />
-
-              {fileUrl && (
-                <div className="mt-4">
-                  <Button
-                    onClick={handleContinueToCheckout}
-                    size="lg"
-                    className="bg-green-600 hover:bg-green-700 text-white"
-                  >
-                    Kontynuuj do kasy
-                  </Button>
-                </div>
-              )}
+        <div className="w-full flex flex-col items-center justify-center px-4 min-h-screen">
+          <div className="w-[80%] max-w-[1200px] backdrop-blur-sm rounded-xl p-4 sm:p-6 flex flex-col gap-4 min-h-[600px]">
+            <div className="text-center mb-4">
+              <h1 className="text-3xl font-bold text-white mb-2">
+                Prześlij swoje zdjęcie
+              </h1>
+              <p className="text-white/80">
+                Wybierz zdjęcie, które chcesz zamienić w obraz
+              </p>
             </div>
-          </div>
 
-          {/* Right column - Image Preview */}
-          <div className="bg-gray-100/50 p-16 flex items-center justify-center">
-            {fileUrl ? (
-              <div className="max-w-full max-h-full">
-                <img
-                  src={fileUrl}
-                  alt="Uploaded preview"
-                  className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-lg"
-                />
-              </div>
-            ) : (
-              <div className="text-gray-400 text-center">
-                <p className="text-xl">Podgląd zdjęcia</p>
-                <p className="text-sm mt-2">Twoje zdjęcie pojawi się tutaj</p>
-              </div>
-            )}
+            <div className="flex-1 min-h-0 w-full bg-white/50 overflow-hidden rounded-md">
+              <TransloaditUploader onFileUploaded={handleFileUploaded} />
+            </div>
+
+            <div className="pt-2 flex justify-end">
+              <Button
+                onClick={handleContinueToCheckout}
+                size="lg"
+                className="bg-green-600 hover:bg-green-700 text-white"
+              >
+                Kontynuuj do kasy
+              </Button>
+            </div>
           </div>
         </div>
 
