@@ -1,14 +1,11 @@
 import { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "@mantine/hooks";
 import { SplitUploader } from "@/components/uploaders/split-uploader";
 import { Footer } from "@/components/Footer";
 import { LegalModal } from "@/components/legal-modal";
-import { Button } from "@/components/ui/button";
 
 export default function UploadImage() {
-  const navigate = useNavigate();
-  const [fileUrl, setFileUrl] = useLocalStorage<string>({
+  const [, setFileUrl] = useLocalStorage<string>({
     key: "uploaded-image-url",
     defaultValue: "",
   });
@@ -21,14 +18,6 @@ export default function UploadImage() {
     },
     [setFileUrl]
   );
-
-  const handleContinueToCheckout = () => {
-    if (!fileUrl || fileUrl.trim() === "") {
-      alert("Proszę przesłać zdjęcie przed kontynuowaniem.");
-      return;
-    }
-    navigate("/checkout");
-  };
 
   const handleLinkClick = (slug: string) => {
     setModalSlug(slug);
@@ -63,18 +52,6 @@ export default function UploadImage() {
             <Preview />
           </div>
         </div>
-
-        {fileUrl && (
-          <div className="absolute bottom-24 right-16 z-10">
-            <Button
-              onClick={handleContinueToCheckout}
-              size="lg"
-              className="bg-green-600 hover:bg-green-700 text-white"
-            >
-              Kontynuuj do kasy
-            </Button>
-          </div>
-        )}
 
         <Footer onLinkClick={handleLinkClick} />
         {modalSlug && (
