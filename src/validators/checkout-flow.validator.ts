@@ -38,6 +38,5 @@ export const stepPaymentSchema = z.object({
 export const CombinedCheckoutSchema = stepContactSchema
   .merge(stepAddressSchema)
   .merge(stepPaymentSchema)
-  .merge(stepImageSchema)
 
 export type CombinedCheckoutType = z.infer<typeof CombinedCheckoutSchema>

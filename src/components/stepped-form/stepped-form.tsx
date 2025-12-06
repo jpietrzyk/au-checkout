@@ -30,7 +30,6 @@ const MultiStepForm = ({
   const methods = useForm<z.infer<typeof CombinedCheckoutSchema>>({
     resolver: zodResolver(CombinedCheckoutSchema),
     defaultValues: {
-      fileUrl: "",
       email: "",
       firstName: "",
       lastName: "",

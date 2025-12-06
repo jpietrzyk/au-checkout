@@ -1,57 +1,47 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "@mantine/hooks";
 import { FormStep } from "@/types";
-import StepImage from "./checkout/stepImage";
 import StepContact from "./checkout/stepContact";
 import StepAddress from "./checkout/stepAddress";
 import {
-  stepImageSchema,
   stepContactSchema,
   stepAddressSchema,
   stepPaymentSchema,
 } from "@/validators/checkout-flow.validator";
 import MultiStepForm from "@/components/stepped-form/stepped-form";
 import StepPayment from "./checkout/stepPaymet";
-import { CameraIcon, HomeIcon, UserIcon, CreditCardIcon } from "lucide-react";
+import { HomeIcon, UserIcon, CreditCardIcon } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { LegalModal } from "@/components/legal-modal";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const checkoutSteps: FormStep[] = [
   {
-    title: "Krok 1: Projekt obrazu",
-    component: <StepImage />,
-    validationSchema: stepImageSchema,
-    icon: CameraIcon,
-    position: 1,
-    fields: ["fileUrl"],
-    label: "Prześlij zdjęcie",
-    description: "Wybierz zdjęcie z galerii lub zrób nowe.",
-  },
-  {
-    title: "Krok 2: Twoje dane",
+    title: "Krok 1: Twoje dane",
     component: <StepContact />,
     icon: UserIcon,
-    position: 2,
+    position: 1,
     validationSchema: stepContactSchema,
     fields: ["email", "firstName", "lastName"],
     label: "Twoje dane",
     description: "Podaj dane kontaktowe.",
   },
   {
-    title: "Krok 3: Adres dostawy",
+    title: "Krok 2: Adres dostawy",
     component: <StepAddress />,
     icon: HomeIcon,
-    position: 3,
+    position: 2,
     validationSchema: stepAddressSchema,
     fields: ["country", "city", "shippingAddress"],
     label: "Adres dostawy",
     description: "Wprowadź adres dostawy.",
   },
   {
-    title: "Krok 4: Płatność",
+    title: "Krok 3: Płatność",
     component: <StepPayment />,
     icon: CreditCardIcon,
-    position: 4,
+    position: 3,
     validationSchema: stepPaymentSchema,
     fields: ["cardNumber", "cardholderName", "cvv"],
     label: "Płatność",
@@ -61,6 +51,18 @@ export const checkoutSteps: FormStep[] = [
 
 export default function Checkout() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const [uploadedImageUrl] = useLocalStorage<string>({
+    key: "uploaded-image-url",
+    defaultValue: "",
+  });
+
+  // Redirect to upload page if no image has been uploaded
+  useEffect(() => {
+    if (!uploadedImageUrl) {
+      navigate("/upload-image");
+    }
+  }, [uploadedImageUrl, navigate]);
 
   useEffect(() => {
     const checkHash = () => {
