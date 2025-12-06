@@ -32,10 +32,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url("/src/assets/background_1.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #f9fafb;
 }
 
 h1 {
@@ -222,12 +219,30 @@ button:focus-visible {
   .uppy-Dashboard {
     width: 100% !important;
     max-width: 100% !important;
+    min-width: 100% !important;
     background-color: rgba(255, 255, 255, 0.85) !important;
     backdrop-filter: blur(10px) !important;
   }
 
   .uppy-Dashboard-inner {
     width: 100% !important;
+    min-width: 100% !important;
     background-color: transparent !important;
+  }
+
+  /* Make Uppy drop area text bigger and center it */
+  .uppy-Dashboard-AddFiles-title {
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+  }
+
+  .uppy-Dashboard-AddFiles-info {
+    font-size: 1.125rem !important;
+  }
+
+  .uppy-Dashboard-AddFiles {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }

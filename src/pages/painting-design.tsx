@@ -41,29 +41,19 @@ export default function UploadImage() {
   };
 
   return (
-    <main className="home-main h-screen overflow-hidden">
-      <div
-        className="home-bg"
-        style={{
-          backgroundImage: `url('/src/assets/background_1.jpg')`,
-        }}
-      />
-      <section
-        aria-label="Upload Image"
-        className="home-hero h-screen flex flex-col"
-      >
+    <main className="h-screen overflow-hidden bg-gray-50">
+      <section aria-label="Upload Image" className="h-screen flex flex-col">
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
-        <div className="w-full flex flex-col items-center justify-start pt-20 px-4 flex-1 overflow-y-auto">
-          <div className="w-[80%] max-w-[1200px] flex flex-col gap-4 min-h-[600px]">
-            <div className="flex-1 min-h-0 w-full overflow-hidden rounded-md">
-              <TransloaditUploader onFileUploaded={handleFileUploaded} />
-            </div>
+        <div className="w-full flex-1 grid grid-cols-2">
+          {/* Left column - Uppy Dashboard */}
+          <div className="flex flex-col items-center justify-center">
+            <TransloaditUploader onFileUploaded={handleFileUploaded} />
 
             {fileUrl && (
-              <div className="pt-2 flex justify-end">
+              <div className="p-4 flex justify-end">
                 <Button
                   onClick={handleContinueToCheckout}
                   size="lg"
@@ -74,6 +64,9 @@ export default function UploadImage() {
               </div>
             )}
           </div>
+
+          {/* Right column - Empty */}
+          <div />
         </div>
 
         <Footer onLinkClick={handleLinkClick} />
