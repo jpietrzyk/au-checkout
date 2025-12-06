@@ -45,12 +45,6 @@ export default function UploadImage() {
 
   return (
     <main className="home-main">
-      <div
-        className="home-bg"
-        style={{
-          backgroundImage: `url('/src/assets/background_1.jpg')`,
-        }}
-      />
       <section aria-label="Upload Image" className="home-hero">
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
