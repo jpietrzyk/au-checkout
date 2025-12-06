@@ -67,8 +67,23 @@ export default function UploadImage() {
             </div>
           </div>
 
-          {/* Right column - Empty */}
-          <div className="bg-gray-100/50" />
+          {/* Right column - Image Preview */}
+          <div className="bg-gray-100/50 p-16 flex items-center justify-center">
+            {fileUrl ? (
+              <div className="max-w-full max-h-full">
+                <img
+                  src={fileUrl}
+                  alt="Uploaded preview"
+                  className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-lg"
+                />
+              </div>
+            ) : (
+              <div className="text-gray-400 text-center">
+                <p className="text-xl">Podgląd zdjęcia</p>
+                <p className="text-sm mt-2">Twoje zdjęcie pojawi się tutaj</p>
+              </div>
+            )}
+          </div>
         </div>
 
         <Footer onLinkClick={handleLinkClick} />
