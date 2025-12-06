@@ -5,10 +5,13 @@ import { UppyContextProvider } from "@uppy/react";
 import Dashboard from "@uppy/react/dashboard";
 import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
+import Webcam from "@uppy/webcam";
+import GoogleDrive from "@uppy/google-drive";
 
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
 import "@uppy/image-editor/css/style.min.css";
+import "@uppy/webcam/css/style.min.css";
 
 function createUppy() {
   return new Uppy({
@@ -72,6 +75,22 @@ function createUppy() {
       },
     },
   })
+    .use(Webcam, {
+      locale: {
+        strings: {
+          smile: "Uśmiechnij się!",
+          takePicture: "Zrób zdjęcie",
+          startRecording: "Rozpocznij nagrywanie",
+          stopRecording: "Zatrzymaj nagrywanie",
+          allowAccessTitle: "Pozwól na dostęp do kamery",
+          allowAccessDescription:
+            "Aby robić zdjęcia, musisz zezwolić na dostęp do kamery.",
+        },
+      },
+    })
+    .use(GoogleDrive, {
+      companionUrl: "https://companion.uppy.io",
+    })
     .use(ImageEditor, {
       quality: 0.8,
       // Image editor locale configuration
@@ -144,10 +163,10 @@ const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
 
   return (
     <UppyContextProvider uppy={uppy}>
-      <section className="w-full flex flex-col flex-1">
+      <section className="w-full">
         <Dashboard
           uppy={uppy}
-          plugins={["ImageEditor"]}
+          plugins={["ImageEditor", "Webcam", "GoogleDrive"]}
           height="100"
           width="100%"
           proudlyDisplayPoweredByUppy={true}

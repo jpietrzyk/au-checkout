@@ -19,7 +19,7 @@ function App() {
     <main>
       <BrowserRouter>
         <Toaster />
-        <div className="min-h-screen w-screen flex items-center justify-center">
+        <div className="min-h-screen w-screen">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/painting-design" element={<PaintingDesign />} />

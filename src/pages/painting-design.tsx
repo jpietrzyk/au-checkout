@@ -41,32 +41,34 @@ export default function UploadImage() {
   };
 
   return (
-    <main className="h-screen overflow-hidden bg-gray-50">
-      <section aria-label="Upload Image" className="h-screen flex flex-col">
+    <main className="bg-gray-50">
+      <section>
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
-        <div className="w-full flex-1 grid grid-cols-2">
+        <div className="grid grid-cols-2 min-h-screen">
           {/* Left column - Uppy Dashboard */}
-          <div className="flex flex-col items-center justify-center">
-            <TransloaditUploader onFileUploaded={handleFileUploaded} />
+          <div className="relative p-16">
+            <div className="absolute inset-16">
+              <TransloaditUploader onFileUploaded={handleFileUploaded} />
 
-            {fileUrl && (
-              <div className="p-4 flex justify-end">
-                <Button
-                  onClick={handleContinueToCheckout}
-                  size="lg"
-                  className="bg-green-600 hover:bg-green-700 text-white"
-                >
-                  Kontynuuj do kasy
-                </Button>
-              </div>
-            )}
+              {fileUrl && (
+                <div className="mt-4">
+                  <Button
+                    onClick={handleContinueToCheckout}
+                    size="lg"
+                    className="bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    Kontynuuj do kasy
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Right column - Empty */}
-          <div />
+          <div className="bg-gray-100/50" />
         </div>
 
         <Footer onLinkClick={handleLinkClick} />
