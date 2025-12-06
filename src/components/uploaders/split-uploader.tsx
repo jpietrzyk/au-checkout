@@ -35,10 +35,6 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       .use(GoogleDrive, {
         companionUrl: "https://companion.uppy.io",
       })
-      .use(ImageEditor, {
-        quality: 0.8,
-        target: "body",
-      })
       .use(Transloadit, {
         assemblyOptions: {
           params: {
@@ -50,12 +46,53 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       });
   });
 
+  // Add ImageEditor after mount
+  useEffect(() => {
+    if (!uppy.getPlugin("ImageEditor")) {
+      uppy.use(ImageEditor, {
+        quality: 0.8,
+        target: document.body,
+      });
+      console.log("ImageEditor installed with target body");
+    }
+  }, [uppy]);
+
   useEffect(() => {
     const handleFileAdded = (
       file: UppyFile<Record<string, unknown>, Record<string, unknown>>
     ) => {
       console.log("File added:", file);
       setSelectedFile(file);
+      // Immediately set showEditor to true to prevent preview flashing
+      setShowEditor(true);
+      // Automatically open editor when file is added
+      setTimeout(() => {
+        const editorPlugin = uppy.getPlugin("ImageEditor");
+        console.log("Auto-opening editor, plugin:", editorPlugin);
+        if (
+          editorPlugin &&
+          "selectFile" in editorPlugin &&
+          typeof editorPlugin.selectFile === "function"
+        ) {
+          console.log("Calling selectFile and setting showEditor to true");
+          editorPlugin.selectFile(file);
+          uppy.emit("file-editor:start", file);
+        }
+      }, 100);
+    };
+
+    const handleEditorComplete = (
+      file: UppyFile<Record<string, unknown>, Record<string, unknown>>
+    ) => {
+      console.log("Editor complete:", file);
+      setShowEditor(false);
+    };
+
+    const handleEditorCancel = (
+      file: UppyFile<Record<string, unknown>, Record<string, unknown>>
+    ) => {
+      console.log("Editor cancelled:", file);
+      setShowEditor(false);
     };
 
     const handleComplete = (
@@ -70,10 +107,14 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     };
 
     uppy.on("file-added", handleFileAdded);
+    uppy.on("file-editor:complete", handleEditorComplete);
+    uppy.on("file-editor:cancel", handleEditorCancel);
     uppy.on("complete", handleComplete);
 
     return () => {
       uppy.off("file-added", handleFileAdded);
+      uppy.off("file-editor:complete", handleEditorComplete);
+      uppy.off("file-editor:cancel", handleEditorCancel);
       uppy.off("complete", handleComplete);
     };
   }, [uppy, onFileUploaded]);
@@ -215,23 +256,36 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     },
 
     // Preview component for right side
-    Preview: () => (
-      <div className="w-full h-full">
-        {selectedFile && selectedFile.data instanceof Blob ? (
-          <div>
-            <img
-              src={URL.createObjectURL(selectedFile.data)}
-              alt="Preview"
-              className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-lg"
-            />
-          </div>
-        ) : (
-          <div className="text-gray-400 text-center">
-            <p className="text-xl">Podgląd zdjęcia</p>
-            <p className="text-sm mt-2">Twoje zdjęcie pojawi się tutaj</p>
-          </div>
-        )}
-      </div>
-    ),
+    Preview: () => {
+      console.log(
+        "Preview rendering, showEditor:",
+        showEditor,
+        "selectedFile:",
+        selectedFile
+      );
+      return (
+        <div className="w-full h-full">
+          <div
+            id="image-editor-container"
+            className="w-full h-full"
+            style={{ display: showEditor ? "block" : "none" }}
+          />
+          {!showEditor && selectedFile && selectedFile.data instanceof Blob ? (
+            <div>
+              <img
+                src={URL.createObjectURL(selectedFile.data)}
+                alt="Preview"
+                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-lg"
+              />
+            </div>
+          ) : !showEditor ? (
+            <div className="text-gray-400 text-center">
+              <p className="text-xl">Podgląd zdjęcia</p>
+              <p className="text-sm mt-2">Twoje zdjęcie pojawi się tutaj</p>
+            </div>
+          ) : null}
+        </div>
+      );
+    },
   };
 };

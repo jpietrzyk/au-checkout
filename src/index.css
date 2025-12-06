@@ -241,4 +241,27 @@ button:focus-visible {
   .uppy-Dashboard-AddFiles {
     display: block !important;
   }
+
+  /* Image Editor modal styling - ensure it's centered and full screen */
+  [class*="uppy-ImageEditor"],
+  [class*="uppy-ImageCropper"] {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+  }
+
+  .uppy-ImageEditor-overlay,
+  .uppy-ImageCropper-overlay,
+  div[role="dialog"][aria-label*="Edit"] {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+    width: 90vw !important;
+    height: 90vh !important;
+    max-width: 1200px !important;
+  }
 }
