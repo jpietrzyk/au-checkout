@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "@mantine/hooks";
-import TransloaditUploader from "@/components/uploaders/transloadit-uploader";
+import { SplitUploader } from "@/components/uploaders/split-uploader";
 import { Footer } from "@/components/Footer";
 import { LegalModal } from "@/components/legal-modal";
 import { Button } from "@/components/ui/button";
@@ -40,6 +40,9 @@ export default function UploadImage() {
     window.location.hash = "";
   };
 
+  const uploader = SplitUploader({ onFileUploaded: handleFileUploaded });
+  const { Controls, Preview } = uploader;
+
   return (
     <main className="home-main">
       <div
@@ -53,32 +56,31 @@ export default function UploadImage() {
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
-        <div className="w-full px-4 min-h-screen">
-          <div className="w-[80%] max-w-[1200px] backdrop-blur-sm rounded-xl p-4 sm:p-6 gap-4 min-h-[600px]">
-            <div className="text-center mb-4">
-              <h1 className="text-3xl font-bold text-white mb-2">
-                Prześlij swoje zdjęcie
-              </h1>
-              <p className="text-white/80">
-                Wybierz zdjęcie, które chcesz zamienić w obraz
-              </p>
-            </div>
-
-            <div className="min-h-0 w-full bg-white/50 overflow-hidden rounded-md">
-              <TransloaditUploader onFileUploaded={handleFileUploaded} />
-            </div>
-
-            <div className="pt-2">
-              <Button
-                onClick={handleContinueToCheckout}
-                size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white"
-              >
-                Kontynuuj do kasy
-              </Button>
+        <div className="grid grid-cols-2 h-full w-full">
+          {/* Left column: Upload controls */}
+          <div className="relative p-16">
+            <div className="absolute inset-16">
+              <Controls />
             </div>
           </div>
+
+          {/* Right column: Image preview */}
+          <div className="bg-gray-100/50 p-16">
+            <Preview />
+          </div>
         </div>
+
+        {fileUrl && (
+          <div className="absolute bottom-24 right-16 z-10">
+            <Button
+              onClick={handleContinueToCheckout}
+              size="lg"
+              className="bg-green-600 hover:bg-green-700 text-white"
+            >
+              Kontynuuj do kasy
+            </Button>
+          </div>
+        )}
 
         <Footer onLinkClick={handleLinkClick} />
         {modalSlug && (

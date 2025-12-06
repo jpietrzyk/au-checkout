@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import Uppy from "@uppy/core";
 import type { UppyFile, UploadResult } from "@uppy/core";
-import { useDropzone } from "@uppy/react";
 import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
 import Webcam from "@uppy/webcam";
@@ -116,17 +115,16 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
   return {
     // Controls component for left side
     Controls: () => {
-      const { getRootProps, getInputProps } = useDropzone({
-        onDrop: (files: File[]) => {
-          if (files.length > 0) {
-            uppy.addFile({
-              name: files[0].name,
-              type: files[0].type,
-              data: files[0],
-            });
-          }
-        },
-      });
+      const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (files && files.length > 0) {
+          uppy.addFile({
+            name: files[0].name,
+            type: files[0].type,
+            data: files[0],
+          });
+        }
+      };
 
       return (
         <div className="space-y-6">
@@ -139,14 +137,19 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
             </p>
           </div>
 
-          <div
-            {...getRootProps()}
-            className="border-2 border-dashed border-gray-300 hover:border-gray-400 rounded-lg p-12 text-center cursor-pointer transition-colors"
-          >
-            <input {...getInputProps()} />
-            <p className="text-gray-600">
-              Upuść zdjęcie tutaj lub kliknij, aby wybrać z dysku
-            </p>
+          <div className="border-2 border-dashed border-gray-300 hover:border-gray-400 rounded-lg p-12 text-center cursor-pointer transition-colors">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileSelect}
+              className="hidden"
+              id="file-input"
+            />
+            <label htmlFor="file-input" className="cursor-pointer">
+              <p className="text-gray-600">
+                Upuść zdjęcie tutaj lub kliknij, aby wybrać z dysku
+              </p>
+            </label>
           </div>
 
           <div className="space-y-3">
