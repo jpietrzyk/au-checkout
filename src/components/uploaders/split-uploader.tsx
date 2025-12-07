@@ -30,14 +30,26 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
       autoProceed: false,
     })
-      .use(Webcam, {
-        modes: ["picture"],
-      })
-      .use(GoogleDrive, {
-        companionUrl: "https://companion.uppy.io",
-      })
       .use(ImageEditor, {
         quality: 0.8,
+        actions: {
+          revert: true,
+          rotate: true,
+          granularRotate: true,
+          flip: true,
+          zoomIn: true,
+          zoomOut: true,
+          cropSquare: true,
+          cropWidescreen: true,
+          cropWidescreenVertical: true,
+        },
+        cropperOptions: {
+          viewMode: 1,
+          background: false,
+          autoCropArea: 1,
+          responsive: true,
+          croppedCanvasOptions: {},
+        },
       })
       .use(Transloadit, {
         assemblyOptions: {
@@ -61,9 +73,15 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
         uppy.use(Dashboard, {
           inline: true,
           target: dashboardRef.current,
-          width: "100%",
-          height: "100%",
           proudlyDisplayPoweredByUppy: false,
+          hideUploadButton: true,
+          hideCancelButton: true,
+          hideProgressAfterFinish: false,
+          showSelectedFiles: true,
+          disableStatusBar: false,
+          autoOpen: "imageEditor",
+          // Hide the "Add more files" area in Dashboard
+          note: null,
         });
         console.log("Dashboard installed successfully to ref");
 
@@ -112,17 +130,6 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     ) => {
       console.log("File added:", file);
       setSelectedFile(file);
-      // Automatically open editor when file is added
-      setTimeout(() => {
-        const editorPlugin = uppy.getPlugin("ImageEditor");
-        if (
-          editorPlugin &&
-          "selectFile" in editorPlugin &&
-          typeof editorPlugin.selectFile === "function"
-        ) {
-          editorPlugin.selectFile(file);
-        }
-      }, 100);
     };
 
     const handleEditorComplete = (
@@ -155,7 +162,16 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
   }, [uppy, onFileUploaded]);
 
   const handleWebcamCapture = () => {
-    const webcamPlugin = uppy.getPlugin("Webcam");
+    let webcamPlugin = uppy.getPlugin("Webcam");
+
+    // Install plugin if not already installed
+    if (!webcamPlugin) {
+      uppy.use(Webcam, {
+        modes: ["picture"],
+      });
+      webcamPlugin = uppy.getPlugin("Webcam");
+    }
+
     if (
       webcamPlugin &&
       "openModal" in webcamPlugin &&
@@ -166,7 +182,16 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
   };
 
   const handleGoogleDrive = () => {
-    const drivePlugin = uppy.getPlugin("GoogleDrive");
+    let drivePlugin = uppy.getPlugin("GoogleDrive");
+
+    // Install plugin if not already installed
+    if (!drivePlugin) {
+      uppy.use(GoogleDrive, {
+        companionUrl: "https://companion.uppy.io",
+      });
+      drivePlugin = uppy.getPlugin("GoogleDrive");
+    }
+
     if (
       drivePlugin &&
       "openModal" in drivePlugin &&

@@ -242,6 +242,76 @@ button:focus-visible {
     display: block !important;
   }
 
+  /* Hide Dashboard's own file source buttons (we have them on the left) */
+  .uppy-Dashboard-AddFiles-list {
+    display: none !important;
+  }
+
+  .uppy-DashboardTab {
+    display: none !important;
+  }
+
+  .uppy-Dashboard-AddFilesPanel {
+    display: none !important;
+  }
+
+  .uppy-Dashboard-input {
+    display: none !important;
+  }
+
+  /* Hide the "browse files" link */
+  .uppy-Dashboard-browse {
+    display: none !important;
+  }
+
+  /* ImageEditor styling - ensure buttons are visible */
+  .uppy-ImageEditor-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .uppy-DashboardContent-bar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    flex-wrap: nowrap !important;
+    box-sizing: border-box !important;
+    padding-right: 16px !important;
+  }
+
+  .uppy-DashboardContent-title {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    margin-right: 16px !important;
+  }
+
+  .uppy-DashboardContent-back,
+  .uppy-DashboardContent-save {
+    flex-shrink: 0 !important;
+    margin-left: 8px !important;
+  }
+
+  .uppy-ImageEditor-controls {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  .uppy-ImageEditor-buttonCancel,
+  .uppy-ImageEditor-buttonSave {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
   /* Make inline Dashboard take full height and visible */
   #dashboard-container .uppy-Dashboard-inner {
     height: 100% !important;
