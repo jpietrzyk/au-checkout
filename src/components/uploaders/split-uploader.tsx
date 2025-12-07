@@ -28,6 +28,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     Record<string, unknown>
   > | null>(null);
   const [isEditingComplete, setIsEditingComplete] = useState(false);
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [uppy] = useState(() => {
     return new Uppy({
       restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
@@ -83,6 +84,8 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
           showSelectedFiles: true,
           disableStatusBar: false,
           autoOpen: "imageEditor",
+          disableLocalFiles: true,
+          plugins: [],
           // Hide the "Add more files" area in Dashboard
           note: null,
         });
@@ -134,6 +137,21 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       console.log("File added:", file);
       setSelectedFile(file);
       setIsEditingComplete(false); // Reset when new file is added
+      setIsEditorOpen(true); // Editor opens automatically with autoOpen
+    };
+
+    const handleFileEditorStart = (
+      file: UppyFile<Record<string, unknown>, Record<string, unknown>>
+    ) => {
+      console.log("file-editor:start - Editor starting:", file);
+      setIsEditorOpen(true); // Editor opened - hide button
+    };
+
+    const handleEditorOpen = (
+      file: UppyFile<Record<string, unknown>, Record<string, unknown>>
+    ) => {
+      console.log("file-editor:open - Editor opened:", file);
+      setIsEditorOpen(true); // Editor opened - hide button
     };
 
     const handleEditorComplete = (
@@ -142,6 +160,20 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       console.log("Editor complete:", file);
       setSelectedFile(file);
       setIsEditingComplete(true); // Mark editing as complete
+      setIsEditorOpen(false); // Editor closed - show button
+    };
+
+    const handleEditorCancel = () => {
+      console.log("Editor cancelled");
+      setIsEditorOpen(false); // Editor closed - show button
+    };
+
+    const handleDashboardFileEditStart = (file: any) => {
+      console.log(
+        "dashboard:file-edit-start - User clicked edit button:",
+        file
+      );
+      setIsEditorOpen(true); // Hide button when edit clicked
     };
 
     const handleComplete = (
@@ -156,12 +188,20 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     };
 
     uppy.on("file-added", handleFileAdded);
+    uppy.on("file-editor:start", handleFileEditorStart);
+    uppy.on("file-editor:open", handleEditorOpen);
     uppy.on("file-editor:complete", handleEditorComplete);
+    uppy.on("file-editor:cancel", handleEditorCancel);
+    uppy.on("dashboard:file-edit-start", handleDashboardFileEditStart);
     uppy.on("complete", handleComplete);
 
     return () => {
       uppy.off("file-added", handleFileAdded);
+      uppy.off("file-editor:start", handleFileEditorStart);
+      uppy.off("file-editor:open", handleEditorOpen);
       uppy.off("file-editor:complete", handleEditorComplete);
+      uppy.off("file-editor:cancel", handleEditorCancel);
+      uppy.off("dashboard:file-edit-start", handleDashboardFileEditStart);
       uppy.off("complete", handleComplete);
     };
   }, [uppy, onFileUploaded]);
@@ -177,12 +217,9 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       webcamPlugin = uppy.getPlugin("Webcam");
     }
 
-    if (
-      webcamPlugin &&
-      "openModal" in webcamPlugin &&
-      typeof webcamPlugin.openModal === "function"
-    ) {
-      webcamPlugin.openModal();
+    // Open webcam modal
+    if (webcamPlugin && typeof (webcamPlugin as any).openModal === "function") {
+      (webcamPlugin as any).openModal();
     }
   };
 
@@ -197,12 +234,9 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       drivePlugin = uppy.getPlugin("GoogleDrive");
     }
 
-    if (
-      drivePlugin &&
-      "openModal" in drivePlugin &&
-      typeof drivePlugin.openModal === "function"
-    ) {
-      drivePlugin.openModal();
+    // Open Google Drive modal
+    if (drivePlugin && typeof (drivePlugin as any).openModal === "function") {
+      (drivePlugin as any).openModal();
     }
   };
 
@@ -283,7 +317,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
               </Button>
             </ButtonGroup>
 
-            {selectedFile && isEditingComplete && (
+            {selectedFile && isEditingComplete && !isEditorOpen && (
               <Button
                 onClick={() => uppy.upload()}
                 className="w-full bg-green-600 hover:bg-green-700 mt-3"
