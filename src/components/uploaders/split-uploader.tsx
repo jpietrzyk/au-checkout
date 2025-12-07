@@ -147,13 +147,6 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       setIsEditorOpen(true); // Editor opened - hide button
     };
 
-    const handleEditorOpen = (
-      file: UppyFile<Record<string, unknown>, Record<string, unknown>>
-    ) => {
-      console.log("file-editor:open - Editor opened:", file);
-      setIsEditorOpen(true); // Editor opened - hide button
-    };
-
     const handleEditorComplete = (
       file: UppyFile<Record<string, unknown>, Record<string, unknown>>
     ) => {
@@ -168,7 +161,9 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       setIsEditorOpen(false); // Editor closed - show button
     };
 
-    const handleDashboardFileEditStart = (file: UppyFile) => {
+    const handleDashboardFileEditStart = (
+      file?: UppyFile<Record<string, unknown>, Record<string, unknown>>
+    ) => {
       console.log(
         "dashboard:file-edit-start - User clicked edit button:",
         file
@@ -189,7 +184,12 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
 
     uppy.on("file-added", handleFileAdded);
     uppy.on("file-editor:start", handleFileEditorStart);
-    uppy.on("file-editor:open", handleEditorOpen);
+    uppy.on("file-editor:complete", handleEditorComplete);
+    uppy.on("file-editor:cancel", handleEditorCancel);
+    uppy.on("dashboard:file-edit-start", handleDashboardFileEditStart);
+    uppy.on("complete", handleComplete);
+    uppy.on("file-added", handleFileAdded);
+    uppy.on("file-editor:start", handleFileEditorStart);
     uppy.on("file-editor:complete", handleEditorComplete);
     uppy.on("file-editor:cancel", handleEditorCancel);
     uppy.on("dashboard:file-edit-start", handleDashboardFileEditStart);
@@ -198,7 +198,6 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     return () => {
       uppy.off("file-added", handleFileAdded);
       uppy.off("file-editor:start", handleFileEditorStart);
-      uppy.off("file-editor:open", handleEditorOpen);
       uppy.off("file-editor:complete", handleEditorComplete);
       uppy.off("file-editor:cancel", handleEditorCancel);
       uppy.off("dashboard:file-edit-start", handleDashboardFileEditStart);
@@ -206,8 +205,8 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     };
   }, [uppy, onFileUploaded]);
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
     if (files && files.length > 0) {
       // Remove existing files first
       uppy.getFiles().forEach((file) => uppy.removeFile(file.id));
