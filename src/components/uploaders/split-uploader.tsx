@@ -25,6 +25,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     Record<string, unknown>,
     Record<string, unknown>
   > | null>(null);
+  const [isEditingComplete, setIsEditingComplete] = useState(false);
   const [uppy] = useState(() => {
     return new Uppy({
       restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
@@ -130,6 +131,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     ) => {
       console.log("File added:", file);
       setSelectedFile(file);
+      setIsEditingComplete(false); // Reset when new file is added
     };
 
     const handleEditorComplete = (
@@ -137,6 +139,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     ) => {
       console.log("Editor complete:", file);
       setSelectedFile(file);
+      setIsEditingComplete(true); // Mark editing as complete
     };
 
     const handleComplete = (
@@ -279,19 +282,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
                 Importuj z Google Drive
               </Button>
 
-              {selectedFile && (
-                <Button
-                  onClick={handleEditImage}
-                  className="w-full"
-                  variant="default"
-                  size="lg"
-                >
-                  <Upload className="mr-2 h-5 w-5" />
-                  Edytuj zdjęcie
-                </Button>
-              )}
-
-              {selectedFile && (
+              {selectedFile && isEditingComplete && (
                 <Button
                   onClick={() => uppy.upload()}
                   className="w-full bg-green-600 hover:bg-green-700"
