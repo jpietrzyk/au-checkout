@@ -88,6 +88,8 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
           disableStatusBar: false,
           autoOpen: "imageEditor",
           note: null,
+          width: "100%",
+          height: "100%",
         });
         console.log("Dashboard installed successfully to ref");
 
@@ -220,7 +222,10 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
   };
 
   return (
-    <div className="grid h-full w-full" style={{ gridTemplateColumns: '33% 67%' }}>
+    <div
+      className="grid h-full w-full"
+      style={{ gridTemplateColumns: "33% 67%" }}
+    >
       {/* Left column: Upload controls */}
       <div className="relative p-16">
         <div className="absolute inset-x-16 top-32">
@@ -263,8 +268,8 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       </div>
 
       {/* Right column: Image preview with Dashboard */}
-      <div className="bg-gray-100/50 p-16">
-        <div ref={dashboardRef} className="w-full h-full min-h-[600px]" />
+      <div className="bg-gray-100/50 p-4 h-full">
+        <div ref={dashboardRef} className="w-full h-full" />
       </div>
     </div>
   );

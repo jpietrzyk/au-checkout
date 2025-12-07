@@ -213,11 +213,13 @@ button:focus-visible {
     background-color: #f9fafb;
   }
 
-  /* Force Uppy dashboard to take full width */
+  /* Force Uppy dashboard to take full width and height */
   .uppy-Dashboard {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 50vw !important;
+    height: calc(100vh - 60px) !important;
+    max-height: calc(100vh - 60px) !important;
     background-color: rgba(255, 255, 255, 0.85) !important;
     backdrop-filter: blur(10px) !important;
   }
@@ -225,6 +227,8 @@ button:focus-visible {
   .uppy-Dashboard-inner {
     width: 100% !important;
     min-width: 50vw !important;
+    height: calc(100vh - 60px) !important;
+    max-height: calc(100vh - 60px) !important;
     background-color: transparent !important;
   }
 

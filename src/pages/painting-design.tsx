@@ -31,7 +31,10 @@ export default function UploadImage() {
 
   return (
     <main className="home-main">
-      <section aria-label="Upload Image" className="home-hero">
+      <section
+        aria-label="Upload Image"
+        className="home-hero painting-design-hero"
+      >
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
         </div>
