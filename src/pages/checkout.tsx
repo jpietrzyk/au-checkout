@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useLocalStorage } from "@mantine/hooks";
 import { FormStep } from "@/types";
 import StepContact from "./checkout/stepContact";
@@ -51,9 +51,8 @@ export const checkoutSteps: FormStep[] = [
 
 export default function Checkout() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
-  const navigate = useNavigate();
   const location = useLocation();
-  const [uploadedImageUrl, setUploadedImageUrl] = useLocalStorage<string>({
+  const [, setUploadedImageUrl] = useLocalStorage<string>({
     key: "uploaded-image-url",
     defaultValue: "",
   });
