@@ -220,10 +220,10 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
   };
 
   return (
-    <div className="grid grid-cols-2 h-full w-full">
+    <div className="grid h-full w-full" style={{ gridTemplateColumns: '33% 67%' }}>
       {/* Left column: Upload controls */}
       <div className="relative p-16">
-        <div className="absolute inset-16">
+        <div className="absolute inset-x-16 top-32">
           <div className="space-y-6">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold text-gray-800 mb-2">
