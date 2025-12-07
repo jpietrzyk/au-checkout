@@ -7,10 +7,7 @@ import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
 import Webcam from "@uppy/webcam";
 import GoogleDrive from "@uppy/google-drive";
-import { ProviderIcon } from "@uppy/react";
 import { Button } from "@/components/ui/button";
-import { ButtonGroup } from "@/components/ui/button-group";
-import { Upload } from "lucide-react";
 
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
@@ -34,6 +31,12 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
       autoProceed: false,
     })
+      .use(Webcam, {
+        modes: ["picture"],
+      })
+      .use(GoogleDrive, {
+        companionUrl: "https://companion.uppy.io",
+      })
       .use(ImageEditor, {
         quality: 0.8,
         actions: {
@@ -84,9 +87,6 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
           showSelectedFiles: true,
           disableStatusBar: false,
           autoOpen: "imageEditor",
-          disableLocalFiles: true,
-          plugins: [],
-          // Hide the "Add more files" area in Dashboard
           note: null,
         });
         console.log("Dashboard installed successfully to ref");
@@ -168,7 +168,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       setIsEditorOpen(false); // Editor closed - show button
     };
 
-    const handleDashboardFileEditStart = (file: any) => {
+    const handleDashboardFileEditStart = (file: UppyFile) => {
       console.log(
         "dashboard:file-edit-start - User clicked edit button:",
         file
@@ -205,53 +205,6 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       uppy.off("complete", handleComplete);
     };
   }, [uppy, onFileUploaded]);
-
-  const handleWebcamCapture = () => {
-    let webcamPlugin = uppy.getPlugin("Webcam");
-
-    // Install plugin if not already installed
-    if (!webcamPlugin) {
-      uppy.use(Webcam, {
-        modes: ["picture"],
-      });
-      webcamPlugin = uppy.getPlugin("Webcam");
-    }
-
-    // Open webcam modal
-    if (webcamPlugin && typeof (webcamPlugin as any).openModal === "function") {
-      (webcamPlugin as any).openModal();
-    }
-  };
-
-  const handleGoogleDrive = () => {
-    let drivePlugin = uppy.getPlugin("GoogleDrive");
-
-    // Install plugin if not already installed
-    if (!drivePlugin) {
-      uppy.use(GoogleDrive, {
-        companionUrl: "https://companion.uppy.io",
-      });
-      drivePlugin = uppy.getPlugin("GoogleDrive");
-    }
-
-    // Open Google Drive modal
-    if (drivePlugin && typeof (drivePlugin as any).openModal === "function") {
-      (drivePlugin as any).openModal();
-    }
-  };
-
-  const handleEditImage = () => {
-    if (selectedFile) {
-      const editorPlugin = uppy.getPlugin("ImageEditor");
-      if (
-        editorPlugin &&
-        "selectFile" in editorPlugin &&
-        typeof editorPlugin.selectFile === "function"
-      ) {
-        editorPlugin.selectFile(selectedFile);
-      }
-    }
-  };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -296,26 +249,6 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
                 </p>
               </label>
             </div>
-
-            <ButtonGroup>
-              <Button
-                onClick={handleWebcamCapture}
-                variant="outline"
-                size="icon"
-                aria-label="Zrób zdjęcie kamerą"
-              >
-                <ProviderIcon provider="camera" fill="currentColor" />
-              </Button>
-
-              <Button
-                onClick={handleGoogleDrive}
-                variant="outline"
-                size="icon"
-                aria-label="Importuj z Google Drive"
-              >
-                <ProviderIcon provider="googledrive" fill="currentColor" />
-              </Button>
-            </ButtonGroup>
 
             {selectedFile && isEditingComplete && !isEditorOpen && (
               <Button

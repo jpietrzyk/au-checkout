@@ -242,28 +242,6 @@ button:focus-visible {
     display: block !important;
   }
 
-  /* Hide Dashboard's own file source buttons (we have them on the left) */
-  .uppy-Dashboard-AddFiles-list {
-    display: none !important;
-  }
-
-  .uppy-DashboardTab {
-    display: none !important;
-  }
-
-  .uppy-Dashboard-AddFilesPanel {
-    display: none !important;
-  }
-
-  .uppy-Dashboard-input {
-    display: none !important;
-  }
-
-  /* Hide the "browse files" link */
-  .uppy-Dashboard-browse {
-    display: none !important;
-  }
-
   /* ImageEditor styling - ensure buttons are visible */
   .uppy-ImageEditor-container {
     width: 100% !important;
