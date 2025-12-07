@@ -52,7 +52,7 @@ export const checkoutSteps: FormStep[] = [
 export default function Checkout() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
   const location = useLocation();
-  const [, setUploadedImageUrl] = useLocalStorage<string>({
+  const [uploadedImageUrl, setUploadedImageUrl] = useLocalStorage<string>({
     key: "uploaded-image-url",
     defaultValue: "",
   });
@@ -110,12 +110,7 @@ export default function Checkout() {
 
   return (
     <main className="home-main">
-      <div
-        className="home-bg"
-        style={{
-          backgroundImage: `url('/src/assets/background_1.jpg')`,
-        }}
-      />
+      {/* No background image on checkout page */}
       <section aria-label="Hero" className="home-hero">
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
@@ -134,8 +129,16 @@ export default function Checkout() {
               showProgress={true}
             />
           </div>
-          {/* Right column: Empty for now */}
-          <div className="bg-gray-100/50 p-4 h-full" />
+          {/* Right column: Image preview if available */}
+          <div className="bg-gray-100/50 p-4 h-full flex items-center justify-center">
+            {uploadedImageUrl ? (
+              <img
+                src={uploadedImageUrl}
+                alt="Podgląd przesłanego zdjęcia"
+                className="max-w-full max-h-[80vh] rounded-lg shadow-lg border border-gray-300"
+              />
+            ) : null}
+          </div>
         </div>
         <Footer onLinkClick={handleLinkClick} />
         {modalSlug && (
