@@ -33,6 +33,14 @@
   overflow: hidden;
 }
 
+/* Separate styling for painting-design page */
+.painting-design-hero {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
 .home-brand {
   position: absolute;
   top: 2rem;

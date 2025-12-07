@@ -8,6 +8,8 @@ import Transloadit from "@uppy/transloadit";
 import Webcam from "@uppy/webcam";
 import GoogleDrive from "@uppy/google-drive";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "@mantine/hooks";
 
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
@@ -19,6 +21,7 @@ interface SplitUploaderProps {
 }
 
 export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
+  const navigate = useNavigate();
   const dashboardRef = useRef<HTMLDivElement>(null);
   const [selectedFile, setSelectedFile] = useState<UppyFile<
     Record<string, unknown>,
@@ -26,6 +29,13 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
   > | null>(null);
   const [isEditingComplete, setIsEditingComplete] = useState(false);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<1 | 2>(1);
+  const [hasRama, setHasRama] = useState(false);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string>("");
+  const [, setFileUrl] = useLocalStorage<string>({
+    key: "uploaded-image-url",
+    defaultValue: "",
+  });
   const [uppy] = useState(() => {
     return new Uppy({
       restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
@@ -88,6 +98,8 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
           disableStatusBar: false,
           autoOpen: "imageEditor",
           note: null,
+          width: "100%",
+          height: "100%",
         });
         console.log("Dashboard installed successfully to ref");
 
@@ -179,6 +191,8 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
         if (onFileUploaded && file.uploadURL) {
           onFileUploaded(file.uploadURL);
         }
+        setUploadedImageUrl(file.uploadURL || "");
+        setActiveSection(2); // Switch to section 2 after upload
       }
     };
 
@@ -220,51 +234,158 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
   };
 
   return (
-    <div className="grid grid-cols-2 h-full w-full">
+    <div
+      className="grid h-full w-full"
+      style={{ gridTemplateColumns: "33% 67%" }}
+    >
       {/* Left column: Upload controls */}
       <div className="relative p-16">
-        <div className="absolute inset-16">
+        <div className="absolute inset-x-16 top-32">
           <div className="space-y-6">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                Prześlij swoje zdjęcie
-              </h2>
-              <p className="text-gray-600">
+            {/* Section 1: Upload Image */}
+            <div
+              className={
+                activeSection === 1
+                  ? "bg-purple-50 border-2 border-purple-200 rounded-lg p-6"
+                  : "bg-gray-100 border-2 border-gray-300 rounded-lg p-6 opacity-50"
+              }
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  Prześlij swoje zdjęcie
+                </h2>
+                <span
+                  className={
+                    activeSection === 1
+                      ? "text-2xl font-bold text-purple-600"
+                      : "text-2xl font-bold text-gray-400"
+                  }
+                >
+                  1
+                </span>
+              </div>
+              <p
+                className={
+                  activeSection === 1
+                    ? "text-gray-600 mb-6"
+                    : "text-gray-500 mb-6"
+                }
+              >
                 Wybierz zdjęcie, które chcesz zamienić w obraz
               </p>
-            </div>
 
-            <div className="border-2 border-dashed border-gray-300 hover:border-gray-400 rounded-lg p-12 text-center cursor-pointer transition-colors">
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileSelect}
-                className="hidden"
-                id="file-input"
-              />
-              <label htmlFor="file-input" className="cursor-pointer">
-                <p className="text-gray-600">
-                  Upuść zdjęcie tutaj lub kliknij, aby wybrać z dysku
-                </p>
-              </label>
-            </div>
+              <div className="border-2 border-dashed border-gray-300 hover:border-gray-400 rounded-lg p-12 text-center cursor-pointer transition-colors">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileSelect}
+                  className="hidden"
+                  id="file-input"
+                  disabled={activeSection === 2}
+                />
+                <label htmlFor="file-input" className="cursor-pointer">
+                  <p
+                    className={
+                      activeSection === 1 ? "text-gray-600" : "text-gray-400"
+                    }
+                  >
+                    Upuść zdjęcie tutaj lub kliknij, aby wybrać z dysku
+                  </p>
+                </label>
+              </div>
 
-            {selectedFile && isEditingComplete && !isEditorOpen && (
-              <Button
-                onClick={() => uppy.upload()}
-                className="w-full bg-green-600 hover:bg-green-700 mt-3"
-                size="lg"
+              {selectedFile && isEditingComplete && !isEditorOpen && (
+                <Button
+                  onClick={() => uppy.upload()}
+                  className="w-full bg-green-600 hover:bg-green-700 mt-6"
+                  size="lg"
+                  disabled={activeSection === 2}
+                >
+                  Prześlij zdjęcie
+                </Button>
+              )}
+            </div>
+            {/* Section 2: Accessories + Order */}
+            <div
+              className={
+                activeSection === 2
+                  ? "mt-8 pt-8 border-t bg-purple-50 border-2 border-purple-200 rounded-lg p-6"
+                  : "mt-8 pt-8 border-t border-gray-300 opacity-50"
+              }
+            >
+              <div className="flex items-center justify-between mb-2">
+                <h3
+                  className={
+                    activeSection === 2
+                      ? "text-2xl font-bold text-gray-800"
+                      : "text-2xl font-bold text-gray-600"
+                  }
+                >
+                  Wybierz dodatki
+                </h3>
+                <span
+                  className={
+                    activeSection === 2
+                      ? "text-2xl font-bold text-purple-600"
+                      : "text-2xl font-bold text-gray-400"
+                  }
+                >
+                  2
+                </span>
+              </div>
+              <p
+                className={
+                  activeSection === 2 ? "text-gray-600" : "text-gray-500"
+                }
               >
-                Prześlij zdjęcie
-              </Button>
-            )}
+                Możesz dobrać do swojego obrazu następujące dodatki
+              </p>
+              {activeSection === 2 && (
+                <div className="flex items-center mt-6">
+                  <label className="flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="form-checkbox h-5 w-5 text-purple-600"
+                      checked={hasRama}
+                      onChange={(e) => setHasRama(e.target.checked)}
+                    />
+                    <span className="ml-3 text-lg text-gray-800 font-medium">
+                      Rama drewniana
+                    </span>
+                  </label>
+                  <span className="ml-4 text-gray-500 text-sm">
+                    Solidna rama z naturalnego drewna, podkreślająca charakter
+                    obrazu.
+                  </span>
+                </div>
+              )}
+              {/* Order button and price */}
+              {activeSection === 2 && (
+                <div className="flex items-center justify-between mt-8">
+                  <span className="text-xl font-bold text-gray-800">
+                    Cena: {hasRama ? "250 zł" : "200 zł"}
+                  </span>
+                  <Button
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white text-lg px-6 py-3 rounded-lg"
+                    size="lg"
+                    disabled={activeSection !== 2}
+                    onClick={() => {
+                      setFileUrl(uploadedImageUrl);
+                      navigate(`/checkout`);
+                    }}
+                  >
+                    Zamów -&gt;
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Right column: Image preview with Dashboard */}
-      <div className="bg-gray-100/50 p-16">
-        <div ref={dashboardRef} className="w-full h-full min-h-[600px]" />
+      <div className="bg-gray-100/50 p-4 h-full">
+        <div ref={dashboardRef} className="w-full h-full" />
       </div>
     </div>
   );

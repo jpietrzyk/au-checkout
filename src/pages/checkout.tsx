@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useLocalStorage } from "@mantine/hooks";
 import { FormStep } from "@/types";
 import StepContact from "./checkout/stepContact";
@@ -51,18 +51,21 @@ export const checkoutSteps: FormStep[] = [
 
 export default function Checkout() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
-  const navigate = useNavigate();
-  const [uploadedImageUrl] = useLocalStorage<string>({
+  const location = useLocation();
+  const [, setUploadedImageUrl] = useLocalStorage<string>({
     key: "uploaded-image-url",
     defaultValue: "",
   });
 
-  // Redirect to upload page if no image has been uploaded
+  // On mount, check for ?image= param and save to localStorage if present
   useEffect(() => {
-    if (!uploadedImageUrl) {
-      navigate("/painting-design");
+    const params = new URLSearchParams(location.search);
+    const imageParam = params.get("image");
+    if (imageParam) {
+      setUploadedImageUrl(imageParam);
     }
-  }, [uploadedImageUrl, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const checkHash = () => {
