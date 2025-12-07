@@ -5,29 +5,105 @@ import { UppyContextProvider } from "@uppy/react";
 import Dashboard from "@uppy/react/dashboard";
 import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
+import Webcam from "@uppy/webcam";
+import GoogleDrive from "@uppy/google-drive";
 
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
 import "@uppy/image-editor/css/style.min.css";
+import "@uppy/webcam/css/style.min.css";
 
 function createUppy() {
   return new Uppy({
     restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
     autoProceed: false, // Changed to false to prevent automatic upload
+    locale: {
+      strings: {
+        dropPasteImportBoth: "Prześlij swoje zdjęcie",
+        dropPasteImportFiles: "Upuść zdjęcie tutaj lub %{browse}",
+        dropPasteBoth: "Upuść zdjęcie tutaj, wklej lub %{browse}",
+        dropPasteFiles: "Upuść zdjęcie tutaj, wklej lub %{browse}",
+        dropHint: "Upuść zdjęcie tutaj",
+        browseFiles: "wybierz z dysku",
+        addMore: "Dodaj więcej",
+        addMoreFiles: "Dodaj więcej zdjęć",
+        addingMoreFiles: "Dodawanie kolejnych zdjęć",
+        importFrom: "Importuj z %{name}",
+        xFilesSelected: {
+          0: "%{smart_count} zdjęcie wybrane",
+          1: "%{smart_count} zdjęcia wybrane",
+          2: "%{smart_count} zdjęć wybranych",
+        },
+        uploadXFiles: {
+          0: "Prześlij %{smart_count} zdjęcie",
+          1: "Prześlij %{smart_count} zdjęcia",
+          2: "Prześlij %{smart_count} zdjęć",
+        },
+        uploadXNewFiles: {
+          0: "Prześlij +%{smart_count} zdjęcie",
+          1: "Prześlij +%{smart_count} zdjęcia",
+          2: "Prześlij +%{smart_count} zdjęć",
+        },
+        upload: "Prześlij",
+        retryUpload: "Spróbuj ponownie",
+        cancelUpload: "Anuluj przesyłanie",
+        xTimeLeft: "%{time} pozostało",
+        uploadingXFiles: {
+          0: "Przesyłanie %{smart_count} zdjęcia",
+          1: "Przesyłanie %{smart_count} zdjęć",
+          2: "Przesyłanie %{smart_count} zdjęć",
+        },
+        processingXFiles: {
+          0: "Przetwarzanie %{smart_count} zdjęcia",
+          1: "Przetwarzanie %{smart_count} zdjęć",
+          2: "Przetwarzanie %{smart_count} zdjęć",
+        },
+        uploading: "Przesyłanie",
+        complete: "Zakończono",
+        uploadFailed: "Przesyłanie nie powiodło się",
+        paused: "Wstrzymano",
+        retry: "Spróbuj ponownie",
+        cancel: "Anuluj",
+        done: "Gotowe",
+        removeFile: "Usuń zdjęcie",
+        editFile: "Edytuj zdjęcie",
+        editImage: "Edytuj obraz",
+        edit: "Edytuj",
+        finishEditingFile: "Zakończ edycję",
+        save: "Zapisz",
+        saveChanges: "Zapisz zmiany",
+      },
+    },
   })
+    .use(Webcam, {
+      locale: {
+        strings: {
+          smile: "Uśmiechnij się!",
+          takePicture: "Zrób zdjęcie",
+          startRecording: "Rozpocznij nagrywanie",
+          stopRecording: "Zatrzymaj nagrywanie",
+          allowAccessTitle: "Pozwól na dostęp do kamery",
+          allowAccessDescription:
+            "Aby robić zdjęcia, musisz zezwolić na dostęp do kamery.",
+        },
+      },
+    })
+    .use(GoogleDrive, {
+      companionUrl: "https://companion.uppy.io",
+    })
     .use(ImageEditor, {
       quality: 0.8,
       // Image editor locale configuration
       locale: {
         strings: {
-          revert: "Revert",
-          rotate: "Rotate",
-          zoomIn: "Zoom in",
-          zoomOut: "Zoom out",
-          flipHorizontal: "Flip horizontally",
-          aspectRatioSquare: "Square",
-          aspectRatioLandscape: "Landscape",
-          aspectRatioPortrait: "Portrait",
+          revert: "Cofnij",
+          rotate: "Obróć",
+          zoomIn: "Przybliż",
+          zoomOut: "Oddal",
+          flipHorizontal: "Odbij poziomo",
+          aspectRatioSquare: "Kwadrat",
+          aspectRatioLandscape: "Poziomy",
+          aspectRatioPortrait: "Pionowy",
         },
       },
     })
@@ -87,10 +163,10 @@ const TransloaditUploader: React.FC<TransloaditUploaderProps> = ({
 
   return (
     <UppyContextProvider uppy={uppy}>
-      <section className="w-full flex flex-col flex-1">
+      <section className="w-full">
         <Dashboard
           uppy={uppy}
-          plugins={["ImageEditor"]}
+          plugins={["ImageEditor", "Webcam", "GoogleDrive"]}
           height="100"
           width="100%"
           proudlyDisplayPoweredByUppy={true}

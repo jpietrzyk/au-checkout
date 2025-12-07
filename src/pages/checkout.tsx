@@ -60,7 +60,7 @@ export default function Checkout() {
   // Redirect to upload page if no image has been uploaded
   useEffect(() => {
     if (!uploadedImageUrl) {
-      navigate("/upload-image");
+      navigate("/painting-design");
     }
   }, [uploadedImageUrl, navigate]);
 
