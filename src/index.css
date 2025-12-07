@@ -330,4 +330,10 @@ button:focus-visible {
     opacity: 1 !important;
     visibility: visible !important;
   }
+
+  /* Make ProviderIcon larger in buttons */
+  .uppy-ProviderIcon svg {
+    width: 48px !important;
+    height: 48px !important;
+  }
 }

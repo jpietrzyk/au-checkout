@@ -7,8 +7,10 @@ import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
 import Webcam from "@uppy/webcam";
 import GoogleDrive from "@uppy/google-drive";
+import { ProviderIcon } from "@uppy/react";
 import { Button } from "@/components/ui/button";
-import { Camera, HardDrive, Upload } from "lucide-react";
+import { ButtonGroup } from "@/components/ui/button-group";
+import { Upload } from "lucide-react";
 
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
@@ -261,37 +263,35 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
               </label>
             </div>
 
-            <div className="space-y-3">
+            <ButtonGroup>
               <Button
                 onClick={handleWebcamCapture}
-                className="w-full"
                 variant="outline"
-                size="lg"
+                size="icon"
+                aria-label="Zrób zdjęcie kamerą"
               >
-                <Camera className="mr-2 h-5 w-5" />
-                Zrób zdjęcie kamerą
+                <ProviderIcon provider="camera" fill="currentColor" />
               </Button>
 
               <Button
                 onClick={handleGoogleDrive}
-                className="w-full"
                 variant="outline"
+                size="icon"
+                aria-label="Importuj z Google Drive"
+              >
+                <ProviderIcon provider="googledrive" fill="currentColor" />
+              </Button>
+            </ButtonGroup>
+
+            {selectedFile && isEditingComplete && (
+              <Button
+                onClick={() => uppy.upload()}
+                className="w-full bg-green-600 hover:bg-green-700 mt-3"
                 size="lg"
               >
-                <HardDrive className="mr-2 h-5 w-5" />
-                Importuj z Google Drive
+                Prześlij zdjęcie
               </Button>
-
-              {selectedFile && isEditingComplete && (
-                <Button
-                  onClick={() => uppy.upload()}
-                  className="w-full bg-green-600 hover:bg-green-700"
-                  size="lg"
-                >
-                  Prześlij zdjęcie
-                </Button>
-              )}
-            </div>
+            )}
           </div>
         </div>
       </div>
