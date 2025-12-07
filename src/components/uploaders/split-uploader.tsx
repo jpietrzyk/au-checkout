@@ -8,6 +8,8 @@ import Transloadit from "@uppy/transloadit";
 import Webcam from "@uppy/webcam";
 import GoogleDrive from "@uppy/google-drive";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "@mantine/hooks";
 
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
@@ -19,6 +21,7 @@ interface SplitUploaderProps {
 }
 
 export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
+  const navigate = useNavigate();
   const dashboardRef = useRef<HTMLDivElement>(null);
   const [selectedFile, setSelectedFile] = useState<UppyFile<
     Record<string, unknown>,
@@ -28,6 +31,11 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<1 | 2>(1);
   const [hasRama, setHasRama] = useState(false);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string>("");
+  const [, setFileUrl] = useLocalStorage<string>({
+    key: "uploaded-image-url",
+    defaultValue: "",
+  });
   const [uppy] = useState(() => {
     return new Uppy({
       restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
@@ -183,6 +191,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
         if (onFileUploaded && file.uploadURL) {
           onFileUploaded(file.uploadURL);
         }
+        setUploadedImageUrl(file.uploadURL || "");
         setActiveSection(2); // Switch to section 2 after upload
       }
     };
@@ -360,6 +369,10 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
                     className="bg-indigo-600 hover:bg-indigo-700 text-white text-lg px-6 py-3 rounded-lg"
                     size="lg"
                     disabled={activeSection !== 2}
+                    onClick={() => {
+                      setFileUrl(uploadedImageUrl);
+                      navigate(`/checkout`);
+                    }}
                   >
                     Zamów -&gt;
                   </Button>
