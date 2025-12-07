@@ -7,10 +7,7 @@ import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
 import Webcam from "@uppy/webcam";
 import GoogleDrive from "@uppy/google-drive";
-import { ProviderIcon } from "@uppy/react";
 import { Button } from "@/components/ui/button";
-import { ButtonGroup } from "@/components/ui/button-group";
-import { Upload } from "lucide-react";
 
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
@@ -28,11 +25,18 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     Record<string, unknown>
   > | null>(null);
   const [isEditingComplete, setIsEditingComplete] = useState(false);
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [uppy] = useState(() => {
     return new Uppy({
       restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
       autoProceed: false,
     })
+      .use(Webcam, {
+        modes: ["picture"],
+      })
+      .use(GoogleDrive, {
+        companionUrl: "https://companion.uppy.io",
+      })
       .use(ImageEditor, {
         quality: 0.8,
         actions: {
@@ -83,7 +87,6 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
           showSelectedFiles: true,
           disableStatusBar: false,
           autoOpen: "imageEditor",
-          // Hide the "Add more files" area in Dashboard
           note: null,
         });
         console.log("Dashboard installed successfully to ref");
@@ -134,6 +137,14 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       console.log("File added:", file);
       setSelectedFile(file);
       setIsEditingComplete(false); // Reset when new file is added
+      setIsEditorOpen(true); // Editor opens automatically with autoOpen
+    };
+
+    const handleFileEditorStart = (
+      file: UppyFile<Record<string, unknown>, Record<string, unknown>>
+    ) => {
+      console.log("file-editor:start - Editor starting:", file);
+      setIsEditorOpen(true); // Editor opened - hide button
     };
 
     const handleEditorComplete = (
@@ -142,6 +153,22 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       console.log("Editor complete:", file);
       setSelectedFile(file);
       setIsEditingComplete(true); // Mark editing as complete
+      setIsEditorOpen(false); // Editor closed - show button
+    };
+
+    const handleEditorCancel = () => {
+      console.log("Editor cancelled");
+      setIsEditorOpen(false); // Editor closed - show button
+    };
+
+    const handleDashboardFileEditStart = (
+      file?: UppyFile<Record<string, unknown>, Record<string, unknown>>
+    ) => {
+      console.log(
+        "dashboard:file-edit-start - User clicked edit button:",
+        file
+      );
+      setIsEditorOpen(true); // Hide button when edit clicked
     };
 
     const handleComplete = (
@@ -156,71 +183,30 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     };
 
     uppy.on("file-added", handleFileAdded);
+    uppy.on("file-editor:start", handleFileEditorStart);
     uppy.on("file-editor:complete", handleEditorComplete);
+    uppy.on("file-editor:cancel", handleEditorCancel);
+    uppy.on("dashboard:file-edit-start", handleDashboardFileEditStart);
+    uppy.on("complete", handleComplete);
+    uppy.on("file-added", handleFileAdded);
+    uppy.on("file-editor:start", handleFileEditorStart);
+    uppy.on("file-editor:complete", handleEditorComplete);
+    uppy.on("file-editor:cancel", handleEditorCancel);
+    uppy.on("dashboard:file-edit-start", handleDashboardFileEditStart);
     uppy.on("complete", handleComplete);
 
     return () => {
       uppy.off("file-added", handleFileAdded);
+      uppy.off("file-editor:start", handleFileEditorStart);
       uppy.off("file-editor:complete", handleEditorComplete);
+      uppy.off("file-editor:cancel", handleEditorCancel);
+      uppy.off("dashboard:file-edit-start", handleDashboardFileEditStart);
       uppy.off("complete", handleComplete);
     };
   }, [uppy, onFileUploaded]);
 
-  const handleWebcamCapture = () => {
-    let webcamPlugin = uppy.getPlugin("Webcam");
-
-    // Install plugin if not already installed
-    if (!webcamPlugin) {
-      uppy.use(Webcam, {
-        modes: ["picture"],
-      });
-      webcamPlugin = uppy.getPlugin("Webcam");
-    }
-
-    if (
-      webcamPlugin &&
-      "openModal" in webcamPlugin &&
-      typeof webcamPlugin.openModal === "function"
-    ) {
-      webcamPlugin.openModal();
-    }
-  };
-
-  const handleGoogleDrive = () => {
-    let drivePlugin = uppy.getPlugin("GoogleDrive");
-
-    // Install plugin if not already installed
-    if (!drivePlugin) {
-      uppy.use(GoogleDrive, {
-        companionUrl: "https://companion.uppy.io",
-      });
-      drivePlugin = uppy.getPlugin("GoogleDrive");
-    }
-
-    if (
-      drivePlugin &&
-      "openModal" in drivePlugin &&
-      typeof drivePlugin.openModal === "function"
-    ) {
-      drivePlugin.openModal();
-    }
-  };
-
-  const handleEditImage = () => {
-    if (selectedFile) {
-      const editorPlugin = uppy.getPlugin("ImageEditor");
-      if (
-        editorPlugin &&
-        "selectFile" in editorPlugin &&
-        typeof editorPlugin.selectFile === "function"
-      ) {
-        editorPlugin.selectFile(selectedFile);
-      }
-    }
-  };
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
     if (files && files.length > 0) {
       // Remove existing files first
       uppy.getFiles().forEach((file) => uppy.removeFile(file.id));
@@ -263,27 +249,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
               </label>
             </div>
 
-            <ButtonGroup>
-              <Button
-                onClick={handleWebcamCapture}
-                variant="outline"
-                size="icon"
-                aria-label="Zrób zdjęcie kamerą"
-              >
-                <ProviderIcon provider="camera" fill="currentColor" />
-              </Button>
-
-              <Button
-                onClick={handleGoogleDrive}
-                variant="outline"
-                size="icon"
-                aria-label="Importuj z Google Drive"
-              >
-                <ProviderIcon provider="googledrive" fill="currentColor" />
-              </Button>
-            </ButtonGroup>
-
-            {selectedFile && isEditingComplete && (
+            {selectedFile && isEditingComplete && !isEditorOpen && (
               <Button
                 onClick={() => uppy.upload()}
                 className="w-full bg-green-600 hover:bg-green-700 mt-3"
