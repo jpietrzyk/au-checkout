@@ -1,7 +1,8 @@
 /** biome-ignore-all lint/nursery/useUniqueElementIds: it's fine */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Uppy from "@uppy/core";
 import type { UppyFile, UploadResult } from "@uppy/core";
+import Dashboard from "@uppy/dashboard";
 import ImageEditor from "@uppy/image-editor";
 import Transloadit from "@uppy/transloadit";
 import Webcam from "@uppy/webcam";
@@ -10,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Camera, HardDrive, Upload } from "lucide-react";
 
 import "@uppy/core/css/style.min.css";
-import "@uppy/drag-drop/css/style.min.css";
+import "@uppy/dashboard/css/style.min.css";
 import "@uppy/image-editor/css/style.min.css";
 import "@uppy/webcam/css/style.min.css";
 
@@ -19,11 +20,11 @@ interface SplitUploaderProps {
 }
 
 export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
+  const dashboardRef = useRef<HTMLDivElement>(null);
   const [selectedFile, setSelectedFile] = useState<UppyFile<
     Record<string, unknown>,
     Record<string, unknown>
   > | null>(null);
-  const [showEditor, setShowEditor] = useState(false);
   const [uppy] = useState(() => {
     return new Uppy({
       restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
@@ -34,6 +35,9 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       })
       .use(GoogleDrive, {
         companionUrl: "https://companion.uppy.io",
+      })
+      .use(ImageEditor, {
+        quality: 0.8,
       })
       .use(Transloadit, {
         assemblyOptions: {
@@ -46,14 +50,59 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       });
   });
 
-  // Add ImageEditor after mount
+  // Install Dashboard after component mounts
   useEffect(() => {
-    if (!uppy.getPlugin("ImageEditor")) {
-      uppy.use(ImageEditor, {
-        quality: 0.8,
-        target: document.body,
-      });
-      console.log("ImageEditor installed with target body");
+    const dashboardPlugin = uppy.getPlugin("Dashboard");
+
+    if (!dashboardPlugin && dashboardRef.current) {
+      console.log("Installing Dashboard plugin to ref...");
+      console.log("Ref element:", dashboardRef.current);
+      try {
+        uppy.use(Dashboard, {
+          inline: true,
+          target: dashboardRef.current,
+          width: "100%",
+          height: "100%",
+          proudlyDisplayPoweredByUppy: false,
+        });
+        console.log("Dashboard installed successfully to ref");
+
+        // Check what was rendered
+        setTimeout(() => {
+          console.log(
+            "Ref children after install:",
+            dashboardRef.current?.children.length
+          );
+          console.log(
+            "Ref innerHTML:",
+            dashboardRef.current?.innerHTML.substring(0, 300)
+          );
+
+          // Try to find the Dashboard element
+          const dashboardEl = document.querySelector(".uppy-Dashboard");
+          console.log("Dashboard element found in DOM:", dashboardEl);
+          if (dashboardEl) {
+            console.log(
+              "Dashboard computed display:",
+              window.getComputedStyle(dashboardEl).display
+            );
+            console.log(
+              "Dashboard computed height:",
+              window.getComputedStyle(dashboardEl).height
+            );
+            console.log(
+              "Dashboard computed width:",
+              window.getComputedStyle(dashboardEl).width
+            );
+          }
+        }, 200);
+      } catch (error) {
+        console.error("Error installing Dashboard:", error);
+      }
+    } else if (dashboardPlugin) {
+      console.log("Dashboard already exists, skipping installation");
+    } else {
+      console.log("Dashboard ref not ready yet");
     }
   }, [uppy]);
 
@@ -63,20 +112,15 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     ) => {
       console.log("File added:", file);
       setSelectedFile(file);
-      // Immediately set showEditor to true to prevent preview flashing
-      setShowEditor(true);
       // Automatically open editor when file is added
       setTimeout(() => {
         const editorPlugin = uppy.getPlugin("ImageEditor");
-        console.log("Auto-opening editor, plugin:", editorPlugin);
         if (
           editorPlugin &&
           "selectFile" in editorPlugin &&
           typeof editorPlugin.selectFile === "function"
         ) {
-          console.log("Calling selectFile and setting showEditor to true");
           editorPlugin.selectFile(file);
-          uppy.emit("file-editor:start", file);
         }
       }, 100);
     };
@@ -85,14 +129,7 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
       file: UppyFile<Record<string, unknown>, Record<string, unknown>>
     ) => {
       console.log("Editor complete:", file);
-      setShowEditor(false);
-    };
-
-    const handleEditorCancel = (
-      file: UppyFile<Record<string, unknown>, Record<string, unknown>>
-    ) => {
-      console.log("Editor cancelled:", file);
-      setShowEditor(false);
+      setSelectedFile(file);
     };
 
     const handleComplete = (
@@ -108,13 +145,11 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
 
     uppy.on("file-added", handleFileAdded);
     uppy.on("file-editor:complete", handleEditorComplete);
-    uppy.on("file-editor:cancel", handleEditorCancel);
     uppy.on("complete", handleComplete);
 
     return () => {
       uppy.off("file-added", handleFileAdded);
       uppy.off("file-editor:complete", handleEditorComplete);
-      uppy.off("file-editor:cancel", handleEditorCancel);
       uppy.off("complete", handleComplete);
     };
   }, [uppy, onFileUploaded]);
@@ -143,149 +178,112 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
 
   const handleEditImage = () => {
     if (selectedFile) {
-      console.log("Edit button clicked, selectedFile:", selectedFile);
-      setShowEditor(true);
       const editorPlugin = uppy.getPlugin("ImageEditor");
-      console.log("ImageEditor plugin:", editorPlugin);
       if (
         editorPlugin &&
         "selectFile" in editorPlugin &&
         typeof editorPlugin.selectFile === "function"
       ) {
-        console.log("Calling selectFile...");
-        try {
-          editorPlugin.selectFile(selectedFile);
-          // Force the editor to open by dispatching an event
-          uppy.emit("file-editor:start", selectedFile);
-        } catch (error) {
-          console.error("Error opening editor:", error);
-        }
-      } else {
-        console.error(
-          "ImageEditor plugin not found or selectFile not available"
-        );
+        editorPlugin.selectFile(selectedFile);
       }
     }
   };
 
-  return {
-    // Controls component for left side
-    Controls: () => {
-      const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (files && files.length > 0) {
-          uppy.addFile({
-            name: files[0].name,
-            type: files[0].type,
-            data: files[0],
-          });
-        }
-      };
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      // Remove existing files first
+      uppy.getFiles().forEach((file) => uppy.removeFile(file.id));
 
-      return (
-        <div className="space-y-6">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">
-              Prześlij swoje zdjęcie
-            </h2>
-            <p className="text-gray-600">
-              Wybierz zdjęcie, które chcesz zamienić w obraz
-            </p>
-          </div>
-
-          <div className="border-2 border-dashed border-gray-300 hover:border-gray-400 rounded-lg p-12 text-center cursor-pointer transition-colors">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileSelect}
-              className="hidden"
-              id="file-input"
-            />
-            <label htmlFor="file-input" className="cursor-pointer">
-              <p className="text-gray-600">
-                Upuść zdjęcie tutaj lub kliknij, aby wybrać z dysku
-              </p>
-            </label>
-          </div>
-
-          <div className="space-y-3">
-            <Button
-              onClick={handleWebcamCapture}
-              className="w-full"
-              variant="outline"
-              size="lg"
-            >
-              <Camera className="mr-2 h-5 w-5" />
-              Zrób zdjęcie kamerą
-            </Button>
-
-            <Button
-              onClick={handleGoogleDrive}
-              className="w-full"
-              variant="outline"
-              size="lg"
-            >
-              <HardDrive className="mr-2 h-5 w-5" />
-              Importuj z Google Drive
-            </Button>
-
-            {selectedFile && (
-              <Button
-                onClick={handleEditImage}
-                className="w-full"
-                variant="default"
-                size="lg"
-              >
-                <Upload className="mr-2 h-5 w-5" />
-                Edytuj zdjęcie
-              </Button>
-            )}
-
-            {selectedFile && !showEditor && (
-              <Button
-                onClick={() => uppy.upload()}
-                className="w-full bg-green-600 hover:bg-green-700"
-                size="lg"
-              >
-                Prześlij zdjęcie
-              </Button>
-            )}
-          </div>
-        </div>
-      );
-    },
-
-    // Preview component for right side
-    Preview: () => {
-      console.log(
-        "Preview rendering, showEditor:",
-        showEditor,
-        "selectedFile:",
-        selectedFile
-      );
-      return (
-        <div className="w-full h-full">
-          <div
-            id="image-editor-container"
-            className="w-full h-full"
-            style={{ display: showEditor ? "block" : "none" }}
-          />
-          {!showEditor && selectedFile && selectedFile.data instanceof Blob ? (
-            <div>
-              <img
-                src={URL.createObjectURL(selectedFile.data)}
-                alt="Preview"
-                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-lg"
-              />
-            </div>
-          ) : !showEditor ? (
-            <div className="text-gray-400 text-center">
-              <p className="text-xl">Podgląd zdjęcia</p>
-              <p className="text-sm mt-2">Twoje zdjęcie pojawi się tutaj</p>
-            </div>
-          ) : null}
-        </div>
-      );
-    },
+      uppy.addFile({
+        name: files[0].name,
+        type: files[0].type,
+        data: files[0],
+      });
+    }
   };
+
+  return (
+    <div className="grid grid-cols-2 h-full w-full">
+      {/* Left column: Upload controls */}
+      <div className="relative p-16">
+        <div className="absolute inset-16">
+          <div className="space-y-6">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                Prześlij swoje zdjęcie
+              </h2>
+              <p className="text-gray-600">
+                Wybierz zdjęcie, które chcesz zamienić w obraz
+              </p>
+            </div>
+
+            <div className="border-2 border-dashed border-gray-300 hover:border-gray-400 rounded-lg p-12 text-center cursor-pointer transition-colors">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileSelect}
+                className="hidden"
+                id="file-input"
+              />
+              <label htmlFor="file-input" className="cursor-pointer">
+                <p className="text-gray-600">
+                  Upuść zdjęcie tutaj lub kliknij, aby wybrać z dysku
+                </p>
+              </label>
+            </div>
+
+            <div className="space-y-3">
+              <Button
+                onClick={handleWebcamCapture}
+                className="w-full"
+                variant="outline"
+                size="lg"
+              >
+                <Camera className="mr-2 h-5 w-5" />
+                Zrób zdjęcie kamerą
+              </Button>
+
+              <Button
+                onClick={handleGoogleDrive}
+                className="w-full"
+                variant="outline"
+                size="lg"
+              >
+                <HardDrive className="mr-2 h-5 w-5" />
+                Importuj z Google Drive
+              </Button>
+
+              {selectedFile && (
+                <Button
+                  onClick={handleEditImage}
+                  className="w-full"
+                  variant="default"
+                  size="lg"
+                >
+                  <Upload className="mr-2 h-5 w-5" />
+                  Edytuj zdjęcie
+                </Button>
+              )}
+
+              {selectedFile && (
+                <Button
+                  onClick={() => uppy.upload()}
+                  className="w-full bg-green-600 hover:bg-green-700"
+                  size="lg"
+                >
+                  Prześlij zdjęcie
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right column: Image preview with Dashboard */}
+      <div className="bg-gray-100/50 p-16">
+        <div ref={dashboardRef} className="w-full h-full min-h-[600px]" />
+      </div>
+    </div>
+  );
 };

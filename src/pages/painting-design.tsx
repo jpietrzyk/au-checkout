@@ -29,9 +29,6 @@ export default function UploadImage() {
     window.location.hash = "";
   };
 
-  const uploader = SplitUploader({ onFileUploaded: handleFileUploaded });
-  const { Controls, Preview } = uploader;
-
   return (
     <main className="home-main">
       <section aria-label="Upload Image" className="home-hero">
@@ -39,19 +36,7 @@ export default function UploadImage() {
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
-        <div className="grid grid-cols-2 h-full w-full">
-          {/* Left column: Upload controls */}
-          <div className="relative p-16">
-            <div className="absolute inset-16">
-              <Controls />
-            </div>
-          </div>
-
-          {/* Right column: Image preview */}
-          <div className="bg-gray-100/50 p-16">
-            <Preview />
-          </div>
-        </div>
+        <SplitUploader onFileUploaded={handleFileUploaded} />
 
         <Footer onLinkClick={handleLinkClick} />
         {modalSlug && (
