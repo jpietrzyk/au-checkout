@@ -383,9 +383,17 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
         </div>
       </div>
 
-      {/* Right column: Image preview with Dashboard */}
-      <div className="bg-gray-100/50 p-4 h-full">
-        <div ref={dashboardRef} className="w-full h-full" />
+      {/* Right column: Image preview or Dashboard */}
+      <div className="bg-gray-100/50 p-4 h-full flex items-center justify-center">
+        {activeSection === 1 ? (
+          <div ref={dashboardRef} className="w-full h-full" />
+        ) : uploadedImageUrl ? (
+          <img
+            src={uploadedImageUrl}
+            alt="Podgląd przesłanego zdjęcia"
+            className="max-w-full max-h-[80vh] rounded-lg shadow-lg border border-gray-300"
+          />
+        ) : null}
       </div>
     </div>
   );

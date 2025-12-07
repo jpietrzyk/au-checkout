@@ -52,7 +52,7 @@ export const checkoutSteps: FormStep[] = [
 export default function Checkout() {
   const [modalSlug, setModalSlug] = useState<string | null>(null);
   const location = useLocation();
-  const [, setUploadedImageUrl] = useLocalStorage<string>({
+  const [uploadedImageUrl, setUploadedImageUrl] = useLocalStorage<string>({
     key: "uploaded-image-url",
     defaultValue: "",
   });
@@ -110,27 +110,35 @@ export default function Checkout() {
 
   return (
     <main className="home-main">
-      <div
-        className="home-bg"
-        style={{
-          backgroundImage: `url('/src/assets/background_1.jpg')`,
-        }}
-      />
+      {/* No background image on checkout page */}
       <section aria-label="Hero" className="home-hero">
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
-        {/* Centered content container */}
-        <div className="w-full flex flex-col items-center justify-center space-y-4 px-4 min-h-screen">
-          {/* Progress Steps - centered above form */}
-
-          {/* Form Container - centered */}
-          <MultiStepForm
-            steps={checkoutSteps}
-            localStorageKey="checkout-form"
-            showProgress={true}
-          />
+        {/* Split grid layout: left = form, right = empty */}
+        <div
+          className="grid h-full w-full"
+          style={{ gridTemplateColumns: "33% 67%", minHeight: "100vh" }}
+        >
+          {/* Left column: Checkout step form */}
+          <div className="relative p-16 flex flex-col justify-center">
+            <MultiStepForm
+              steps={checkoutSteps}
+              localStorageKey="checkout-form"
+              showProgress={true}
+            />
+          </div>
+          {/* Right column: Image preview if available */}
+          <div className="bg-gray-100/50 p-4 h-full flex items-center justify-center">
+            {uploadedImageUrl ? (
+              <img
+                src={uploadedImageUrl}
+                alt="Podgląd przesłanego zdjęcia"
+                className="max-w-full max-h-[80vh] rounded-lg shadow-lg border border-gray-300"
+              />
+            ) : null}
+          </div>
         </div>
         <Footer onLinkClick={handleLinkClick} />
         {modalSlug && (
