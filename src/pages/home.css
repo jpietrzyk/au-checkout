@@ -11,14 +11,7 @@
   background-color: #f3f4f6;
 }
 
-.home-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
-  filter: saturate(0.9);
-}
+/* .home-bg and overlay removed */
 
 .home-hero {
   position: relative;

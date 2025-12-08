@@ -31,6 +31,7 @@ export default function UploadImage() {
 
   return (
     <main className="home-main">
+      {/* <div className="home-bg" /> */}
       <section
         aria-label="Upload Image"
         className="home-hero painting-design-hero"

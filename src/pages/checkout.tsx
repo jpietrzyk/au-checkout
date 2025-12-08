@@ -115,6 +115,7 @@ export default function Checkout() {
 
   return (
     <main className="home-main">
+      {/* <div className="home-bg" /> */}
       {/* No background image on checkout page */}
       <section aria-label="Hero" className="home-hero">
         <div className="home-brand">

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import bgImage from "../assets/background_1.jpg";
+// import bgImage from "../assets/background_1.jpg";
 import "./home.css";
 import { Footer } from "../components/Footer";
 import { LegalModal } from "../components/legal-modal";
@@ -52,12 +52,14 @@ export default function Home() {
   return (
     <main className="home-main">
       {/* Background image with subtle overlay */}
+      {/*
       <div
         className="home-bg"
         style={{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `url('/background_wall.jpg')`,
         }}
       />
+      */}
 
       {/* Centered hero section (full viewport) */}
       <section aria-label="Hero" className="home-hero">

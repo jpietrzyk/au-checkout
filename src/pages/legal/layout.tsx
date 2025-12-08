@@ -38,7 +38,8 @@ export function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <main style={{ minHeight: "100vh" }}>
+    <main style={{ minHeight: "100vh", position: "relative" }}>
+      {/* <div className="home-bg" /> */}
       <section style={baseStyle}>
         <h1 style={titleStyle}>{title}</h1>
         <div style={{ marginTop: 16 }}>{children}</div>
