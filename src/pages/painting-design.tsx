@@ -39,6 +39,7 @@ export default function UploadImage() {
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
+        {/* Główny uploader obrazu */}
         <SplitUploader onFileUploaded={handleFileUploaded} />
 
         <Footer onLinkClick={handleLinkClick} />

@@ -115,18 +115,18 @@ export default function Checkout() {
 
   return (
     <main className="home-main">
-      {/* No background image on checkout page */}
+      {/* Brak tła na stronie zamówienia */}
       <section aria-label="Hero" className="home-hero">
         <div className="home-brand">
           tuus<span className="home-brand-imago">imago</span>
         </div>
 
-        {/* Split grid layout: left = form, right = empty */}
+        {/* Układ siatki: lewa = formularz, prawa = podgląd */}
         <div
           className="grid h-full w-full"
           style={{ gridTemplateColumns: "33% 67%", minHeight: "100vh" }}
         >
-          {/* Left column: Checkout step form */}
+          {/* Lewa kolumna: formularz kroków zamówienia */}
           <div className="relative p-16 flex flex-col justify-center">
             <MultiStepForm
               steps={checkoutSteps}
@@ -134,7 +134,7 @@ export default function Checkout() {
               showProgress={true}
             />
           </div>
-          {/* Right column: Image preview if available */}
+          {/* Prawa kolumna: podgląd obrazu jeśli dostępny */}
           <div className="bg-gray-100/50 p-4 h-full flex items-center justify-center">
             {uploadedImageUrl ? (
               <img
