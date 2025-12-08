@@ -80,6 +80,9 @@ importers:
       react:
         specifier: ^19.1.1
         version: 19.2.0
+      react-cropper:
+        specifier: ^2.3.3
+        version: 2.3.3(react@19.2.0)
       react-dom:
         specifier: ^19.1.1
         version: 19.2.0(react@19.2.0)
@@ -114,6 +117,9 @@ importers:
       '@types/react':
         specifier: ^19.1.16
         version: 19.2.2
+      '@types/react-cropper':
+        specifier: ^2.0.0
+        version: 2.0.0(react@19.2.0)
       '@types/react-dom':
         specifier: ^19.1.9
         version: 19.2.1(@types/react@19.2.2)
@@ -1429,6 +1435,10 @@ packages:
 
   '@types/node@24.7.2':
     resolution: {integrity: sha512-/NbVmcGTP+lj5oa4yiYxxeBjRivKQ5Ns1eSZeB99ExsEQ6rX5XYU1Zy/gGxY/ilqtD4Etx9mKyrPxZRetiahhA==}
+
+  '@types/react-cropper@2.0.0':
+    resolution: {integrity: sha512-83sUWh+ilIRYkebGAT6ILN2ijPNLJWkq3OSV+g5SI6jpA6KcOCuIJ7b86mOBsRk8o7bqp7lxlCsodIpyk0x4fg==}
+    deprecated: This is a stub types definition. react-cropper provides its own type definitions, so you do not need this installed.
 
   '@types/react-dom@19.2.1':
     resolution: {integrity: sha512-/EEvYBdT3BflCWvTMO7YkYBHVE9Ci6XdqZciZANQgKpaiDRGOLIlRo91jbTNRQjgPFWVaRxcYc0luVNFitz57A==}
@@ -2778,6 +2788,11 @@ packages:
   quick-lru@5.1.1:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
+
+  react-cropper@2.3.3:
+    resolution: {integrity: sha512-zghiEYkUb41kqtu+2jpX2Ntigf+Jj1dF9ew4lAobPzI2adaPE31z0p+5TcWngK6TvmWQUwK3lj4G+NDh1PDQ1w==}
+    peerDependencies:
+      react: '>=17.0.2'
 
   react-dom@19.2.0:
     resolution: {integrity: sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==}
@@ -4664,6 +4679,12 @@ snapshots:
     dependencies:
       undici-types: 7.14.0
 
+  '@types/react-cropper@2.0.0(react@19.2.0)':
+    dependencies:
+      react-cropper: 2.3.3(react@19.2.0)
+    transitivePeerDependencies:
+      - react
+
   '@types/react-dom@19.2.1(@types/react@19.2.2)':
     dependencies:
       '@types/react': 19.2.2
@@ -6299,6 +6320,11 @@ snapshots:
   queue-microtask@1.2.3: {}
 
   quick-lru@5.1.1: {}
+
+  react-cropper@2.3.3(react@19.2.0):
+    dependencies:
+      cropperjs: 1.6.2
+      react: 19.2.0
 
   react-dom@19.2.0(react@19.2.0):
     dependencies:

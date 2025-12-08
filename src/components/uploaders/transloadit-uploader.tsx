@@ -18,6 +18,7 @@ function createUppy() {
     restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
     autoProceed: false, // Changed to false to prevent automatic upload
     locale: {
+      pluralize: (n: number) => (n === 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2),
       strings: {
         dropPasteImportBoth: "Prześlij swoje zdjęcie",
         dropPasteImportFiles: "Upuść zdjęcie tutaj lub %{browse}",
