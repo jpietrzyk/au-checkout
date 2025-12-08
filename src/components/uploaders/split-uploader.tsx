@@ -349,7 +349,10 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
                       checked={hasRama}
                       onChange={(e) => {
                         setHasRama(e.target.checked);
-                        window.localStorage.setItem("has-rama", e.target.checked ? "true" : "false");
+                        window.localStorage.setItem(
+                          "has-rama",
+                          e.target.checked ? "true" : "false"
+                        );
                       }}
                     />
                     <span className="ml-3 text-lg text-gray-800 font-medium">

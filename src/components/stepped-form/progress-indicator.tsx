@@ -38,10 +38,10 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
   }, []);
 
   return (
-    <div className="w-full flex justify-center mt-8 mb-6">
-      <div className="relative w-full max-w-[1200px] min-w-[900px] px-4">
+    <div className="w-full flex justify-center mt-8 mb-6 overflow-x-auto">
+      <div className="relative w-full max-w-[900px] px-2 sm:px-4">
         {/* Line below steps */}
-        <div className="absolute top-[40px] left-0 right-0 h-0.5 bg-gray-300 z-0" />
+        <div className="absolute top-[28px] left-0 right-0 h-0.5 bg-gray-300 z-0" />
 
         {/* Container for flex layout */}
         <div className="flex justify-between w-full px-4 sm:px-8 relative z-10">
@@ -101,7 +101,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
                       ? "Dokończ wcześniejsze kroki przed przejściem dalej"
                       : undefined
                   }
-                  className={`flex w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] md:w-[80px] md:h-[80px] items-center justify-center rounded-full border-2 ${
+                  className={`flex w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] md:w-[60px] md:h-[60px] items-center justify-center rounded-full border-2 ${
                     isCurrent
                       ? "border-green-500 bg-green-100"
                       : isCompleted
@@ -130,9 +130,9 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
                   }
                 >
                   {isCompleted ? (
-                    <Check className="h-10 w-10" />
+                    <Check className="h-7 w-7" />
                   ) : (
-                    <step.icon className="h-10 w-10" />
+                    <step.icon className="h-7 w-7" />
                   )}
                 </motion.button>
                 <div
@@ -140,7 +140,7 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
                     isCompleted || isCurrent ? "text-primary" : "text-gray-500"
                   }`}
                 >
-                  <div className="font-semibold text-white text-[1rem]">
+                  <div className="font-semibold text-gray-800 text-[1rem]">
                     {step.label}
                   </div>
                 </div>
