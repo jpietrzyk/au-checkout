@@ -67,9 +67,9 @@ export default function Home() {
           </div>
           <h1 className="home-title">Zamień zdjęcie w obraz na płótnie</h1>
           <p className="home-subtitle">
-            Zamień zdjęcie w obraz na płótnie w jakości muzealnej. Wybierz
-            rozmiar, ramkę i styl. Przygotowane w kilka minut i dostarczone do
-            domu.
+            Zamień swoje zdjęcie w obraz na płótnie w jakości muzealnej. Wybierz
+            rozmiar, ramę i styl. Gotowe w kilka minut i dostarczone prosto do
+            Twojego domu.
           </p>
 
           <div className="home-buttons">
@@ -78,7 +78,7 @@ export default function Home() {
             </a>
           </div>
 
-          {/* How it works section */}
+          {/* Sekcja: Jak to działa */}
           <div className="home-steps">
             <h2 className="home-steps-title">Jak to działa</h2>
             <div className="home-steps-grid">

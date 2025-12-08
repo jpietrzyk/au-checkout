@@ -40,9 +40,78 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
     return new Uppy({
       restrictions: { maxNumberOfFiles: 1, allowedFileTypes: ["image/*"] },
       autoProceed: false,
+      locale: {
+        pluralize: (n: number) => (n === 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2),
+        strings: {
+          dropPasteImportBoth: "Prześlij swoje zdjęcie",
+          dropPasteImportFiles: "Upuść zdjęcie tutaj lub %{browse}",
+          dropPasteBoth: "Upuść zdjęcie tutaj, wklej lub %{browse}",
+          dropPasteFiles: "Upuść zdjęcie tutaj, wklej lub %{browse}",
+          dropHint: "Upuść zdjęcie tutaj",
+          browseFiles: "wybierz z dysku",
+          addMore: "Dodaj więcej",
+          addMoreFiles: "Dodaj więcej zdjęć",
+          addingMoreFiles: "Dodawanie kolejnych zdjęć",
+          importFrom: "Importuj z %{name}",
+          xFilesSelected: {
+            0: "%{smart_count} zdjęcie wybrane",
+            1: "%{smart_count} zdjęcia wybrane",
+            2: "%{smart_count} zdjęć wybranych",
+          },
+          uploadXFiles: {
+            0: "Prześlij %{smart_count} zdjęcie",
+            1: "Prześlij %{smart_count} zdjęcia",
+            2: "Prześlij %{smart_count} zdjęć",
+          },
+          uploadXNewFiles: {
+            0: "Prześlij +%{smart_count} zdjęcie",
+            1: "Prześlij +%{smart_count} zdjęcia",
+            2: "Prześlij +%{smart_count} zdjęć",
+          },
+          upload: "Prześlij",
+          retryUpload: "Spróbuj ponownie",
+          cancelUpload: "Anuluj przesyłanie",
+          xTimeLeft: "%{time} pozostało",
+          uploadingXFiles: {
+            0: "Przesyłanie %{smart_count} zdjęcia",
+            1: "Przesyłanie %{smart_count} zdjęć",
+            2: "Przesyłanie %{smart_count} zdjęć",
+          },
+          processingXFiles: {
+            0: "Przetwarzanie %{smart_count} zdjęcia",
+            1: "Przetwarzanie %{smart_count} zdjęć",
+            2: "Przetwarzanie %{smart_count} zdjęć",
+          },
+          uploading: "Przesyłanie",
+          complete: "Zakończono",
+          uploadFailed: "Przesyłanie nie powiodło się",
+          paused: "Wstrzymano",
+          retry: "Spróbuj ponownie",
+          cancel: "Anuluj",
+          done: "Gotowe",
+          removeFile: "Usuń zdjęcie",
+          editFile: "Edytuj zdjęcie",
+          editImage: "Edytuj obraz",
+          edit: "Edytuj",
+          finishEditingFile: "Zakończ edycję",
+          save: "Zapisz",
+          saveChanges: "Zapisz zmiany",
+        },
+      },
     })
       .use(Webcam, {
         modes: ["picture"],
+        locale: {
+          strings: {
+            smile: "Uśmiechnij się!",
+            takePicture: "Zrób zdjęcie",
+            startRecording: "Rozpocznij nagrywanie",
+            stopRecording: "Zatrzymaj nagrywanie",
+            allowAccessTitle: "Pozwól na dostęp do kamery",
+            allowAccessDescription:
+              "Aby robić zdjęcia, musisz zezwolić na dostęp do kamery.",
+          },
+        },
       })
       .use(GoogleDrive, {
         companionUrl: "https://companion.uppy.io",
@@ -66,6 +135,18 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
           autoCropArea: 1,
           responsive: true,
           croppedCanvasOptions: {},
+        },
+        locale: {
+          strings: {
+            revert: "Cofnij",
+            rotate: "Obróć",
+            zoomIn: "Przybliż",
+            zoomOut: "Oddal",
+            flipHorizontal: "Odbij poziomo",
+            aspectRatioSquare: "Kwadrat",
+            aspectRatioLandscape: "Poziomy",
+            aspectRatioPortrait: "Pionowy",
+          },
         },
       })
       .use(Transloadit, {
