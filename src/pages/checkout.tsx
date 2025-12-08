@@ -57,6 +57,11 @@ export default function Checkout() {
     defaultValue: "",
   });
 
+  const hasRama =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("has-rama") === "true"
+      : false;
+
   // On mount, check for ?image= param and save to localStorage if present
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -135,7 +140,12 @@ export default function Checkout() {
               <img
                 src={uploadedImageUrl}
                 alt="Podgląd przesłanego zdjęcia"
-                className="max-w-full max-h-[80vh] rounded-lg shadow-lg border border-gray-300"
+                className={
+                  `max-w-full max-h-[80vh] rounded-lg shadow-lg ` +
+                  (hasRama
+                    ? "border-8 border-yellow-400 drop-shadow-xl outline outline-4 outline-yellow-700"
+                    : "border border-gray-300")
+                }
               />
             ) : null}
           </div>

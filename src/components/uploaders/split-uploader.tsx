@@ -347,7 +347,10 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
                       type="checkbox"
                       className="form-checkbox h-5 w-5 text-purple-600"
                       checked={hasRama}
-                      onChange={(e) => setHasRama(e.target.checked)}
+                      onChange={(e) => {
+                        setHasRama(e.target.checked);
+                        window.localStorage.setItem("has-rama", e.target.checked ? "true" : "false");
+                      }}
                     />
                     <span className="ml-3 text-lg text-gray-800 font-medium">
                       Rama drewniana
@@ -391,7 +394,12 @@ export const SplitUploader = ({ onFileUploaded }: SplitUploaderProps) => {
           <img
             src={uploadedImageUrl}
             alt="Podgląd przesłanego zdjęcia"
-            className="max-w-full max-h-[80vh] rounded-lg shadow-lg border border-gray-300"
+            className={
+              `max-w-full max-h-[80vh] rounded-lg shadow-lg ` +
+              (hasRama
+                ? "border-8 border-yellow-400 drop-shadow-xl outline outline-4 outline-yellow-700"
+                : "border border-gray-300")
+            }
           />
         ) : null}
       </div>
